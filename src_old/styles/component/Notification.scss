@@ -1,0 +1,62 @@
+.ntf_li {
+  height: 175px;
+  background: #ffffff;
+  margin: 10px;
+  border-radius: 16px;
+  stroke: transparent;
+}
+
+
+.latestSong {
+  width: 16px;
+  margin: 10px;
+  left: 325px;
+  bottom: -12px;
+  font-family: monospace;
+  text-align: left;
+  position: relative;
+  font-size: 1.4rem;
+  font-weight: 100;
+  letter-spacing: 0.03rem;
+}
+
+iframe {
+  width: 350px;
+  height: 175px;
+  border-radius: 16px;
+}
+
+.nortMessage {
+  width: 350px;
+  height: 40px;
+  border-radius: 16px;
+  background: #d89cb0;
+  margin: 10px;
+  font-size: 23px;
+  font-family: monospace;
+  text-align: center;
+  position: relative;
+}
+
+.battenNotif {
+  text-align: center;
+  position: center;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  display: inline-block;
+  vertical-align: center;
+  padding: 12px;
+}
+
+.ntf {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  margin: 12px;
+  flex-direction: column;
+  list-style: none;
+  justify-content: flex-end;
+}

@@ -1,0 +1,48 @@
+.library {
+    position: absolute;
+    height: 17px;
+    left: 69.4%;
+    right: 6.72%;
+    top: 5.41px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.about {
+    position: absolute;
+    height: 17px;
+    left: 40.67%;
+    right: 36.94%;
+    top: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.projects {
+    position: absolute;
+    height: 17px;
+    left: 6.72%;
+    right: 69.4%;
+    top: 5.41px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ButtonText1 {
+    position: absolute;
+    height: 27px;
+    left: 0%;
+    right: 0%;
+    top: -4px;
+    
+    font-family: FCODE;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 27px;
+    /* identical to box height, or 208% */
+    
+    text-align: center;
+    
+    color: #333333;
+}

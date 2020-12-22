@@ -1,14 +1,22 @@
 canvas {
   height: 100vh !important;
+  opacity: 0;
+  filter: blur(4px);
+  animation-name: fadein-bottom;
+   animation-duration: 2s;
+   animation-timing-function: ease-out;
+   animation-fill-mode: forwards;
 }
 
-#___gatsby {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
+@keyframes fadein-bottom {
+  0% {
+     opacity: 0;
+  }
+  100% {
+     opacity: 0.76;
+  }
 }
-// ???
+
 
 div#container {
   position: fixed;

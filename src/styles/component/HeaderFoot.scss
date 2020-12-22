@@ -1,0 +1,39 @@
+.potaru {
+    position: absolute;
+    width: 305px;
+    height: 23px;
+    left: 23px;
+    top: 22px;
+}
+
+.potaruText1 {
+    position: absolute;
+    height: 22px;
+    left: 1.31%;
+    right: -24.59%;
+    top: 1px;
+    
+    font-family: NSJP;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 114% */
+    
+    letter-spacing: 2.52px;
+    color: #333333;
+    cursor: pointer;
+}
+
+.potaruText1Rec {
+    position: absolute;
+    height: 23px;
+    left: 0%;
+    right: -20.59%;
+    top: 0px;
+    
+    background: #FFFFFF;
+    border-radius: 0px;
+    border-radius: 8px;
+    
+}

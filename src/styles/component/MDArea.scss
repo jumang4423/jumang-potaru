@@ -1,0 +1,34 @@
+.MDArea {
+    position: absolute;
+    left: 5vw; //5% by windows
+    top: 140px;
+    bottom: 70px;
+    width: 90vw; //window 90%
+    
+    background: #FFFFFF;
+    opacity: 0.69;
+    box-shadow: -10px -10px 34px rgba(240, 240, 243, 0.42), 10px 10px 34px rgba(0, 0, 0, 0.13);
+    border-radius: 48px;
+
+    animation-name: huwa_window;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+  
+@keyframes huwa_window {
+  0% {
+      box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
+  }
+  100% {
+      box-shadow: -10px -10px 34px rgba(240, 240, 243, 0.42), 10px 10px 34px rgba(0, 0, 0, 0.13);
+  }
+}
+
+.MDArea2 {
+    position: absolute;
+    left: 68px;
+    right: 74px;
+    top: 70px;
+    bottom: 70px;
+}

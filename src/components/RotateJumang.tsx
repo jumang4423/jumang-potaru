@@ -2,16 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as THREE from "three"
 import { Canvas, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-// import { softShadows } from "drei";
 import "@/styles/component/RotateJumang.scss";
-
-// softShadows( {
-//   frustrum: 100,
-//   size: 100,
-//   near: 100,
-//   samples: 100,
-//   rings: 100
-// });
 
 const Jumang3D = () => {
   const [model, setModel] = useState(null)

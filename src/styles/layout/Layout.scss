@@ -1,21 +1,28 @@
+$Jet: #333333;
+$DPGreen: #18BC28;
+
+.Jet {
+	color: $Jet;
+}
+
+.DPGreen {
+	color: $DPGreen;
+}
+
+@font-face {
+	font-family: NSJP;
+	src: url(../../fonts/NotoSansJP-Regular.otf);
+}
+
+@font-face {
+	font-family: FCode;
+	src: url(../../fonts/FiraCode-Regular.ttf);
+}
+
 #root {
   width: 100vw;
   height: 100vh;
 }
-
-// .scrollArea {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   overflow: auto;
-// }
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
