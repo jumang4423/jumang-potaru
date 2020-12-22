@@ -1,0 +1,33 @@
+.artUL {
+  position: absolute;
+  top: 80px;
+  padding: 24px 40px;
+}
+
+.artHeader {
+  box-sizing: border-box;
+  height: 22px;
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #2a2a24;
+  font-size: 1.1rem;
+  font-weight: 200;
+  letter-spacing: 0.1rem;
+  margin-top: 10px;
+  background-color: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.slant-line {
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 185px;
+  left: -22px;
+  width: 120px;
+  margin: auto;
+  border-top: 1px solid rgb(136, 136, 136);
+}
+

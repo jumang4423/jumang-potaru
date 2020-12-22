@@ -1,0 +1,58 @@
+{
+  "name": "jumang-potaru",
+  "private": true,
+  "description": "jumang potaru, a jumang portfolio site using react.js",
+  "version": "0.2.0",
+  "author": "jumang",
+  "dependencies": {
+    "drei": "^1.5.7",
+    "framer-motion": "^2.9.4",
+    "gatsby": "^2.25.3",
+    "gatsby-image": "^2.7.0",
+    "gatsby-plugin-manifest": "^2.5.2",
+    "gatsby-plugin-offline": "^3.3.3",
+    "gatsby-plugin-react-helmet": "^3.3.14",
+    "gatsby-plugin-sass": "^2.4.2",
+    "gatsby-plugin-sharp": "^2.7.1",
+    "gatsby-plugin-typescript": "^2.8.0",
+    "gatsby-source-filesystem": "^2.4.2",
+    "gatsby-transformer-sharp": "^2.5.21",
+    "lazysizes": "^5.2.2",
+    "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-iframe": "^1.8.0",
+    "react-particles-js": "^3.4.1",
+    "react-three-fiber": "^5.1.9",
+    "three": "^0.122.0"
+  },
+  "devDependencies": {
+    "gatsby-plugin-root-import": "^2.0.5",
+    "gh-pages": "^3.1.0",
+    "prettier": "2.1.2"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "deploy:github": "npm run build && node ./scripts/deploy-github",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}
