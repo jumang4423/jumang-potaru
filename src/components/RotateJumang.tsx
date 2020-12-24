@@ -30,7 +30,7 @@ export default () => {
           gl.shadowMap.type = THREE.PCFSoftShadowMap
         }}
       >
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.8} />
         <directionalLight
           castShadow
           position={[0, 100, 100]}

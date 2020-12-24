@@ -2,8 +2,7 @@ import React from 'react';
 import { motion } from "framer-motion";
 import "@/styles/component/HeaderFoot.scss";
 
-export default function HeaderFoot() {
-
+export default function HeaderFoot(props) {
     return (
         <div className="potaru">
             <motion.div
@@ -36,7 +35,7 @@ export default function HeaderFoot() {
                 }
             }>
                 <div className="potaruText1 Jet">
-                    JUMANG POTARU ☯ <span className="DPGreen">introduction</span>
+                    JUMANG POTARU ☯ <span className="DPGreen">{props.pageName}</span>
                 </div>
             </motion.div>
         </div>
