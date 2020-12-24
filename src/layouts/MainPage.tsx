@@ -1,6 +1,6 @@
 import React from 'react';
-import { graphql, StaticQuery, useStaticQuery } from "gatsby"
 import RotateJumang from "@/components/RotateJumang"
+import MPPost from "@/components/MPPost"
 import Header from "@/components/Header"
 import MDArea from "@/components/MDArea"
 import "@/styles/layout/MainPage.scss";
@@ -21,27 +21,6 @@ function isWebGLAvailable() {
 //basically this <Apps /> for only jsx components
 export default function MainPage() {
 
-    const MPPost = () => {
-        return (
-            <StaticQuery
-                query={
-                    graphql`
-            query MyQuery {
-                allMicrocmsPotaruCms {
-                    nodes {
-                        title
-                        contents
-                    }
-                }
-            }`}
-                render={data => (
-                    <>
-                        <div dangerouslySetInnerHTML={{ __html: data.allMicrocmsPotaruCms.nodes[1].contents }} />
-                    </>
-                )}
-            />
-        )
-    }
 
     // const body : string = "<div>test</div>"
     // const MPPost: React.FC<{ body: {body}) => (

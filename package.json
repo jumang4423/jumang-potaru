@@ -6,6 +6,7 @@
   "author": "jumang",
   "dependencies": {
     "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
     "drei": "^1.5.7",
     "framer-motion": "^2.9.4",
     "gatsby": "^2.25.3",
@@ -19,6 +20,7 @@
     "gatsby-source-filesystem": "^2.4.2",
     "gatsby-source-microcms": "^1.0.1",
     "gatsby-transformer-sharp": "^2.5.21",
+    "highlight.js": "^10.5.0",
     "lazysizes": "^5.2.2",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
