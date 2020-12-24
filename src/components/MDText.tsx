@@ -5,7 +5,7 @@ export default function MDArea(props) {
     
     return (
         <div className="MDText">
-            {props.text}
+            <props.MPPost />
         </div>
     )
 }

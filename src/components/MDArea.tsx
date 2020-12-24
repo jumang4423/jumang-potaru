@@ -13,7 +13,7 @@ export default function MDArea(props) {
                 dragConstraints={{ left: 0, right: 0, bottom: 0, top: 0 }}
                 dragTransition={{ bounceStiffness: 1000, bounceDamping: 20 }}>
                 <div className="MDArea2">
-                    <MDText text={props.text} />
+                    <MDText MPPost={props.MPPost} />
                 </div>
             </motion.div>
         </div>
