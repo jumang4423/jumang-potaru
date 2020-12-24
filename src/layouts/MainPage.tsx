@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql　} from "gatsby"
 import RotateJumang from "@/components/RotateJumang"
 import Header from "@/components/Header"
 import MDArea from "@/components/MDArea"
@@ -24,10 +25,25 @@ export default function MainPage() {
     return (
         <div className="MainPage">
 
-            { isWebGLAvailable() ? <RotateJumang /> : <p id="webglError"></p>}
+            <div>
+                { isWebGLAvailable() ? <RotateJumang /> : <p id="webglError"></p>}
+            </div>
             <MDArea text={text} />
             <Header />
 
         </div>
     );
 };
+
+// export const query = graphql`
+// query {
+//     allMicrocmsBlog(filter: {}) {
+//         edges {
+//             node {
+//                 title
+//                 contents
+//             }
+//         }
+//     }
+//   }
+// `;

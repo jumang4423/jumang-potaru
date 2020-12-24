@@ -22,7 +22,6 @@ export default function HeaderFoot() {
             whileHover={
                 {
                     backgroundColor: 'rgba(200, 200, 200, 0.4)',
-                    scale: 1.1,
                     color: 'rgba(50, 50, 50, 1)'
                 }}
             whileTap={

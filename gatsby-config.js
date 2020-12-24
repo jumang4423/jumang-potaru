@@ -1,3 +1,6 @@
+require("dotenv").config({
+  path: `.env`,
+});
 const path = require("path");
 
 module.exports = {
@@ -43,6 +46,19 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `static/icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-source-microcms",
+      options: {
+        apiKey: process.env.X_API_KEY,
+        serviceId: 'jumang',
+        apis: [{
+          endpoint: 'potaru-cms',
+          query: {
+            limit: 100,
+          },
+        }],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

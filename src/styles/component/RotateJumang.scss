@@ -1,25 +1,27 @@
 canvas {
-  height: 100vh !important;
+  filter: blur(0px);
   opacity: 0;
-  filter: blur(4px);
   animation-name: fadein-bottom;
-   animation-duration: 2s;
-   animation-timing-function: ease-out;
-   animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 350ms;
 }
 
 @keyframes fadein-bottom {
   0% {
+     filter: blur(0px);
      opacity: 0;
   }
   100% {
-     opacity: 0.76;
+     filter: blur(4px);
+     opacity: 0.70;
   }
 }
 
 
 div#container {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
+  position: fixed !important;
+  width: 100vw  !important;
+  height: 100vh !important;
 }
