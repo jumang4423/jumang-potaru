@@ -1,4 +1,5 @@
 const path = require(`path`)
+
 const resolve = require('path').resolve
 exports.onCreateWebpackConfig = ({ actions }) => {
     actions.setWebpackConfig({
