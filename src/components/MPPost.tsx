@@ -17,7 +17,6 @@ export default function MPPost(props) {
             if (props.page == props.data.allMicrocmsPotaruCms.nodes[i].title){
                 useBody(props.data.allMicrocmsPotaruCms.nodes[i].contents)
             }
-            console.log(props.data.allMicrocmsPotaruCms.nodes[i].title)
         }
         
         const $ = cheerio.load(body);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import MDText from "@/components/MDText"
+import MDPicture from "@/components/MDPicture"
 import "@/styles/component/MDArea.scss";
 
 
@@ -21,7 +22,8 @@ export default function MDArea(props) {
                         scale: 1.05,
                     }}>
                 <div className="MDArea2">
-                    <MDText page={props.page} />
+                    <MDText page={props.page} height={props.height} />
+                    {/* <MDPicture /> */}
                 </div>
             </motion.div>
         </div>

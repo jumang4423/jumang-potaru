@@ -30,7 +30,6 @@ export default function HeaderFoot(props) {
                 }}
             onClick={
                 () => { 
-                    document.location.href = "/"
                     scrollTo(0, 0)
                 }
             }>

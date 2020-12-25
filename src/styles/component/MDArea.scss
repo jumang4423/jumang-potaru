@@ -13,7 +13,7 @@
     cursor: pointer;
 
     animation-name: huwa_window;
-    animation-duration: 1s;
+    animation-duration: 0.7s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
     animation-delay: 250ms;
@@ -26,7 +26,7 @@
     }
     100% {
         box-shadow: -10px -10px 34px rgba(240, 240, 243, 0.712), 10px 10px 34px rgba(0, 0, 0, 0.151);
-        opacity: 0.78;
+        opacity: 0.85;
     }
 }
 

@@ -2,7 +2,7 @@ canvas {
   filter: blur(0px);
   opacity: 0;
   animation-name: fadein-bottom;
-  animation-duration: 1s;
+  animation-duration: 0.7s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
   animation-delay: 350ms;
@@ -15,7 +15,7 @@ canvas {
   }
   100% {
      filter: blur(3px);
-     opacity: 0.70;
+     opacity: 1;
   }
 }
 

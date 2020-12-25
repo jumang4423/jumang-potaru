@@ -18,16 +18,17 @@ function isWebGLAvailable() {
 }
 
 //basically this <Apps /> for only jsx components
-export default function MainPage() {
+export default function MainPage(props) {
 
-    const page : string = "MainPage"
-    const pageName : string = "introduction"
+    const page : string = props.page
+    const pageName : string = props.pageName
     return (
-        <div className="MainPage">
+        <div className="MainPage"
+        style = { { height: props.height+"px" } }>
             <div>
                 {isWebGLAvailable() ? <RotateJumang /> : <p id="webglError"></p>}
             </div>
-                <MDArea page={page}/>
+                <MDArea page={page} height={props.height}/>
                 <Header pageName={pageName}/>
         </div>
     );

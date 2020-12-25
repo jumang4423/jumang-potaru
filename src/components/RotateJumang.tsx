@@ -24,17 +24,17 @@ export default () => {
   return (
     <div id="container">
       <Canvas
-        camera={{ position: [0, 12, 1], fov: 50 }}
+        camera={{ position: [0, 12, 1], fov: 60 }}
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = true
           gl.shadowMap.type = THREE.PCFSoftShadowMap
         }}
       >
-        <ambientLight intensity={0.8} />
+        <ambientLight intensity={0.6} />
         <directionalLight
           castShadow
           position={[0, 100, 100]}
-          intensity={0.4}
+          intensity={0.2}
           shadow-mapSize-width={1027}
           shadow-mapSize-height={720}
           shadow-camera-far={90}
