@@ -1,10 +1,11 @@
 .MDText {
     position: absolute;
     //height: 643px;
-    left: 0px;
+    left: 0px !important;
+    right: 0px !important;
     top: 0px;
     bottom: 0px;
-    
+    word-break: keep-all;
     font-family: FCODE;
     font-style: normal;
     font-weight: normal;
