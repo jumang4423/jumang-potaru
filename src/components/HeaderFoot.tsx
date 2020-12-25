@@ -1,8 +1,16 @@
 import React from 'react';
+import { useLocation }from "react-router-dom";
 import { motion } from "framer-motion";
 import "@/styles/component/HeaderFoot.scss";
 
-export default function HeaderFoot(props) {
+export default function HeaderFoot() {
+
+    let location = null;
+    if(useLocation().pathname==="/") location = "introduction"
+    else if (useLocation().pathname==="/projects") location = "projects"
+    else if (useLocation().pathname==="/about") location = "about"
+    else if (useLocation().pathname==="/library") location = "library"
+
     return (
         <div className="potaru">
             <motion.div
@@ -34,7 +42,7 @@ export default function HeaderFoot(props) {
                 }
             }>
                 <div className="potaruText1 Jet">
-                    JUMANG POTARU ☯ <span className="DPGreen">{props.pageName}</span>
+                    JUMANG POTARU ☯ <span className="DPGreen">{location}</span>
                 </div>
             </motion.div>
         </div>

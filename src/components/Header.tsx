@@ -12,7 +12,7 @@ export default function Header(props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}>
             <Link to="/">
-                <HeaderFoot pageName={props.pageName} />
+                <HeaderFoot />
             </Link>
             <HeaderThings />
         </motion.div>

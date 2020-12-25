@@ -1,6 +1,5 @@
 import React from 'react';
 import RotateJumang from "@/components/RotateJumang"
-import Header from "@/components/Header"
 import MDArea from "@/components/MDArea"
 import "@/styles/layout/MainPage.scss";
 
@@ -21,7 +20,6 @@ function isWebGLAvailable() {
 export default function MainPage(props) {
 
     const page : string = props.page
-    const pageName : string = props.pageName
     return (
         <div className="MainPage"
         style = { { height: props.height+"px" } }>
@@ -29,7 +27,6 @@ export default function MainPage(props) {
                 {isWebGLAvailable() ? <RotateJumang /> : <p id="webglError"></p>}
             </div>
                 <MDArea page={page} height={props.height}/>
-                <Header pageName={pageName}/>
         </div>
     );
 };
