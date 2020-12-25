@@ -10,13 +10,13 @@ const Jumang3D = () => {
 
   useEffect(() => {
     new GLTFLoader().load("/jumang.glb", setModel)
-  },[])
+  }, [])
 
   useFrame(() => {
     setradRotate(radRotate + 0.01);
   })
 
-  return model ? <primitive object={model.scene} rotation={[ 0, 0, radRotate]} /> : null
+  return model ? <primitive object={model.scene} rotation={[0, 0, radRotate]} /> : null
 
 }
 

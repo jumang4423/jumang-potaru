@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { graphql, StaticQuery } from "gatsby"
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
@@ -6,19 +6,15 @@ import 'highlight.js/styles/hybrid.css'
 import '@/styles/component/MPPost.scss'
 
 export default function MPPost(props) {
-
-    const [body, useBody]  = useState("");
-
     //md into html
-    function Viewer(props) {
-
-        for(let i : number = 0; i < props.data.allMicrocmsPotaruCms.totalCount; i++)
-        {
-            if (props.page == props.data.allMicrocmsPotaruCms.nodes[i].title){
-                useBody(props.data.allMicrocmsPotaruCms.nodes[i].contents)
+    const Viewer = (props) => {
+        let body: string = ""
+        for (let i: number = 0; i < props.data.allMicrocmsPotaruCms.totalCount; i++) {
+            if (props.page == props.data.allMicrocmsPotaruCms.nodes[i].title) {
+                body = props.data.allMicrocmsPotaruCms.nodes[i].contents
             }
         }
-        
+        console.log(props.page)
         const $ = cheerio.load(body);
         $('pre code').each((_, elm) => {
             const result = hljs.highlightAuto($(elm).text());

@@ -1,15 +1,20 @@
 import React from "react"
-import PropTypes from "prop-types"
+import Header from "@/components/Header"
+import MainPage from "@/layouts/MainPage"
 import "@/styles/layout/Layout.scss"
 
-const Layout = ({ children }) => {
-  return (
-        <main>{children}</main>
-  )
-}
+type Props = { page: string, height: number }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+const Layout: React.FC<Props> = ({ page, height }) => {
+  return (
+    <>
+
+      <MainPage
+        page={page}
+        height={height} />
+      <Header />
+    </>
+  )
 }
 
 export default Layout

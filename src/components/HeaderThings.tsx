@@ -1,21 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import HeaderButton from "@/components/HeaderButton"
 import "@/styles/component/HeaderThings.scss";
 
+type Props = {
 
-export default function HeaderThings() {
+}
+const HeaderThings: React.FC<Props> = () => {
+
     return (
         <div className="Things">
-            <Link to="/library">
+            <a href="/library">
                 <HeaderButton Name="library" />
-            </Link>
-            <Link to="/about">
+            </a>
+            <a href="/about">
                 <HeaderButton Name="about" />
-            </Link>
-            <Link to="/projects">
+            </a>
+            <a href="/projects">
                 <HeaderButton Name="projects" />
-            </Link>
+            </a>
         </div>
     )
 }
+
+export default HeaderThings

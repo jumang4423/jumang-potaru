@@ -1,12 +1,10 @@
-import React from "react"
+import React from 'react';
 import Layout from "@/layouts/Layout"
 import SEO from "@/layouts/seo"
 
-const NotFoundPage = () => (
-    <Layout>
-      <SEO title="404: Not found" />
-      <p> 404 </p>
-    </Layout>
+export default () => (
+    <>
+        <Layout page="404" height={600} />
+        <SEO title="404" />
+    </>
 )
-
-export default NotFoundPage

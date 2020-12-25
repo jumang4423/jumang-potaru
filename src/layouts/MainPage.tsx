@@ -1,6 +1,5 @@
 import React from 'react';
 import RotateJumang from "@/components/RotateJumang"
-import Header from "@/components/Header"
 import MDArea from "@/components/MDArea"
 import "@/styles/layout/MainPage.scss";
 
@@ -18,18 +17,17 @@ function isWebGLAvailable() {
 }
 
 //basically this <Apps /> for only jsx components
-export default function MainPage(props) {
+const MainPage = (props) => {
 
-    const page : string = props.page
-    const pageName : string = props.pageName
     return (
         <div className="MainPage"
-        style = { { height: props.height+"px" } }>
+            style={{ height: props.height + "px" }}>
             <div>
                 {isWebGLAvailable() ? <RotateJumang /> : <p id="webglError"></p>}
             </div>
-                <MDArea page={page} height={props.height}/>
-                <Header pageName={pageName}/>
+            <MDArea page={props.page} />
         </div>
     );
 };
+
+export default MainPage
