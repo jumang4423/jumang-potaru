@@ -1,46 +1,46 @@
 import React from 'react';
-import { useLocation }from "react-router-dom";
+import { useLocation } from "@reach/router";
 import { motion } from "framer-motion";
 import "@/styles/component/HeaderFoot.scss";
 
 export default function HeaderFoot() {
 
     let location = null;
-    if(useLocation().pathname==="/") location = "introduction"
-    else if (useLocation().pathname==="/projects") location = "projects"
-    else if (useLocation().pathname==="/about") location = "about"
-    else if (useLocation().pathname==="/library") location = "library"
+    if (useLocation().pathname === "/") location = "introduction"
+    else if (useLocation().pathname === "/projects") location = "projects"
+    else if (useLocation().pathname === "/about") location = "about"
+    else if (useLocation().pathname === "/library") location = "library"
 
     return (
         <div className="potaru">
             <motion.div
-            className="potaruText1Rec"
-            initial={
-                {
-                    opacity: 0.0,
-                    backgroundColor: 'rgba(255, 100, 0, 0)',
-                    color: 'rgba(50, 50, 50, 0.9)'
-                }}
-            animate={
-                {
-                    opacity: 1,
-                    backgroundColor: 'rgba(200, 200, 200, 0.0)'
-                }}
-            whileHover={
-                {
-                    backgroundColor: 'rgba(200, 200, 200, 0.4)',
-                    color: 'rgba(50, 50, 50, 1)'
-                }}
-            whileTap={
-                {
-                    scale: 0.96,
-                    backgroundColor: 'rgba(230, 230, 200, 0.6)'
-                }}
-            onClick={
-                () => { 
-                    scrollTo(0, 0)
-                }
-            }>
+                className="potaruText1Rec"
+                initial={
+                    {
+                        opacity: 0.0,
+                        backgroundColor: 'rgba(255, 100, 0, 0)',
+                        color: 'rgba(50, 50, 50, 0.9)'
+                    }}
+                animate={
+                    {
+                        opacity: 1,
+                        backgroundColor: 'rgba(200, 200, 200, 0.0)'
+                    }}
+                whileHover={
+                    {
+                        backgroundColor: 'rgba(200, 200, 200, 0.4)',
+                        color: 'rgba(50, 50, 50, 1)'
+                    }}
+                whileTap={
+                    {
+                        scale: 0.96,
+                        backgroundColor: 'rgba(230, 230, 200, 0.6)'
+                    }}
+                onClick={
+                    () => {
+                        scrollTo(0, 0)
+                    }
+                }>
                 <div className="potaruText1 Jet">
                     JUMANG POTARU ☯ <span className="DPGreen">{location}</span>
                 </div>

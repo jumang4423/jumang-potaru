@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "gatsby";
 import HeaderButton from "@/components/HeaderButton"
 import "@/styles/component/HeaderThings.scss";
-
 
 export default function HeaderThings() {
     return (

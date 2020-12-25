@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "gatsby";
 import HeaderFoot from "@/components/HeaderFoot"
 import HeaderThings from "@/components/HeaderThings"
 import { motion } from "framer-motion";

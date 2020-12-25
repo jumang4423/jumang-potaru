@@ -1,5 +1,6 @@
 import React from 'react';
 import RotateJumang from "@/components/RotateJumang"
+import { RouteComponentProps } from "@reach/router"
 import MDArea from "@/components/MDArea"
 import "@/styles/layout/MainPage.scss";
 
@@ -10,23 +11,19 @@ function isWebGLAvailable() {
         var canvas = document.createElement('canvas');
         return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
     } catch (e) {
-
         return false;
-
     }
 }
 
 //basically this <Apps /> for only jsx components
 export default function MainPage(props) {
-
-    const page : string = props.page
     return (
         <div className="MainPage"
-        style = { { height: props.height+"px" } }>
+            style={{ height: props.height + "px" }}>
             <div>
                 {isWebGLAvailable() ? <RotateJumang /> : <p id="webglError"></p>}
             </div>
-                <MDArea page={page} height={props.height}/>
+            <MDArea page={props.page} height={props.height} />
         </div>
     );
 };
