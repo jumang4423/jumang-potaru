@@ -1,19 +1,16 @@
 .MDText {
-    position: absolute;
-    //height: 643px;
-    left: 0px !important;
-    right: 0px !important;
-    top: 0px;
-    bottom: 0px;
-    word-break: keep-all;
+    width: 100%;
+    height: 100%;
     font-family: FCODE;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 22px;
-    
+
     display: flex;
     align-items: center;
-    
-    color: #DD5757;
+
+    color: #dd5757;
+
+    * {
+        word-break: break-all;
+    }
 }

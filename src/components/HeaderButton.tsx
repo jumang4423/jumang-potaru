@@ -6,7 +6,7 @@ const HeaderButton = (props) => {
 
     return (
         <motion.div
-            className={props.Name}
+            className={`menu-item  ${props.Name}`}
             initial={
                 {
                     opacity: 0.0,

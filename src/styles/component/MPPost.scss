@@ -1,19 +1,30 @@
-pre code  {
+.MPPost {
+    width: 100%;
+    // margin: 0 5vw;
+    padding: 80px 40px;
+    box-sizing: border-box;
+
+    * {
+        word-break: break-all;
+    }
+}
+
+pre code {
     display: block;
     background: #f8f8f800 !important;
     color: #cccccc;
     left: 0px;
-    right:0px;
+    right: 0px;
 }
 
 h2 {
     font-size: 23px !important;
     left: 0px;
-    right:0px;
+    right: 0px;
 }
 
 h3 {
     font-size: 19px !important;
     left: 0px;
-    right:0px;
+    right: 0px;
 }

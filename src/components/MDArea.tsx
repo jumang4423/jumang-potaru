@@ -6,7 +6,7 @@ import "@/styles/component/MDArea.scss";
 
 const MDArea = (props) => {
     return (
-        <div>
+        <>
             <motion.div
                 className="MDArea"
                 drag
@@ -25,7 +25,7 @@ const MDArea = (props) => {
                     {/* <MDPicture /> */}
                 </div>
             </motion.div>
-        </div>
+        </>
     )
 }
 

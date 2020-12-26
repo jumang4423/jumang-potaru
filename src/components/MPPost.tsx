@@ -23,7 +23,7 @@ export default function MPPost(props) {
             $(elm).addClass('hljs');
         });
         return (
-                <div dangerouslySetInnerHTML={{ __html: $.html() }} />
+                <div className="MPPost" dangerouslySetInnerHTML={{ __html: $.html() }} />
         )
     }
 

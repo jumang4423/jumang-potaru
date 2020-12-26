@@ -4,8 +4,12 @@
     left: 0px;
     right: 0px;
     top: 0px;
-    
+    box-sizing: border-box;
+    padding: 16px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    z-index: 10000;
     /* background */
-    
     background: #ffffff;
 }
