@@ -9,6 +9,7 @@ module.exports = {
     title: `jumang potaru`,
     description: `jumang potaru`,
     author: `jumang`,
+    siteURL: "/",
   },
   plugins: [
     {

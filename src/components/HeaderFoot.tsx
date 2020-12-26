@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import { motion } from "framer-motion";
 import "@/styles/component/HeaderFoot.scss";
 
@@ -8,7 +7,6 @@ type Props = {
 }
 
 const HeaderFoot: React.FC<Props> = () => {
-
     return (
         <div className="potaru">
             <motion.div
