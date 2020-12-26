@@ -1,7 +1,6 @@
 import React from 'react'
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
-import 'highlight.js/styles/hybrid.css'
 import '@/styles/component/MPPost.scss'
 
 //md into html
