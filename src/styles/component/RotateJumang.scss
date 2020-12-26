@@ -1,4 +1,7 @@
 canvas {
+  position: fixed !important;
+  width: 100vw !important;
+  height: 100vh !important;
   filter: blur(0px);
   opacity: 0;
   animation-name: fadein-bottom;
@@ -20,9 +23,9 @@ canvas {
 }
 
 div#container {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
+  position: fixed !important;
+  width: 100vw !important;
+  height: 100vh !important;
   top: 0;
   z-index: -1;
 }

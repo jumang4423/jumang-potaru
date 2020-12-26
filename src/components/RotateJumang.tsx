@@ -4,6 +4,19 @@ import { Canvas, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import "@/styles/component/RotateJumang.scss";
 
+//when the browser webGL is disabled, normally all components r hidden somehow
+//this function for escaping the problem
+function isWebGLAvailable() {
+  try {
+      var canvas = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+  } catch (e) {
+
+      return false;
+
+  }
+}
+
 const Jumang3D = () => {
   const [model, setModel] = useState(null)
   const [radRotate, setradRotate] = useState(0.0)
@@ -44,7 +57,7 @@ export default () => {
           shadow-camera-bottom={-10}
         />
         {/*some point light*/}
-        <Jumang3D />
+        {isWebGLAvailable() ? <Jumang3D /> : <p id="webglError"></p>}<Jumang3D />
       </Canvas>
     </div>
   );

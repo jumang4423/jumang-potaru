@@ -6,9 +6,8 @@ import "@/styles/component/MDArea.scss";
 
 const MDArea = (props) => {
     return (
-        <>
+        <div className="MDArea">
             <motion.div
-                className="MDArea"
                 drag
                 dragConstraints={{ left: 0, right: 0, bottom: 0, top: 0 }}
                 dragTransition={{ bounceStiffness: 1000, bounceDamping: 20 }}
@@ -25,7 +24,7 @@ const MDArea = (props) => {
                     {/* <MDPicture /> */}
                 </div>
             </motion.div>
-        </>
+        </div>
     )
 }
 
