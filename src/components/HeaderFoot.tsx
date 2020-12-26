@@ -11,7 +11,7 @@ const HeaderFoot: React.FC<any> = () => {
     else if(path==="/projects") location="projects"
     else if(path==="/about") location="about"
     else if(path==="/library") location="library"
-    else location="?"
+    else location="???"
     return (
         <Link to="/" className="HeaderFoot">
             <div className="potaru">

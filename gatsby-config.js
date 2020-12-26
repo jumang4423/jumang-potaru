@@ -21,7 +21,6 @@ module.exports = {
       }
     },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-root-import',

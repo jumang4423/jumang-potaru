@@ -12,11 +12,13 @@ $DPGreen: #18BC28;
 @font-face {
 	font-family: NSJP;
 	src: url(../../fonts/NotoSansJP-Regular.otf);
+	font-display: swap; //?
 }
 
 @font-face {
 	font-family: FCode;
 	src: url(../../fonts/FiraCode-Regular.ttf);
+	font-display: swap; //?
 }
 
 #root {
