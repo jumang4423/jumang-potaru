@@ -37,7 +37,7 @@ export default () => {
   return (
     <div id="container">
       <Canvas
-        camera={{ position: [0, 12, 1], fov: 60 }}
+        camera={{ position: [0, 12, 1], fov: 45 }}
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = true
           gl.shadowMap.type = THREE.PCFSoftShadowMap
