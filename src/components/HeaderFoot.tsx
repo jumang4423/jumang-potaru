@@ -1,9 +1,17 @@
 import React from 'react';
 import { Link } from "gatsby"
+import { useLocation } from "@reach/router"
 import { motion } from "framer-motion";
 import "@/styles/component/HeaderFoot.scss";
 
 const HeaderFoot: React.FC<any> = () => {
+    const path = useLocation().pathname
+    let location = ""
+    if(path==="/") location="introduction"
+    else if(path==="/projects") location="projects"
+    else if(path==="/about") location="about"
+    else if(path==="/library") location="library"
+    else location="?"
     return (
         <Link to="/" className="HeaderFoot">
             <div className="potaru">
@@ -36,7 +44,7 @@ const HeaderFoot: React.FC<any> = () => {
                         }
                     }>
                     <div className="potaruText1 Jet">
-                        JUMANG POTARU ☯ <span className="DPGreen">ジュマンポータル</span>
+                        JUMANG POTARU ☯ <span className="DPGreen">{location}</span>
                     </div>
                 </motion.div>
             </div>

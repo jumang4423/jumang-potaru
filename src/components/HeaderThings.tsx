@@ -10,15 +10,16 @@ const HeaderThings = (props) => {
 
     return (
         <div className="Things">
-            <Link to="/library">
-                <HeaderButton Name="library" />
+            <Link to="/projects">
+                <HeaderButton Name="projects" />
             </Link>
             <Link to="/about">
                 <HeaderButton Name="about" />
             </Link>
-            <Link to="/projects">
-                <HeaderButton Name="projects" />
+            <Link to="/library">
+                <HeaderButton Name="library" />
             </Link>
+
         </div>
     )
 }
