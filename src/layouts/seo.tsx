@@ -30,11 +30,11 @@ function SEO({ description, lang, meta, title }) {
       titleTemplate={`${defaultTitle}`}
       meta={[
         {
-          name: `generic cringe portfolio site`,
+          name: `description`,
           content: metaDescription,
         },
         {
-          property: `og:jumang potaru`,
+          property: `title`,
           content: title,
         },
         {

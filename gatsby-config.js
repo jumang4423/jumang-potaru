@@ -7,13 +7,32 @@ module.exports = {
   pathPrefix: "/jumang-potaru",
   siteMetadata: {
     title: `jumang potaru`,
-    description: `jumang potaru`,
+    description: `generic cringe portfolio site`,
     author: `jumang`,
     siteURL: "/",
   },
   plugins: [
+    'gatsby-plugin-minify-html',
+    'gatsby-plugin-brotli',
+    `gatsby-plugin-minify`,
     {
-      resolve:`gatsby-plugin-typescript`,
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        headers: {
+          "/*.html": ["Cache-Control: public, max-age=0, must-revalidate"],
+          "/page-data/*": ["Cache-Control: public, max-age=0, must-revalidate"],
+          "/page-data/app-data.json": [
+            "Cache-Control: public, max-age=0, must-revalidate",
+          ],
+          "/static/*": ["Cache-Control: public, max-age=31536000, immutable"],
+          "/sw.js": ["Cache-Control: no-cache"],
+          "/**/*.js": ["Cache-Control: public, max-age=31536000, immutable"],
+          "/**/*.css": ["Cache-Control: public, max-age=31536000, immutable"],
+        },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: true,
         jsxPragma: 'React',
