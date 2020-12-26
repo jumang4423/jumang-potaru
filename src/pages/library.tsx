@@ -4,7 +4,7 @@ import SEO from "@/layouts/seo"
 
 export default () => (
     <>
-        <Layout page="Library" height={760} />
+        <Layout page="Library" />
         <SEO title="library" />
     </>
 )

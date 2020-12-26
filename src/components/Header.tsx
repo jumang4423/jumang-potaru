@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "gatsby"
 import HeaderFoot from "@/components/HeaderFoot"
 import HeaderThings from "@/components/HeaderThings"
 import { motion } from "framer-motion";
@@ -11,9 +10,7 @@ const Header: React.FC = () => {
             className="Header"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}>
-            <Link to="/">
-                <HeaderFoot />
-            </Link >
+            <HeaderFoot />
             <HeaderThings />
         </motion.div>
     )

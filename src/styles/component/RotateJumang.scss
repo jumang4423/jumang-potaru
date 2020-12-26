@@ -10,18 +10,19 @@ canvas {
 
 @keyframes fadein-bottom {
   0% {
-     filter: blur(0px);
-     opacity: 0;
+    filter: blur(0px);
+    opacity: 0;
   }
   100% {
-     filter: blur(3px);
-     opacity: 1;
+    filter: blur(3px);
+    opacity: 1;
   }
 }
 
-
 div#container {
-  position: fixed !important;
-  width: 100vw  !important;
-  height: 100vh !important;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  z-index: -1;
 }

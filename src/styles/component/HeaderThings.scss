@@ -1,7 +1,9 @@
 .Things {
-    position: absolute;
-    width: 268px;
-    height: 27px;
-    right: 14px;
-    top: 22px;
+    display: flex;
+    margin: auto 0;
+
+    a {
+        text-decoration: none;
+        margin: auto 8px;
+    }
 }

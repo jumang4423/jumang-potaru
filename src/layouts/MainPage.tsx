@@ -20,11 +20,8 @@ function isWebGLAvailable() {
 const MainPage = (props) => {
 
     return (
-        <div className="MainPage"
-            style={{ height: props.height + "px" }}>
-            <div>
-                {isWebGLAvailable() ? <RotateJumang /> : <p id="webglError"></p>}
-            </div>
+        <div className="MainPage">
+            {isWebGLAvailable() ? <RotateJumang /> : <p id="webglError"></p>}
             <MDArea page={props.page} />
         </div>
     );

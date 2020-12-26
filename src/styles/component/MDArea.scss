@@ -1,14 +1,7 @@
 .MDArea {
-    position: absolute;
-    left: 5vw; //5% by windows
-    right: 5vw; //5% by windows
-    top: 140px;
-    bottom: 70px;
-    width: 90vw; //window 90%
-
-    word-break: keep-all;
-    
-    background: #FFFFFF;
+    width: 90vw;
+    margin: 140px 5vw;;
+    background: #ffffff;
     box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
     border-radius: 48px;
@@ -20,7 +13,7 @@
     animation-fill-mode: forwards;
     animation-delay: 250ms;
 }
-  
+
 @keyframes huwa_window {
     0% {
         box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
@@ -33,9 +26,6 @@
 }
 
 .MDArea2 {
-    position: absolute;
-    left: 68px;
-    right: 74px;
-    top: 70px;
-    bottom: 70px;
+    width: 100%;
+    height: 100%;
 }
