@@ -1,23 +1,24 @@
 import React from 'react';
+import { Link } from "gatsby"
 import HeaderButton from "@/components/HeaderButton"
 import "@/styles/component/HeaderThings.scss";
 
 type Props = {
 
 }
-const HeaderThings: React.FC<Props> = () => {
+const HeaderThings = (props) => {
 
     return (
         <div className="Things">
-            <a href="/library">
+            <Link to="/library">
                 <HeaderButton Name="library" />
-            </a>
-            <a href="/about">
+            </Link>
+            <Link to="/about">
                 <HeaderButton Name="about" />
-            </a>
-            <a href="/projects">
+            </Link>
+            <Link to="/projects">
                 <HeaderButton Name="projects" />
-            </a>
+            </Link>
         </div>
     )
 }
