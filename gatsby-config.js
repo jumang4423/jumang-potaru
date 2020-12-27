@@ -59,15 +59,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `jumang-potaru`,
+        name: `jumang potaru`,
         short_name: `jumang-potaru`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
+        background_color: `#FFFFFF`,
+        theme_color: `#18BC28`,
+        display: `standalone`,
         icon: `static/icon.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-offline`,
     {
       resolve: "gatsby-source-microcms",
       options: {
