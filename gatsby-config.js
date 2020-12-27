@@ -63,7 +63,7 @@ module.exports = {
         short_name: `jumang-potaru`,
         start_url: `/`,
         background_color: `#FFFFFF`,
-        theme_color: `#18BC28`,
+        theme_color: `#FFFFFF`,
         display: `standalone`,
         icon: `static/icon.png`, // This path is relative to the root of the site.
       },
