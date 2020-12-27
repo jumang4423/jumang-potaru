@@ -16,6 +16,7 @@ export default function MPPost() {
     else if(path==="/library") PageName="Library"
     else PageName="404"
 
+    console.log(path)
     //md into html
     const Viewer = (props) => {
         let body: string = ""
