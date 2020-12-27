@@ -3,13 +3,11 @@ import Header from "@/components/Header"
 import MainPage from "@/layouts/MainPage"
 import "@/styles/layout/Layout.scss"
 
-type Props = { page: string }
-
-const Layout: React.FC<Props> = ({ page }) => {
+const Layout: React.FC<any> = () => {
   return (
     <>
       <Header />
-      <MainPage page={page} />
+      <MainPage />
     </>
   )
 }

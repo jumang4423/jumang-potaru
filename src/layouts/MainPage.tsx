@@ -7,7 +7,7 @@ const RotateJumang = React.lazy(() =>
 )
 
 //basically this <Apps /> for only jsx components
-const MainPage = (props) => {
+const MainPage = () => {
     const isSSR = typeof window === "undefined"
 
     return (
@@ -18,7 +18,7 @@ const MainPage = (props) => {
                 </React.Suspense>
             }
             <>
-                <MDArea page={props.page} />
+                <MDArea />
             </>
         </div>
     );

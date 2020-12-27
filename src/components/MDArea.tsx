@@ -4,7 +4,7 @@ import MDText from "@/components/MDText"
 import MDPicture from "@/components/MDPicture"
 import "@/styles/component/MDArea.scss";
 
-const MDArea = (props) => {
+const MDArea = () => {
     return (
         <>
             <motion.div
@@ -21,7 +21,7 @@ const MDArea = (props) => {
                         scale: 1.05,
                     }}>
                 <div className="MDArea2">
-                    <MDText page={props.page} />
+                    <MDText />
                     {/* <MDPicture /> */}
                 </div>
             </motion.div>
