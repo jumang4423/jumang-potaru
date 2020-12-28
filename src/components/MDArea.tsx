@@ -14,11 +14,12 @@ const MDArea = () => {
                 dragTransition={{ bounceStiffness: 1000, bounceDamping: 20 }}
                 animate={
                     {
-                        scale: 1.0
+                        scale: 1.0,
+                        background: "#FFFFFF"
                     }}
                 whileTap={
                     {
-                        scale: 1.0
+                        scale: 1.02,
                     }}>
                 <div className="MDArea2">
                     <MDText />
