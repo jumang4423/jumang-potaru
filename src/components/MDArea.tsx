@@ -18,7 +18,7 @@ const MDArea = () => {
                     }}
                 whileTap={
                     {
-                        scale: 1.05,
+                        scale: 1.0
                     }}>
                 <div className="MDArea2">
                     <MDText />

@@ -13,34 +13,25 @@ pre code {
     display: block;
     background: #f8f8f800 !important;
     color: #cccccc;
-    left: 0px;
-    right: 0px;
 }
 
 h2 {
     font-size: 23px !important;
-    left: 0px;
-    right: 0px;
 }
 
 h3 {
     font-size: 19px !important;
-    left: 0px;
-    right: 0px;
 }
 
-/*
-
-vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
-
-*/
+a {
+    color: #2b6abb !important;
+}
 
 /*background color*/
 .hljs {
     display: block;
     overflow-x: auto;
     padding: 0.5em;
-    background: #1d1f21;
 }
 
 /*selection color*/
