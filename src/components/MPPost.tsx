@@ -1,19 +1,30 @@
 import React from 'react'
 import { graphql, StaticQuery } from "gatsby"
+import { useLocation } from "@reach/router"
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 import '@/styles/component/MPPost.scss'
 
-export default function MPPost(props) {
+export default function MPPost() {
+
+    //get page from useLocation
+    const path = useLocation().pathname
+    let PageName = ""
+    if(path==="/") PageName="MainPage"
+    else if(path==="/projects") PageName="Projects"
+    else if(path==="/about") PageName="About"
+    else if(path==="/library") PageName="Library"
+    else PageName="404"
+
+    console.log(path)
     //md into html
     const Viewer = (props) => {
         let body: string = ""
         for (let i: number = 0; i < props.data.allMicrocmsPotaruCms.totalCount; i++) {
-            if (props.page == props.data.allMicrocmsPotaruCms.nodes[i].title) {
+            if (PageName === props.data.allMicrocmsPotaruCms.nodes[i].title) {
                 body = props.data.allMicrocmsPotaruCms.nodes[i].contents
             }
         }
-        console.log(props.page)
         const $ = cheerio.load(body);
         $('pre code').each((_, elm) => {
             const result = hljs.highlightAuto($(elm).text());
@@ -40,7 +51,7 @@ export default function MPPost(props) {
             }
         }`}
             render={(data) => (
-                <Viewer data={data} page={props.page} />
+                <Viewer data={data} />
             )}
         />
     )

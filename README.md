@@ -1,20 +1,55 @@
 ![README LOGO](_design/bk.png)
 
 #  jumang potaru
-- deployed on [here](https://jumang-potaru.dev)
-- this is a generic gateway website using react.js, also created and deployed using a useful web-development tool gatsby
+- this a generic portfolio website using react.js
+- [URL](https://jumang-potaru.dev)
 
-# how to install locally
-## 1. what u need to install
-- make sure u installed <nvm, gatsby-cli> command first
+# technologies
 
-## 2. install necessarily packages
-- since this project were created using 'npm' of course, make sure u installed enough dependancies
+## SPA + SSG + Headless CMS + PWA + JamStack
 
-- using 'npm install'(or 'yarn install'), u can install ALL packages u need at the same time
+- Framework => [Gatsby](https://https://www.gatsbyjs.com/)
+- Main Language => [TypeScript](https://www.typescriptlang.org/)
+- CSS => SCSS
+- Server =>  [Google Firebase Hosting](https://firebase.google.com/)
+- CMS =>  [microCMS](https://microcms.io/) 
+- Library => [React.js](https://https://reactjs.org/)
 
-## 3. launch the server
-- to launch the server, use 'gatsby develop' then automatically start localhost so u can see the result via ur own web browser
 
-## 4. build
-- 'gatsby build' to build, 'gatsby serve' to watch /public folder
+# functions
+## /pages
+ 
+- introduction(/)     - about me, what i do or like
+
+- projects(/projects) - what i did, like deployed webpages, some funny github repos
+
+- info(/info)         - about this jumang-potaru site
+
+- library(/lirary)    - some thoughts, computer or musical tips at jumang markdown previewer
+
+## how it works
+
+- Header
+    - JUMANG POTARU logo to go main page quick
+    - 3 buttons right(projects, about, library) to go each pages
+    - fluffy motions each
+- Footer
+    - slimy box that click & dragable contains markdown contents
+
+# how to develop locally
+```
+# clone
+git clone <this html clone key>
+# install dependancies
+npm install
+# serve with hot reload
+gatsby develop 
+```
+
+# how to build locally
+```
+# build all tsx then put built file into /public
+gatsby build
+# serve /public
+gatsby serve
+```

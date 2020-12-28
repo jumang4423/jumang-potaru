@@ -1,15 +1,33 @@
 import React from "react"
+import { Router } from "@reach/router"
 import Header from "@/components/Header"
 import MainPage from "@/layouts/MainPage"
 import "@/styles/layout/Layout.scss"
 
-type Props = { page: string }
+const RotateJumang = React.lazy(() =>
+    import("@/components/RotateJumang")
+)
 
-const Layout: React.FC<Props> = ({ page }) => {
+const Layout: React.FC<any> = () => {
+  const isSSR = typeof window === "undefined"
   return (
     <>
       <Header />
-      <MainPage page={page} />
+      <div className="MainPage">
+        {!isSSR &&
+          <React.Suspense fallback={<div />}>
+            <RotateJumang />
+          </React.Suspense>
+        }
+        <Router>
+          <MainPage path="/" />
+          <MainPage path="/projects" />
+          <MainPage path="/about" />
+          <MainPage path="/library" />
+          <MainPage path="/404" />
+          <MainPage default />
+        </Router>
+      </div>
     </>
   )
 }
