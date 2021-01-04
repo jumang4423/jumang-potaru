@@ -17,11 +17,11 @@
     0% {
         box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
         opacity: 0.1;
-        filter: blur(4px);
+        filter: blur(5px);
     }
     100% {
         box-shadow: -10px -10px 34px rgba(240, 240, 243, 0.712), 10px 10px 34px rgba(0, 0, 0, 0.151);
-        opacity: 0.82;
+        opacity: 0.8;
         filter: blur(0px);
     }
 }
