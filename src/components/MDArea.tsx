@@ -13,7 +13,7 @@ const MDArea = () => {
                 dragConstraints={{ left: 0, right: 0, bottom: 0, top: 0 }}
                 dragTransition={{ bounceStiffness: 1000, bounceDamping: 20 }}
                 
-                transition= {{ duration: 0.3 }}
+                transition= {{ duration: 0.35 }}
                 initial={{scale: 0.99}}
                 animate={
                     {
