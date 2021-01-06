@@ -26,7 +26,7 @@ const Jumang3D = () => {
   }, [])
 
   useFrame(() => {
-    setradRotate(radRotate + 0.01);
+    setradRotate(radRotate + 0.0125);
   })
 
   return model ? <primitive object={model.scene} rotation={[0, 0, radRotate]} /> : null
