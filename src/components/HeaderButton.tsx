@@ -20,8 +20,8 @@ const HeaderButton = (props) => {
                 }}
             whileHover={
                 {
+                    scale: 1.06,
                     backgroundColor: 'rgba(200, 200, 200, 0.4)',
-                    color: 'rgba(50, 50, 50, 1)'
                 }}
             whileTap={
                 {

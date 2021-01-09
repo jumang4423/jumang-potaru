@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import MDText from "@/components/MDText"
-import MDPicture from "@/components/MDPicture"
 import "@/styles/component/MDArea.scss";
 
 const MDArea = () => {

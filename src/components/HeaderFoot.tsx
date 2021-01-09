@@ -31,7 +31,6 @@ const HeaderFoot: React.FC<any> = () => {
                     whileHover={
                         {
                             backgroundColor: 'rgba(200, 200, 200, 0.4)',
-                            color: 'rgba(50, 50, 50, 1)'
                         }}
                     whileTap={
                         {
