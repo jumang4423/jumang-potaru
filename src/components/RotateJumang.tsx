@@ -29,7 +29,10 @@ const Jumang3D = () => {
     setradRotate(radRotate + 0.0125);
   })
 
-  return model ? <primitive object={model.scene} rotation={[0, 0, radRotate]} /> : null
+  return model ? <primitive 
+                  object={model.scene} 
+                  rotation={[0, 0, radRotate]}
+                  antialias={false} /> : null
 
 }
 
@@ -39,17 +42,17 @@ export default () => {
       <Canvas
         camera={{ position: [0, 12, 1], fov: 45 }}
         onCreated={({ gl }) => {
-          gl.shadowMap.enabled = true
+          gl.shadowMap.enabled = false
           gl.shadowMap.type = THREE.PCFSoftShadowMap
         }}
       >
-        <ambientLight intensity={0.6} />
+        <ambientLight intensity={0.5} />
         <directionalLight
           castShadow
           position={[0, 100, 100]}
           intensity={0.2}
-          shadow-mapSize-width={1027}
-          shadow-mapSize-height={720}
+          shadow-mapSize-width={513}
+          shadow-mapSize-height={360}
           shadow-camera-far={90}
           shadow-camera-left={-10}
           shadow-camera-right={10}

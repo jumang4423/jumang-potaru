@@ -7,7 +7,7 @@ import "@/styles/component/HeaderFoot.scss";
 const HeaderFoot: React.FC<any> = () => {
     const path = useLocation().pathname
     let location = ""
-    if(path==="/") location="introduction"
+    if(path==="/") location="ジュマンポータル"
     else if(path==="/projects") location="projects"
     else if(path==="/about") location="about"
     else if(path==="/library") location="library"
