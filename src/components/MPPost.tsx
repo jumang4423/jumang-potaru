@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from "gatsby"
 import { useLocation } from "@reach/router"
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
-import '@/styles/component/MPPost.scss'
+// import '@/styles/component/MPPost.scss'
 
 export default function MPPost() {
 
