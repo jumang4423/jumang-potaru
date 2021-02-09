@@ -25,7 +25,16 @@ h3 {
 
 a {
     color: #2b6abb !important;
+    transition: background 0.3s ease 0s;
+    border-radius: 8px;
 }
+
+a:hover {
+    background: #DDDDDD;
+	text-decoration: inherit;
+
+}
+
 
 // img {
 //     animation: scroll 10s linear infinite;
