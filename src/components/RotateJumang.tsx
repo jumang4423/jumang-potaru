@@ -17,7 +17,7 @@ function isWebGLAvailable() {
   }
 }
 
-const Jumang3D = () => {
+const Jumang3D: React.FC<any> = () => {
   const [model, setModel] = useState(null)
   const [radRotate, setradRotate] = useState(0.0)
 

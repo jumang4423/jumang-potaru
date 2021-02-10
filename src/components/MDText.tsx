@@ -6,12 +6,12 @@ const MPPost = React.lazy(() =>
     import("@/components/MPPost")
 )
 
-const MDText = () => {
+const MDText: React.FC<any> = () => {
     const isSSR = typeof window === "undefined"
     return (
         <div className="MDText" >
             {!isSSR &&
-                <React.Suspense fallback={<h2 className = "MPPost"> import (null) </h2>}>
+                <React.Suspense fallback={<h2 className = "MPPost"> </h2>}>
                     <MPPost />
                 </React.Suspense>
             }
