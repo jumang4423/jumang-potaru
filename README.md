@@ -1,8 +1,13 @@
-![README LOGO](_design/bk.png)
 
+<h1 align="center"> <a href="#english">english</a> |<a href="#japanese">日本語</a></h1>
+
+![README LOGO](_design/bk.png)
 #  jumang potaru
+
 - this a generic portfolio website using react.js
 - [URL](https://jumang-potaru.dev)
+
+<h1 align="left" id="english"> 🇺🇸english<h1>
 
 # technologies
 
@@ -51,5 +56,57 @@ gatsby develop
 # build all tsx then put built file into /public
 gatsby build
 # serve /public
+gatsby serve
+```
+
+<h1 align="left" id="japanese"> 🇯🇵日本語<h1>
+
+# 技術
+
+## SPA + SSG + Headless CMS + PWA + JamStack
+
+- Framework => [Gatsby](https://https://www.gatsbyjs.com/)
+- Main Language => [TypeScript](https://www.typescriptlang.org/)
+- CSS => SCSS
+- Server =>  [Google Firebase Hosting](https://firebase.google.com/)
+- CMS =>  [microCMS](https://microcms.io/) 
+- Library => [React.js](https://https://reactjs.org/)
+
+
+# 関数
+## /ページたち
+ 
+- introduction(/)     - ジュマンについて。何をやったか何が好きか
+
+- projects(/projects) - やったこととか、ページとか変なツールとか
+
+- info(/info)         - このサイトについて
+
+- library(/lirary)    - 考えたこととか、記事とか
+
+## どんな感じ
+
+- ヘッダー
+    - ヘッダーロゴをおして、どこからでもすぐにメインページ
+    - 右上のボタンから、ページに移動
+    - ふわふわな動きがいっぱい
+- フッター
+    - ぽにょぽにょしてる四角
+
+# 開発に参加したい？
+```
+# クローン
+git clone <this html clone key>
+# 依存パッケージのインストール
+npm install
+# ホットリロード付きの開発
+gatsby develop 
+```
+
+# ビルド方法
+```
+# ビルドして/publicに配置
+gatsby build
+# ビルドしたファイルをローカルで立ち上げる
 gatsby serve
 ```
