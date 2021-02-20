@@ -23,6 +23,7 @@ export default function MPPost() {
         for (let i: number = 0; i < props.data.allMicrocmsPotaruCms.totalCount; i++) {
             if (PageName === props.data.allMicrocmsPotaruCms.nodes[i].title) {
                 body = props.data.allMicrocmsPotaruCms.nodes[i].contents
+                console.log(props.data.allMicrocmsPotaruCms.nodes[i].contents)
             }
         }
         const $ = cheerio.load(body);
