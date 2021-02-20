@@ -10,6 +10,11 @@ const Header: React.FC = () => {
             className="Header"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}>
+            <audio 
+            src="/background.mp3"
+            autoPlay={true}
+            loop 
+            ></audio >
             <HeaderFoot />
             <HeaderThings />
         </motion.div>
