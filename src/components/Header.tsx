@@ -13,7 +13,7 @@ const Header: React.FC = () => {
             <audio 
             src="/background.mp3"
             autoPlay={true}
-            loop 
+            loop
             ></audio >
             <HeaderFoot />
             <HeaderThings />
