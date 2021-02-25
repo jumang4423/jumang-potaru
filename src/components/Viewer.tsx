@@ -3,8 +3,13 @@ import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 import '@/styles/component/MPPost.scss'
 
+interface Props {
+    data: any
+    page: string
+}
+
 //md into html
-const Viewer = (props) => {
+const Viewer: React.FC<Props> = (props) => {
     let body: string = ""
     for (let i: number = 0; i < props.data.allMicrocmsPotaruCms.totalCount; i++) {
         if (props.page == props.data.allMicrocmsPotaruCms.nodes[i].title) {
@@ -14,7 +19,7 @@ const Viewer = (props) => {
 
     const $ = cheerio.load(body);
     $('pre code').each((_, elm) => {
-        const result = hljs.highlightAuto($(elm).text());
+        const result: any = hljs.highlightAuto($(elm).text());
 
         $(elm).html(result.value);
         $(elm).addClass('hljs');

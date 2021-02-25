@@ -1,7 +1,7 @@
 import React from 'react';
 import "@/styles/component/MDPicture.scss";
 
-type Props = {
+interface Props {
 
 }
 

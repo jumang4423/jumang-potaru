@@ -3,10 +3,10 @@ import { Link } from "gatsby"
 import HeaderButton from "@/components/HeaderButton"
 import "@/styles/component/HeaderThings.scss";
 
-type Props = {
-
+interface Props {
 }
-const HeaderThings = (props) => {
+
+const HeaderThings: React.FC<Props> = () => {
 
     return (
         <div className="Things">
@@ -16,8 +16,8 @@ const HeaderThings = (props) => {
             <Link to="/about">
                 <HeaderButton Name="about" />
             </Link>
-            <Link to="/library">
-                <HeaderButton Name="library" />
+            <Link to="/backwash">
+                <HeaderButton Name="backwash" />
             </Link>
 
         </div>

@@ -4,7 +4,10 @@ import HeaderThings from "@/components/HeaderThings"
 import { motion } from "framer-motion";
 import "@/styles/component/Header.scss";
 
-const Header: React.FC = () => {
+interface Props {
+}
+
+const Header: React.FC<Props> = () => {
     return (
         <motion.div
             className="Header"

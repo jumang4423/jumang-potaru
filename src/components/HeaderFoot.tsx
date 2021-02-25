@@ -4,14 +4,20 @@ import { useLocation } from "@reach/router"
 import { motion } from "framer-motion";
 import "@/styles/component/HeaderFoot.scss";
 
-const HeaderFoot: React.FC<any> = () => {
-    const path = useLocation().pathname
-    let location = ""
-    if(path==="/") location="ジュマンポータル"
-    else if(path==="/projects") location="projects"
-    else if(path==="/about") location="about"
-    else if(path==="/library") location="library"
-    else location="???"
+interface Props {
+}
+
+const HeaderFoot: React.FC<Props> = () => {
+
+    const path: string = useLocation().pathname
+    let location: string = ""
+
+    if (path === "/") location = "ジュマンポータル"
+    else if (path === "/projects") location = "projects"
+    else if (path === "/about") location = "about"
+    else if (path === "/backwash") location = "backwash"
+    else location = "???"
+
     return (
         <Link to="/" className="HeaderFoot">
             <div className="potaru">

@@ -2,11 +2,15 @@ import React from 'react';
 import { motion } from "framer-motion";
 import "@/styles/component/HeaderButton.scss";
 
-const HeaderButton = (props) => {
+interface Props {
+    Name: string,
+}
+
+const HeaderButton: React.FC<Props> = ({ Name }) => {
 
     return (
         <motion.div
-            className={`menu-item  ${props.Name}`}
+            className={`menu-item  ${Name}`}
             initial={
                 {
                     opacity: 0.0,
@@ -32,7 +36,7 @@ const HeaderButton = (props) => {
                 () => { }
             }>
             <div className="ButtonText1">
-                {props.Name}
+                {Name}
             </div>
         </motion.div>
     )

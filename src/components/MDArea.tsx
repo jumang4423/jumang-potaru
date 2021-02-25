@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 import MDText from "@/components/MDText"
 import "@/styles/component/MDArea.scss";
 
-const MDArea = () => {
+interface Props {
+}
+
+const MDArea: React.FC<Props> = () => {
     return (
         <>
             <motion.div

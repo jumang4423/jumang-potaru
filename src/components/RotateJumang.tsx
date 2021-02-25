@@ -2,37 +2,45 @@ import React, { useEffect, useState } from "react";
 import * as THREE from "three"
 import { Canvas, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import { useSpring, animated } from 'react-spring'
 import "@/styles/component/RotateJumang.scss";
+
+interface Props {
+}
 
 //when the browser webGL is disabled, normally all components r hidden somehow
 //this function for escaping the problem
 function isWebGLAvailable() {
   try {
-      var canvas = document.createElement('canvas');
-      return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+    var canvas = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
   } catch (e) {
 
-      return false;
+    return false;
 
   }
 }
 
-const Jumang3D: React.FC<any> = () => {
-  const [model, setModel] = useState(null)
-  const [radRotate, setradRotate] = useState(0.0)
-
+const Jumang3D: React.FC<Props> = () => {
+  const [model, setModel] = useState<any>(null)
+  const [radRotate, setradRotate] = useState<any>(0.0)
+  
+  // load model
   useEffect(() => {
     new GLTFLoader().load("/jumang.glb", setModel)
   }, [])
 
+  // rotate jumang boi
   useFrame(() => {
     setradRotate(radRotate + 0.0125);
   })
 
-  return model ? <primitive 
-                  object={model.scene} 
-                  rotation={[0, 0, radRotate]}
-                  antialias={false} /> : null
+  // if model is loaded, return jumang 3d model!
+  return model ? <primitive
+    object={model.scene}
+    rotation={[0, 0, radRotate]}
+    antialias={true}
+  /> : null
 
 }
 
@@ -46,7 +54,7 @@ export default () => {
           gl.shadowMap.type = THREE.PCFSoftShadowMap
         }}
       >
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.7} />
         <directionalLight
           castShadow
           position={[0, 100, 100]}
