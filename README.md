@@ -30,7 +30,7 @@
 
 - info(/info)         - about this jumang-potaru site
 
-- library(/lirary)    - some thoughts, computer or musical tips at jumang markdown previewer
+- backwash(/backwash)    - some thoughts, computer or musical tips at jumang markdown previewer
 
 ## how it works
 
@@ -82,7 +82,7 @@ gatsby serve
 
 - info(/info)         - このサイトについて
 
-- library(/lirary)    - 考えたこととか、記事とか
+- backwash(/backwash)    - 考えたこととか、記事とか
 
 ## どんな感じ
 
