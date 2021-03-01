@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderFoot from "@/components/HeaderFoot"
 import HeaderThings from "@/components/HeaderThings"
+import ConsoleLog from "@/components/ConsoleLog"
 import { motion } from "framer-motion";
 import "@/styles/component/Header.scss";
 
@@ -18,6 +19,7 @@ const Header: React.FC<Props> = () => {
             autoPlay={true}
             loop
             ></audio >
+            <ConsoleLog />
             <HeaderFoot />
             <HeaderThings />
         </motion.div>

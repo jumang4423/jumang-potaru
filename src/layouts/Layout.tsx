@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Router } from "@reach/router"
-import ConsoleLog from "@/components/ConsoleLog"
 import Header from "@/components/Header"
 import MainPage from "@/layouts/MainPage"
 import "@/styles/layout/Layout.scss"
@@ -23,7 +22,7 @@ const Layout: React.FC<Props> = () => {
 
   return (
     <>
-      <ConsoleLog />
+
       <Header />
       <div className="MainPage">
         {!isSSR && isRotateJumang &&
