@@ -41,7 +41,6 @@ const Jumang3D: React.FC<Props> = () => {
     rotation={[0, 0, radRotate]}
     antialias={true}
   /> : null
-
 }
 
 export default () => {
