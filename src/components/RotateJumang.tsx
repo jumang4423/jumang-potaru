@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import * as THREE from "three"
 import { Canvas, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import { useSpring, animated } from 'react-spring'
 import "@/styles/component/RotateJumang.scss";
 
 interface Props {
