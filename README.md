@@ -42,7 +42,7 @@
     - slimy box that click & dragable contains markdown contents
 
 # how to develop locally
-```
+```bash
 # clone
 git clone <this html clone key>
 # install dependancies
@@ -52,7 +52,7 @@ gatsby develop
 ```
 
 # how to build locally
-```
+```bash
 # build all tsx then put built file into /public
 gatsby build
 # serve /public
