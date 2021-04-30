@@ -4,6 +4,8 @@
 ![README LOGO](_design/bk.png)
 #  jumang potaru
 
+[![Node.js CI](https://github.com/jumang4423/jumang-potaru/actions/workflows/blog_post.yml/badge.svg?branch=main)](https://github.com/jumang4423/jumang-potaru/actions/workflows/blog_post.yml)
+
 - this a generic portfolio website using react.js
 - [URL](https://jumang-potaru.dev)
 
