@@ -11,7 +11,8 @@
     animation-duration: 0.4s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
-    backdrop-filter: blur(3px);
+
+    backdrop-filter: blur(10px);
 }
 
 @keyframes huwa_window {
