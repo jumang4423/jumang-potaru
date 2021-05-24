@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   repository_dispatch:
-    branches: [ master ]
+    branches: [ main ]
     types: [blog_post]
 
 
