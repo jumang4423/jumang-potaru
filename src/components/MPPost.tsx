@@ -9,6 +9,7 @@ export default function MPPost() {
 
     //get page from useLocation
     const path: string = useLocation().pathname
+
     let PageName: string = ""
     if (path === "/") PageName = "MainPage"
     else if (path === "/projects") PageName = "Projects"

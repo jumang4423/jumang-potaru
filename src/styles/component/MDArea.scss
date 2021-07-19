@@ -1,6 +1,6 @@
 .MDArea {
     width: 90vw;
-    margin: 140px 5vw;;
+    margin: 140px 5vw;
     background: #ffffff;
     box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
@@ -15,15 +15,35 @@
     backdrop-filter: blur(10px);
 }
 
+.MDArea-sc {
+    width: 90vw;
+    margin: 140px 5vw;
+    margin-bottom: -70px;
+    background: #ffffff;
+    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
+    opacity: 0;
+    border-radius: 48px;
+    cursor: pointer;
+
+    animation-name: huwa_window;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+
+    backdrop-filter: blur(10px);
+}
+
 @keyframes huwa_window {
     0% {
         box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
         opacity: 0.1;
+        transform: translateY(8px);
         filter: blur(5px);
     }
     100% {
         box-shadow: -10px -10px 34px rgba(240, 240, 243, 0.712), 10px 10px 34px rgba(0, 0, 0, 0.151);
         opacity: 0.8;
+        transform: translateY(0px);
         filter: blur(0px);
     }
 }
@@ -31,4 +51,15 @@
 .MDArea2 {
     width: 100%;
     height: 100%;
+}
+
+.soundcloud-text {
+    margin-bottom: 32px;
+    font-family: FCODE;
+    font-size: 22px;
+    color:#33B178;
+}
+
+.soundcloud {
+    border-radius: 18px;
 }

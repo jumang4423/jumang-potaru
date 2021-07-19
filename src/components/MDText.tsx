@@ -1,6 +1,6 @@
 import React from 'react';
-import "@/styles/component/MDText.scss";
-import '@/styles/component/MPPost.scss';
+import "@/styles/component/MDText.scss"
+import '@/styles/component/MPPost.scss'
 
 const MPPost = React.lazy(() =>
     import("@/components/MPPost")
