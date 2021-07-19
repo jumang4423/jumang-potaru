@@ -33,7 +33,7 @@ export default function MPPost() {
 
             $(elm).html(result.value);
             $(elm).addClass('hljs');
-        });
+        });        
 
         return (
             <div className="MPPost" dangerouslySetInnerHTML={{ __html: $.html() }} />
