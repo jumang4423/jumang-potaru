@@ -38,7 +38,7 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   // if model is loaded, return jumang 3d model!
   return model ? <primitive
     object={model.scene}
-    rotation={[radRotate, radRotate, radRotate]}
+    rotation={[0, 0, radRotate]}
     antialias={true}
     onClick={(event) => setHover(!hovered)}
   /> : null
