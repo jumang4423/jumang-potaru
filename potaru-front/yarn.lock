@@ -10977,7 +10977,7 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.26, postcss@^7.0.27, postcss@^7.0.3
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-"potaru-wasm@file:../potaru-wasm/pkg":
+potaru-wasm@../potaru-wasm/pkg:
   version "0.1.0"
 
 potrace@^2.1.8:
