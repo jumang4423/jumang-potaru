@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import * as THREE from "three"
-import { Canvas, useFrame } from "react-three-fiber";
+import { Canvas, useFrame } from "react-three-fiber"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import "@/styles/component/RotateJumang.scss";
+import "@/styles/component/RotateJumang.scss"
 interface Props {
+  hovered: boolean
+  setHover: Function
 }
 
 //when the browser webGL is disabled, normally all components r hidden somehow
@@ -19,10 +21,10 @@ function isWebGLAvailable() {
   }
 }
 
-const Jumang3D: React.FC<Props> = () => {
+const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   const [model, setModel] = useState<any>(null)
   const [radRotate, setradRotate] = useState<any>(0.0)
-  
+
   // load model
   useEffect(() => {
     new GLTFLoader().load("/jumang.glb", setModel)
@@ -36,12 +38,16 @@ const Jumang3D: React.FC<Props> = () => {
   // if model is loaded, return jumang 3d model!
   return model ? <primitive
     object={model.scene}
-    rotation={[0, 0, radRotate]}
+    rotation={[radRotate, radRotate, radRotate]}
     antialias={true}
+    onClick={(event) => setHover(!hovered)}
   /> : null
 }
 
 export default () => {
+
+  const [hovered, setHover] = useState(false)
+
   return (
     <div id="container">
       <Canvas
@@ -65,7 +71,7 @@ export default () => {
           shadow-camera-bottom={-10}
         />
         {/*some point light*/}
-        {isWebGLAvailable() ? <Jumang3D /> : <p id="webglError"></p>}<Jumang3D />
+        {isWebGLAvailable() ? <Jumang3D hovered={hovered} setHover={setHover} /> : <p id="webglError"></p>}
       </Canvas>
     </div>
   );

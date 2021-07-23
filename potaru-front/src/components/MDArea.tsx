@@ -1,7 +1,6 @@
-import React from 'react';
-import { motion } from "framer-motion";
+import React from 'react'
 import MDText from "@/components/MDText"
-import "@/styles/component/MDArea.scss";
+import "@/styles/component/MDArea.scss"
 
 interface Props {
 }
