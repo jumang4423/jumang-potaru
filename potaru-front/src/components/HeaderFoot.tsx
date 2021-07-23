@@ -7,16 +7,27 @@ import "@/styles/component/HeaderFoot.scss";
 interface Props {
 }
 
-const HeaderFoot: React.FC<Props> = () => {
+const HeaderFoot = () => {
 
     const path: string = useLocation().pathname
     let location: string = ""
-
-    if (path === "/") location = "ジュマンポータル"
-    else if (path === "/projects") location = "projects"
-    else if (path === "/about") location = "about"
-    else if (path === "/backwash") location = "backwash"
-    else location = "???"
+    switch (path) {
+        case "/":
+            location = "ジュマンポータル"
+            break
+        case "/projects":
+            location = "projects"
+            break
+        case "/about":
+            location = "about"
+            break
+        case "/backwash":
+            location = "backwash"
+            break
+        default:
+            location = "404"
+            break
+    }
 
     return (
         <Link to="/" className="HeaderFoot">

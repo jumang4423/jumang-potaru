@@ -25,6 +25,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: yarn install, build
       run: |
+           cd potaru-front
            yarn install
            yarn build
       env:

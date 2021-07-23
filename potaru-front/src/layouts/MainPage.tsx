@@ -17,10 +17,10 @@ const MainPage: React.FC<any> = () => {
                 <SoundCloudArea />
             }
 
-            {
+            {/* {
                 path === "/" &&
                 <ScaryGifArea />
-            }
+            } */}
             <MDArea />
         </>
     );
