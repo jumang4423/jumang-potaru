@@ -71,9 +71,12 @@ const MainPage: React.FC<any> = () => {
                 path === "/" && isNush &&
                 <NyshWindow setIsNysh={setIsNysh} />
             }
-
-            <MDArea />
-            <GoDownMan />
+            {!isNush &&
+                <>
+                    <MDArea />
+                    <GoDownMan />
+                </>
+            }
         </>
     );
 };
