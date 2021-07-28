@@ -5,7 +5,6 @@
     box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
     border-radius: 48px;
-    cursor: pointer;
 
     animation-name: huwa_window;
     animation-duration: 0.4s;
@@ -23,7 +22,74 @@
     box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
     border-radius: 48px;
+
+    animation-name: huwa_window;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+
+    backdrop-filter: blur(10px);
+}
+
+.MDArea-nysh {
+    width: 90vw;
+    margin: 140px 5vw;
+    margin-bottom: -70px;
+    background: #ffffff;
+    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
+    opacity: 0;
+    border-radius: 48px;
+
+    animation-name: huwa_window;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+
+    backdrop-filter: blur(10px);
+}
+
+.MDArea-in {
+    width: 90vw;
+    margin: 140px 5vw;
+    margin-bottom: -70px;
+    background: #ffffff;
+    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
+    opacity: 0;
+    border-radius: 48px;
+
+    height: 500px !important;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+
+    animation-name: huwa_window;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.pointme {
     cursor: pointer;
+}
+
+.what_the {
+    cursor: not-allowed;
+}
+
+.centering {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MDArea-sc2 {
+    width: 256px;
+    margin: 140px 5vw;
+    margin-bottom: -70px;
+    background: #ffffff;
+    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
+    opacity: 0;
+    border-radius: 48px;
 
     animation-name: huwa_window;
     animation-duration: 0.4s;
@@ -53,11 +119,18 @@
     height: 100%;
 }
 
+.input_bad {
+    height: 500px !important;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+}
+
 .soundcloud-text {
     margin-bottom: 32px;
     font-family: FCODE;
     font-size: 22px;
-    color:#33B178;
+    color: #33b178;
 }
 
 .soundcloud {
@@ -74,11 +147,12 @@
 }
 
 .flexed_icons {
+    
     margin-left: 32px;
     margin-right: 32px;
 }
 
-.MDArea3 { 
+.MDArea3 {
     margin-top: -70px !important;
     margin-bottom: 140px;
 }

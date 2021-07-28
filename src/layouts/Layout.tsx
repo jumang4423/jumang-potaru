@@ -35,6 +35,7 @@ const Layout: React.FC<Props> = () => {
           <MainPage path="/projects" />
           <MainPage path="/about" />
           <MainPage path="/backwash" />
+          <MainPage path="/nysh" />
           <MainPage path="/404" />
           <MainPage default />
         </Router>

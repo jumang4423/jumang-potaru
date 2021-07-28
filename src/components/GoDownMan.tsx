@@ -48,9 +48,6 @@ const GoDownMan: React.FC<Props> = () => {
         <>
             <motion.div
                 className="MDArea-sc"
-                drag
-                dragConstraints={{ left: 0, right: 0, bottom: 0, top: 0 }}
-                dragTransition={{ bounceStiffness: 1000, bounceDamping: 20 }}
 
                 transition={{ duration: 0.35 }}
                 initial={{ scale: 0.99 }}
@@ -67,17 +64,17 @@ const GoDownMan: React.FC<Props> = () => {
                 <div className="MDArea2 MPPost MDArea3">
                     <div className="flexer">
                         <img
-                            className={"flexed_icons"}
+                            className={"flexed_icons pointme"}
                             src={"/soundcloud.svg"}
                             width={"50"}
                             onClick={() => handleClickOpen("soundcloud")} />
                         <img
-                            className={"flexed_icons"}
+                            className={"flexed_icons pointme"}
                             src={"/twitter.svg"}
                             width={"50"}
                             onClick={() => handleClickOpen("twitter")} />
                         <img
-                            className={"flexed_icons"}
+                            className={"flexed_icons pointme"}
                             src={"/github.svg"}
                             width={"50"}
                             onClick={() => handleClickOpen("github")} />

@@ -1,3 +1,4 @@
+use js_sys::Array;
 use wasm_bindgen::prelude::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
@@ -7,43 +8,26 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-extern "C" {
-    fn console(s: &str, x: &str);
-    // Multiple arguments too!
-    #[wasm_bindgen(js_namespace = console, js_name = log)]
-    fn log_many(a: &str, b: &str);
+pub fn welcome_nysh() -> String {
+    return "-> welcome to nysh! is the shell written in rust".to_owned();
 }
 
-// #[wasm_bindgen]
-// pub fn take_path_then_translate(x: &str) -> String {
-//     match x {
-//         "/" => return "MainPage".into(),
-//         "/projects" => return "Projects".into(),
-//         "/about" => return "About".into(),
-//         "/backwash" => return "Backwash".into(),
-//         _ => return "404".into(),
-//     }
-// }
-
-// #[wasm_bindgen]
-// pub fn take_path_then_header(x: &str) -> String {
-//     match x {
-//         "/" => return "ジュマンポータル".into(),
-//         "/projects" => return "projects".into(),
-//         "/about" => return "about".into(),
-//         "/backwash" => return "backwash".into(),
-//         _ => return "404".into(),
-//     }
-// }
+#[wasm_bindgen]
+pub fn help() -> Array {
+    let ary = Array::new();
+    ary.push(&JsValue::from_str("-> available built-in commands:"));
+    ary.push(&JsValue::from_str("-! cd ls cat pwd whoami clear exit"));
+    return ary;
+}
 
 #[wasm_bindgen]
-pub fn contribute_log() {
-    log_many(
-        "%cany problems? ur pull request will help me! => ",
-        "background:grey; color: white; font-size:17px",
-    );
-    log_many(
-        "%chttps://github.com/jumang4423/jumang-potaru",
-        "font-size:17px",
-    );
+pub fn whoami() -> Array {
+    let ary = Array::new();
+    ary.push(&JsValue::from_str("-> let jumang: jumangObject = {"));
+    ary.push(&JsValue::from_str("->   pronouns: he | him,"));
+    ary.push(&JsValue::from_str("->   born: 28/12/2000,"));
+    ary.push(&JsValue::from_str("->   code: [rust, go, react],"));
+    ary.push(&JsValue::from_str("->   i_believe: we are our own god"));
+    ary.push(&JsValue::from_str("-> };"));
+    return ary;
 }
