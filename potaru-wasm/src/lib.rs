@@ -21,7 +21,7 @@ pub fn help() -> Array {
 }
 
 #[wasm_bindgen]
-pub fn whoami() -> Array {
+pub fn whoami_call() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("💓 let jumang: jumangObject = {"));
     ary.push(&JsValue::from_str("💓   pronouns: he | him,"));

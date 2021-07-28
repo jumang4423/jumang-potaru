@@ -80,7 +80,7 @@ const NyshWindow: React.FC<any> = () => {
                 setHistories(put_into_history([command, ...generic_ls(current_dir)], histories, max_size))
                 break
             case "whoami":
-                setHistories(put_into_history([command, ...modules.whoami()], histories, max_size))
+                setHistories(put_into_history([command, ...modules.whoami_call()], histories, max_size))
                 break
             case "help":
                 setHistories(put_into_history([command, ...modules.help()], histories, max_size))

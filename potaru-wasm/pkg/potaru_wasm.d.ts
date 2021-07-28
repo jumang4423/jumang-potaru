@@ -11,4 +11,4 @@ export function help(): Array<any>;
 /**
 * @returns {Array<any>}
 */
-export function whoami(): Array<any>;
+export function whoami_call(): Array<any>;

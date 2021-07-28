@@ -81,8 +81,8 @@ export function help() {
 /**
 * @returns {Array<any>}
 */
-export function whoami() {
-    var ret = wasm.whoami();
+export function whoami_call() {
+    var ret = wasm.whoami_call();
     return takeObject(ret);
 }
 
