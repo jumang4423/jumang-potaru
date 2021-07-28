@@ -22,3 +22,36 @@
     padding: 0 8px;
     box-sizing: border-box;
 }
+
+.menu-item2 {
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+
+.ButtonText2 {
+    left: 0%;
+    right: 0%;
+    top: -4px;
+    padding: 16px;
+
+    font-family: FCODE;
+    font-style: bold;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 47px;
+    /* identical to box height, or 208% */
+
+    text-align: center;
+
+    color: #3f524b;
+}
+
+.special {
+    width: 256px;
+    height: 48px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

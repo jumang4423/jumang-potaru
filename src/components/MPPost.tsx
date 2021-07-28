@@ -3,6 +3,7 @@ import { graphql, StaticQuery } from "gatsby"
 import { useLocation } from "@reach/router"
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
+import SpecialButton from './SpecialButton'
 
 export default function MPPost() {
 
@@ -46,7 +47,7 @@ export default function MPPost() {
         })
 
         return (
-            <div className="MPPost" dangerouslySetInnerHTML={{ __html: $.html() }} />
+            <div dangerouslySetInnerHTML={{ __html: $.html() }} />
         )
     }
 
@@ -64,7 +65,9 @@ export default function MPPost() {
             }
         }`}
             render={(data) => (
-                <Viewer data={data} />
+                <div className="MPPost">
+                    <Viewer data={data} />
+                </div>
             )}
         />
     )

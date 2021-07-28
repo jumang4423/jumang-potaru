@@ -10,7 +10,6 @@ const MDArea: React.FC<Props> = () => {
         <div className="MDArea">
             <div className="MDArea2">
                 <MDText />
-                {/* <MDPicture /> */}
             </div>
         </div>
     )
