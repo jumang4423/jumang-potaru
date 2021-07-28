@@ -16,7 +16,7 @@
 ## SPA + SSG + Headless CMS + PWA + JamStack
 
 - Framework => [Gatsby](https://https://www.gatsbyjs.com/)
-- Main Language => [TypeScript](https://www.typescriptlang.org/)
+- Main Language => [TypeScript](https://www.typescriptlang.org/) and WASM
 - CSS => SCSS
 - Server =>  [Google Firebase Hosting](https://firebase.google.com/)
 - CMS =>  [microCMS](https://microcms.io/) 
@@ -27,6 +27,8 @@
 ## /pages
  
 - introduction(/)     - about me, what i do or like
+
+- nysh(/nysh)     - nyu shell in rust with wasm
 
 - projects(/projects) - what i did, like deployed webpages, some funny github repos
 
@@ -79,6 +81,8 @@ gatsby serve
 ## /ページたち
  
 - introduction(/)     - ジュマンについて。何をやったか何が好きか
+
+- nysh(/nysh)     - rust製のnyu shellをWASMで動かしたもの
 
 - projects(/projects) - やったこととか、ページとか変なツールとか
 
