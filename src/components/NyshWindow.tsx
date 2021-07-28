@@ -63,6 +63,12 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
                 setHistories(put_into_history([command, "💓 " + current_dir.join('')], histories, max_size))
                 break
             case "cd":
+                if (arg === "..") {
+                    let newdir = Object.assign([], current_dir)
+                    newdir.pop()
+                    setHistories(put_into_history([command, "↓"], histories, max_size))
+                    setCurrent_dir(newdir)
+                }
                 if (is_vaild_dir(arg, current_dir)) {
                     let newdir = Object.assign([], current_dir)
                     newdir.push((arg + "/"))
@@ -117,12 +123,11 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
 
         if (update == 13) {
             // enter
-            run_command()
+            command !== '' && run_command()
             setCommand("")
         }
         else if (update == 8) {
             // delete
-
             setCommand(command.slice(0, -1))
         }
         else if (update == 32) {

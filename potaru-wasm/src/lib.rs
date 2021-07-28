@@ -16,18 +16,18 @@ pub fn welcome_nysh() -> String {
 pub fn help() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("-> available built-in commands:"));
-    ary.push(&JsValue::from_str("-! cd ls cat pwd whoami clear exit"));
+    ary.push(&JsValue::from_str("💓 whoami cd ls cat pwd help clear exit"));
     return ary;
 }
 
 #[wasm_bindgen]
 pub fn whoami() -> Array {
     let ary = Array::new();
-    ary.push(&JsValue::from_str("-> let jumang: jumangObject = {"));
-    ary.push(&JsValue::from_str("->   pronouns: he | him,"));
-    ary.push(&JsValue::from_str("->   born: 28/12/2000,"));
-    ary.push(&JsValue::from_str("->   code: [rust, go, react],"));
-    ary.push(&JsValue::from_str("->   i_believe: we are our own god"));
-    ary.push(&JsValue::from_str("-> };"));
+    ary.push(&JsValue::from_str("💓 let jumang: jumangObject = {"));
+    ary.push(&JsValue::from_str("💓   pronouns: he | him,"));
+    ary.push(&JsValue::from_str("💓   born: 28/12/2000,"));
+    ary.push(&JsValue::from_str("💓   code: [rust, go, react],"));
+    ary.push(&JsValue::from_str("💓   i_believe: we are our own god"));
+    ary.push(&JsValue::from_str("💓 };"));
     return ary;
 }
