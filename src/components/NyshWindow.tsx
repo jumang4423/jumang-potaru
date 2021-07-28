@@ -6,10 +6,7 @@ import "@/styles/component/nysh.scss"
 import { useEffect } from 'react'
 import { cat_me, generic_ls, is_vaild_dir, put_into_history } from '@/funcs/nysh'
 import { motion } from 'framer-motion'
-
-interface Props {
-    setIsNysh: Function
-}
+import { goRouter } from '@/funcs/goRouter'
 
 export const commandParser = (command: string) => {
 
@@ -21,7 +18,7 @@ export const commandParser = (command: string) => {
 
 }
 
-const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
+const NyshWindow: React.FC<any> = () => {
 
     // nysh variables
     const [command, setCommand] = useState<string>("")
@@ -37,6 +34,7 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
     const [ticker, setTicker] = useState<boolean>(false)
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
+    const setRouter = goRouter()
     // const el = useRef(null);
 
     const loadWasm = async (potaru: string) => {
@@ -49,7 +47,7 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
 
         switch (com) {
             case "exit":
-                setIsNysh(false)
+                setRouter("/")
                 break
             case "clear":
                 setHistories([
@@ -69,7 +67,7 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
                     setHistories(put_into_history([command, "↓"], histories, max_size))
                     setCurrent_dir(newdir)
                 }
-                if (is_vaild_dir(arg, current_dir)) {
+                else if (is_vaild_dir(arg, current_dir)) {
                     let newdir = Object.assign([], current_dir)
                     newdir.push((arg + "/"))
                     setHistories(put_into_history([command, "↓"], histories, max_size))
@@ -99,7 +97,6 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
     }, [])
 
     useEffect(() => {
-
         if (modules) {
             setHistories(put_into_history([modules.welcome_nysh(), ...modules.help()], histories, max_size))
         }
@@ -119,6 +116,9 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
     }, [])
 
     useEffect(() => {
+
+        console.log(update);
+
 
 
         if (update == 13) {
@@ -142,6 +142,9 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
         } else if (update >= 65 && 90 >= update) {
             // A-Z
             setCommand(command + String.fromCharCode(update + 32))
+        } else if (update === 190) {
+            // A-Z
+            setCommand(command + ".")
         }
         setUpdate(null)
     }, [update])
@@ -179,7 +182,7 @@ const NyshWindow: React.FC<Props> = ({ setIsNysh }: Props) => {
                         }
 
                         <div>
-                            {'>'} {command}{ticker ? "|" : " "}
+                            {current_dir[current_dir.length - 1]} {'>'} {command}{ticker ? "|" : " "}
                         </div>
                     </div>
                 </div>

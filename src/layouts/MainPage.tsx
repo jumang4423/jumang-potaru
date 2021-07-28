@@ -2,15 +2,14 @@ import React from 'react'
 import MDArea from "@/components/MDArea"
 import SoundCloudArea from "@/components/SoundCloudArea"
 import "@/styles/layout/MainPage.scss"
-import { useLocation } from '@reach/router'
+import { Link, useLocation } from '@reach/router'
 import GoDownMan from '@/components/GoDownMan'
-import NyshWindow from '@/components/NyshWindow'
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import SpecialButton from '@/components/SpecialButton'
 
 export const AddNysh = (props) => {
     return (
+        <Link to={"/nysh"} className={'a-remove'}>
         <motion.div
 
             transition={{ duration: 0.35 }}
@@ -32,15 +31,16 @@ export const AddNysh = (props) => {
                 {
                     scale: 1.02,
                 }}
-            className="MDArea-sc2 pointme">
+            className="MDArea-sc2 pointme 'a-remove'">
             <div
-                className="MDArea2"
+                className="MDArea2 'a-remove'"
                 onClick={() => {
                     props.setIsNysh(true)
                 }}>
                 <SpecialButton Name={"+ open nysh"} />
             </div>
         </motion.div>
+        </Link>
     )
 }
 
@@ -48,8 +48,6 @@ export const AddNysh = (props) => {
 const MainPage: React.FC<any> = () => {
 
     const path: string = useLocation().pathname
-
-    const [isNush, setIsNysh] = useState<boolean>(false)
 
     return (
         <>
@@ -59,24 +57,15 @@ const MainPage: React.FC<any> = () => {
             }
 
             {
-                path === "/" && !isNush &&
+                path === "/" &&
                 <div
                     className={"centering"}
                 >
-                    <AddNysh setIsNysh={setIsNysh} />
+                    <AddNysh />
                 </div>
             }
-
-            {
-                path === "/" && isNush &&
-                <NyshWindow setIsNysh={setIsNysh} />
-            }
-            {!isNush &&
-                <>
-                    <MDArea />
-                    <GoDownMan />
-                </>
-            }
+            <MDArea />
+            <GoDownMan />
         </>
     );
 };

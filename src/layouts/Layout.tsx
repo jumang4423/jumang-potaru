@@ -3,6 +3,7 @@ import { Router } from "@reach/router"
 import Header from "@/components/Header"
 import MainPage from "@/layouts/MainPage"
 import "@/styles/layout/Layout.scss"
+import NyshWindow from "@/components/NyshWindow"
 const RotateJumang = React.lazy(() =>
   import("@/components/RotateJumang")
 )
@@ -35,8 +36,8 @@ const Layout: React.FC<Props> = () => {
           <MainPage path="/projects" />
           <MainPage path="/about" />
           <MainPage path="/backwash" />
-          <MainPage path="/nysh" />
           <MainPage path="/404" />
+          <NyshWindow path="/nysh" />
           <MainPage default />
         </Router>
       </div>
