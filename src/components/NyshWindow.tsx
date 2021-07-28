@@ -76,7 +76,17 @@ const NyshWindow: React.FC<any> = () => {
                     setHistories(put_into_history([command, "-! no directory found"], histories, max_size))
                 }
                 break
+            case "..":
+
+                let newdir = Object.assign([], current_dir)
+                newdir.pop()
+                setHistories(put_into_history([command, "↓"], histories, max_size))
+                setCurrent_dir(newdir)
+                break
             case "ls":
+                setHistories(put_into_history([command, ...generic_ls(current_dir)], histories, max_size))
+                break
+            case "la":
                 setHistories(put_into_history([command, ...generic_ls(current_dir)], histories, max_size))
                 break
             case "whoami":
