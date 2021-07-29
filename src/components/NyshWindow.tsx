@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import "@/styles/component/MDArea.scss"
 import "@/styles/component/MDText.scss"
 import '@/styles/component/MPPost.scss'
@@ -34,6 +34,7 @@ const NyshWindow: React.FC<any> = () => {
     const [ticker, setTicker] = useState<boolean>(false)
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
+    const [isWasmFetching, setIsWasmFetching] = useState<boolean>(true)
     const setRouter = goRouter()
     // const el = useRef(null);
 
@@ -53,8 +54,13 @@ const NyshWindow: React.FC<any> = () => {
                     { id: 1, com: "" }
                 ])
                 break
+            case "welcome":
+                setHistories(put_into_history([modules.welcome_nysh()], histories, max_size))
+                break
             case "cat":
-                setHistories(put_into_history([command, "💓 " + cat_me(arg, current_dir)], histories, max_size))
+                setHistories(put_into_history([command, ...cat_me(arg, current_dir).map((st: string) => {
+                    return "🐱 " + st
+                })], histories, max_size))
                 break
             case "pwd":
                 setHistories(put_into_history([command, "💓 " + current_dir.join('')], histories, max_size))
@@ -108,6 +114,12 @@ const NyshWindow: React.FC<any> = () => {
     useEffect(() => {
         if (modules) {
             setHistories(put_into_history([modules.welcome_nysh(), ...modules.help()], histories, max_size))
+        } else {
+            setTimeout(
+                () => {
+                    setIsWasmFetching(false)
+                }, 1000
+            )
         }
 
     }, [modules])
@@ -125,9 +137,6 @@ const NyshWindow: React.FC<any> = () => {
     }, [])
 
     useEffect(() => {
-        console.log(update);
-
-
         if (update == 13) {
             // enter
             command !== '' && run_command()
@@ -169,31 +178,44 @@ const NyshWindow: React.FC<any> = () => {
                     <div className={"nysh_title"}>
                         [ nyu shell🐤 ]
                     </div>
+
                     <div className={"nysh_back what_the"}>
+
                         {
-                            histories.map((history: any) => {
-                                return (
-                                    <motion.div
-                                        key={history.id}
-                                        initial={{
-                                            color: '#00FF00',
-                                            opacity: 0
-                                        }}
-                                        animate={
-                                            {
-                                                color: history.col,
-                                                opacity: 1
-                                            }}
-                                    >
-                                        {history.com}
-                                    </motion.div>
-                                )
-                            })
+                            isWasmFetching == true &&
+                            <>
+                                fetching WASM modules...
+                            </>
                         }
 
-                        <div>
-                            {current_dir[current_dir.length - 1]} {'>'} {command}{ticker ? "|" : " "}
-                        </div>
+                        {
+                            isWasmFetching == false &&
+                            <>
+                                {
+                                    histories.map((history: any) => {
+                                        return (
+                                            <motion.div
+                                                key={history.id}
+                                                initial={{
+                                                    color: '#00FF00',
+                                                    opacity: 0
+                                                }}
+                                                animate={
+                                                    {
+                                                        color: history.col,
+                                                        opacity: 1
+                                                    }}
+                                            >
+                                                {history.com}
+                                            </motion.div>
+                                        )
+                                    })
+                                }
+                                <div>
+                                    {current_dir[current_dir.length - 1]} {'>'} {command}{ticker ? "🍙" : " "}
+                                </div>
+                            </>
+                        }
                     </div>
                 </div>
             </div>

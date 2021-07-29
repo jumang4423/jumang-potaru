@@ -1,2 +1,4 @@
 #!/bin/bash
-rm -rf ../static/potaru* && wasm-pack build && cp pkg/potaru* ../static/
+rm -rf pkg/ && rm ../static/potaru*
+wasm-pack build
+cp pkg/* ../static/

@@ -17,8 +17,10 @@ pub fn available_command() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("whoami"));
     ary.push(&JsValue::from_str("cd"));
-    ary.push(&JsValue::from_str("ls"));
+    ary.push(&JsValue::from_str("ls(==la)"));
     ary.push(&JsValue::from_str("cat"));
+    ary.push(&JsValue::from_str("..(==cd ..)"));
+    ary.push(&JsValue::from_str("welcome"));
     ary.push(&JsValue::from_str("pwd"));
     ary.push(&JsValue::from_str("help"));
     ary.push(&JsValue::from_str("clear"));
@@ -32,7 +34,7 @@ pub fn help() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("-> available built-in commands:"));
     ary.push(&JsValue::from_str(
-        format!("💓 {:?}", available_command().join(" ")).as_str()
+        format!("🐱 {:?}", available_command().join(" ")).as_str()
     ));
     ary.push(&JsValue::from_str("-! press shift key to auto-complete"));
     return ary;
@@ -41,12 +43,12 @@ pub fn help() -> Array {
 #[wasm_bindgen]
 pub fn whoami_call() -> Array {
     let ary = Array::new();
-    ary.push(&JsValue::from_str("💓 let jumang: jumangObject = {"));
-    ary.push(&JsValue::from_str("💓   pronouns: he | him,"));
-    ary.push(&JsValue::from_str("💓   born: 28/12/2000,"));
-    ary.push(&JsValue::from_str("💓   code: [rust, go, react],"));
-    ary.push(&JsValue::from_str("💓   i_believe: we are our own god"));
-    ary.push(&JsValue::from_str("💓 };"));
+    ary.push(&JsValue::from_str("🐱 let jumang: jumangObject = {"));
+    ary.push(&JsValue::from_str("🐱 _ pronouns: he | him,"));
+    ary.push(&JsValue::from_str("🐱 _ born: 28/12/2000,"));
+    ary.push(&JsValue::from_str("🐱 _ code: [rust, go, react],"));
+    ary.push(&JsValue::from_str("🐱 _ i_believe: we are our own god"));
+    ary.push(&JsValue::from_str("🐱 };"));
     return ary;
 }
 

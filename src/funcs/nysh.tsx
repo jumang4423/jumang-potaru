@@ -1,4 +1,23 @@
+// TODO: 汚物コード故、リファクタリング必須
+
 import { commandParser } from "@/components/NyshWindow"
+
+// ひでえtypes
+
+export enum dirEnum {
+    txt,
+    app
+}
+
+export type dirType = {
+    isFolder: boolean,
+    name: string,
+    contents?: Array<dirType>,
+    file_type?: dirEnum,
+    scripts?: Array<string>
+}
+
+// functions
 
 export const put_into_history = (command: Array<string>, histories: Array<object>, maxSize: number) => {
     let insertValue = Object.assign(new Array, histories)
@@ -36,7 +55,7 @@ export const isMessage = (command: string) => {
     return "#222222"
 }
 
-export const file_system_lol: any = {
+export const files: dirType = {
     isFolder: true,
     name: "/",
     contents: [
@@ -47,20 +66,88 @@ export const file_system_lol: any = {
                 {
                     isFolder: false,
                     name: "rust",
-                    script: "rust is way better than c++, common lisp and you!"
+                    scripts: ["rust is way better than c++, common lisp and you (kidding)"]
+                },
+                {
+                    isFolder: false,
+                    name: "go",
+                    scripts: ["i love golang and you?"]
+                },
+                {
+                    isFolder: false,
+                    name: "c",
+                    scripts: ["i learned from uni and thats all"]
+                },
+                {
+                    isFolder: false,
+                    name: "java",
+                    scripts: ["literally meh"]
+                },
+                {
+                    isFolder: false,
+                    name: "hsp",
+                    scripts: ["Hot Soup Processor which similar to basic", "and sucks so hard"]
                 }
             ]
         },
         {
-            name: "users/",
+            name: "etc/",
             isFolder: true,
             contents: [
                 {
                     isFolder: false,
-                    name: "jumang",
-                    script: "type whoami to see more details about me"
+                    file_type: dirEnum.txt,
+                    name: "zshrc",
+                    scripts: ["PS1='\\#/ >'", "welcome && help"]
+                },
+            ]
+        },
+        {
+            name: "home/",
+            isFolder: true,
+            contents: [
+                {
+                    isFolder: true,
+                    name: "desktop/",
+                    contents: [
+                        {
+                            isFolder: false,
+                            file_type: dirEnum.app,
+                            name: "trash_can.app",
+                            scripts: ["trashing... (app feature no developed yet)"]
+                        },
+                    ]
+                },
+                {
+                    isFolder: true,
+                    name: "downloads/",
+                    contents: [
+                        {
+                            isFolder: false,
+                            file_type: dirEnum.app,
+                            name: "hentai.txt",
+                            scripts: ["boob", "boob", "boob", "boob", "boob", "boob", "boob", "boob"]
+                        },
+                    ]
+                },
+                {
+                    isFolder: false,
+                    file_type: dirEnum.txt,
+                    name: "introduction.txt",
+                    scripts: ["type whoami to see more details about me"]
+                },
+                {
+                    isFolder: false,
+                    file_type: dirEnum.txt,
+                    name: ".nyshrc",
+                    scripts: ["PS1='\\#/ >'", "welcome && help"]
                 }
             ]
+        },
+        {
+            name: "readme.txt",
+            isFolder: false,
+            scripts: ["'help' to learn more about nysh!", "unless i gotta just stay poor nerd man..."]
         }
     ]
 }
@@ -70,7 +157,7 @@ export const is_vaild_dir = (folder: string, current_dir: Array<string>): boolea
     const new_path = JSON.parse(JSON.stringify(current_dir))
     new_path.push(folder + "/")
 
-    let _watching = [file_system_lol]
+    let _watching = [files]
 
     for (let i = 0; i < new_path.length; i++) {
         let available = false
@@ -102,7 +189,7 @@ export const auto_complete = (
         const whats_in_current: Array<string> = dir_inside(current_dir)
         whats_in_current.forEach((st: string) => {
             if (st.includes(arg, 0)) {
-                arg = (st.includes("/") ? st.slice(0,-1) : st)
+                arg = (st.includes("/") ? st.slice(0, -1) : st)
             }
         })
     } else {
@@ -122,7 +209,7 @@ export const generic_ls = (
 ): Array<string> => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
-    let _watching = [file_system_lol]
+    let _watching = [files]
     for (let i = 0; i < new_path.length; i++) {
         for (let j = 0; j < _watching.length; j++) {
             if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
@@ -131,7 +218,7 @@ export const generic_ls = (
         }
     }
     return _watching.map((obj: any) => {
-        return "💓 " + obj.name
+        return "🥺 " + obj.name
     })
 }
 
@@ -140,7 +227,7 @@ export const dir_inside = (
 ): Array<string> => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
-    let _watching = [file_system_lol]
+    let _watching = [files]
     for (let i = 0; i < new_path.length; i++) {
         for (let j = 0; j < _watching.length; j++) {
             if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
@@ -153,18 +240,18 @@ export const dir_inside = (
     })
 }
 
-export const cat_me = (file: string, current_dir: Array<string>) => {
+export const cat_me = (file: string, current_dir: Array<string>): Array<string> => {
     const new_path = JSON.parse(JSON.stringify(current_dir))
     new_path.push(file)
 
-    let _watching = [file_system_lol]
+    let _watching = [files]
 
     for (let i = 0; i < new_path.length; i++) {
         let available = false
 
         for (let j = 0; j < _watching.length; j++) {
             if (!_watching[j].isFolder && _watching[j].name === new_path[i]) {
-                return _watching[j].script
+                return _watching[j].scripts
             }
             if (_watching[j].isFolder && _watching[j].name === new_path[i]) {
 
@@ -172,6 +259,6 @@ export const cat_me = (file: string, current_dir: Array<string>) => {
                 _watching = _watching[j].contents
             }
         }
-        if (!available) return "-> no file found"
+        if (!available) return ["no file found"]
     }
 }
