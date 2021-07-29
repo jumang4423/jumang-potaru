@@ -13,10 +13,28 @@ pub fn welcome_nysh() -> String {
 }
 
 #[wasm_bindgen]
+pub fn available_command() -> Array {
+    let ary = Array::new();
+    ary.push(&JsValue::from_str("whoami"));
+    ary.push(&JsValue::from_str("cd"));
+    ary.push(&JsValue::from_str("ls"));
+    ary.push(&JsValue::from_str("cat"));
+    ary.push(&JsValue::from_str("pwd"));
+    ary.push(&JsValue::from_str("help"));
+    ary.push(&JsValue::from_str("clear"));
+    ary.push(&JsValue::from_str("exit"));
+
+    return ary;
+}
+
+#[wasm_bindgen]
 pub fn help() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("-> available built-in commands:"));
-    ary.push(&JsValue::from_str("💓 whoami cd ls cat pwd help clear exit"));
+    ary.push(&JsValue::from_str(
+        format!("💓 {:?}", available_command().join(" ")).as_str()
+    ));
+    ary.push(&JsValue::from_str("-! press shift key to auto-complete"));
     return ary;
 }
 
@@ -31,3 +49,24 @@ pub fn whoami_call() -> Array {
     ary.push(&JsValue::from_str("💓 };"));
     return ary;
 }
+
+// #[wasm_bindgen]
+// // command arg -> Parse it
+// // auto_complete("cd", "b") -> "cd bin"
+// pub fn auto_complete(
+//     mut temporary_command_input: String,
+//     mut maybe_args_also: Option<String>,
+// ) -> String {
+    
+//     match maybe_args_also {
+//         Some(arg) => {
+//             // yes arg
+//             print!("");
+//         },
+//         None => {
+//             print!("");
+//         }
+//     }
+
+//     "unko".to_owned()
+// }

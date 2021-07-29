@@ -1,3 +1,5 @@
+import { commandParser } from "@/components/NyshWindow"
+
 export const put_into_history = (command: Array<string>, histories: Array<object>, maxSize: number) => {
     let insertValue = Object.assign(new Array, histories)
 
@@ -89,23 +91,65 @@ export const is_vaild_dir = (folder: string, current_dir: Array<string>): boolea
 
 }
 
-export const generic_ls = (current_dir: Array<string>): Array<string> => {
+export const auto_complete = (
+    temporary_command_input: string,
+    current_dir: Array<string>,
+    available_command: Array<string>
+) => {
+
+    let { com, arg } = commandParser(temporary_command_input)
+    if (arg !== undefined) {
+        const whats_in_current: Array<string> = dir_inside(current_dir)
+        whats_in_current.forEach((st: string) => {
+            if (st.includes(arg, 0)) {
+                arg = (st.includes("/") ? st.slice(0,-1) : st)
+            }
+        })
+    } else {
+        available_command.forEach((st: string) => {
+            if (st.includes(com, 0)) {
+                com = st
+            }
+        })
+    }
+
+    return com + (arg ? " " + arg : "")
+
+}
+
+export const generic_ls = (
+    current_dir: Array<string>
+): Array<string> => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
-
     let _watching = [file_system_lol]
-
     for (let i = 0; i < new_path.length; i++) {
         for (let j = 0; j < _watching.length; j++) {
             if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
                 _watching = _watching[j].contents
-
-
             }
         }
     }
     return _watching.map((obj: any) => {
         return "💓 " + obj.name
+    })
+}
+
+export const dir_inside = (
+    current_dir: Array<string>
+): Array<string> => {
+
+    const new_path = JSON.parse(JSON.stringify(current_dir))
+    let _watching = [file_system_lol]
+    for (let i = 0; i < new_path.length; i++) {
+        for (let j = 0; j < _watching.length; j++) {
+            if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
+                _watching = _watching[j].contents
+            }
+        }
+    }
+    return _watching.map((obj: any) => {
+        return obj.name
     })
 }
 
@@ -119,7 +163,7 @@ export const cat_me = (file: string, current_dir: Array<string>) => {
         let available = false
 
         for (let j = 0; j < _watching.length; j++) {
-            if(!_watching[j].isFolder  && _watching[j].name === new_path[i]) {
+            if (!_watching[j].isFolder && _watching[j].name === new_path[i]) {
                 return _watching[j].script
             }
             if (_watching[j].isFolder && _watching[j].name === new_path[i]) {

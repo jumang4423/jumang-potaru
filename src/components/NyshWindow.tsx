@@ -4,7 +4,7 @@ import "@/styles/component/MDText.scss"
 import '@/styles/component/MPPost.scss'
 import "@/styles/component/nysh.scss"
 import { useEffect } from 'react'
-import { cat_me, generic_ls, is_vaild_dir, put_into_history } from '@/funcs/nysh'
+import { auto_complete, cat_me, generic_ls, is_vaild_dir, put_into_history } from '@/funcs/nysh'
 import { motion } from 'framer-motion'
 import { goRouter } from '@/funcs/goRouter'
 
@@ -42,7 +42,6 @@ const NyshWindow: React.FC<any> = () => {
     }
 
     const run_command = () => {
-
         const { com, arg } = commandParser(command)
 
         switch (com) {
@@ -126,9 +125,7 @@ const NyshWindow: React.FC<any> = () => {
     }, [])
 
     useEffect(() => {
-
         console.log(update);
-
 
 
         if (update == 13) {
@@ -152,9 +149,12 @@ const NyshWindow: React.FC<any> = () => {
         } else if (update >= 65 && 90 >= update) {
             // A-Z
             setCommand(command + String.fromCharCode(update + 32))
+
         } else if (update === 190) {
-            // A-Z
+            // .
             setCommand(command + ".")
+        } else if (update === 16) {
+            if (command !== "") setCommand(auto_complete(command, current_dir, modules.available_command()))
         }
         setUpdate(null)
     }, [update])
@@ -167,7 +167,7 @@ const NyshWindow: React.FC<any> = () => {
                 <div className="MDArea2 MDText MPPost nysh_flex">
 
                     <div className={"nysh_title"}>
-                        [ nyu shell wasm edition🐤 ]
+                        [ nyu shell🐤 ]
                     </div>
                     <div className={"nysh_back what_the"}>
                         {
