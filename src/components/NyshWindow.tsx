@@ -176,7 +176,7 @@ const NyshWindow: React.FC<any> = () => {
                 <div className="MDArea2 MDText MPPost nysh_flex">
 
                     <div className={"nysh_title"}>
-                        [ nyu shell🐤 ]
+                        [ nyu shell🦀 ]
                     </div>
 
                     <div className={"nysh_back what_the"}>
