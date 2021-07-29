@@ -51,7 +51,7 @@ export const AddNysh = (props) => {
                     onClick={() => {
                         props.setIsNysh(true)
                     }}>
-                    <SpecialButton Name={`🦀 launch nysh`} />
+                    <SpecialButton Name={`+ launch nysh`} />
                 </div>
             </motion.div>
         </Link>
