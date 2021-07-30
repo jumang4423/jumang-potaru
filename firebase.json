@@ -10,42 +10,42 @@
       "source": "/page-data/**",
       "headers": [{
         "key": "Cache-Control",
-        "value": "public, max-age=0, must-revalidate"
+        "value": "no-cache, no-store, must-revalidate"
       }]
     },
     {
       "source": "**/*.@(html)",
       "headers": [{
         "key": "Cache-Control",
-        "value": "public, max-age=0, must-revalidate"
+        "value": "no-cache, no-store, must-revalidate"
       }]
     },
     {
       "source": "static/**",
       "headers": [{
         "key": "Cache-Control",
-        "value": "public, max-age=31536000, immutable"
+        "value": "no-cache, no-store, must-revalidate"
       }]
     },
     {
       "source": "**/*.@(js)",
       "headers": [{
         "key": "Cache-Control",
-        "value": "public, max-age=31536000, immutable"
+        "value": "no-cache, no-store, must-revalidate"
       }]
     },
     {
       "source": "**/*.@(css)",
       "headers": [{
         "key": "Cache-Control",
-        "value": "public, max-age=31536000, immutable"
+        "value": "no-cache, no-store, must-revalidate"
       }]
     },
     {
       "source": "/sw.js",
       "headers": [{
         "key": "Cache-Control",
-        "value": "public, max-age=0, must-revalidate"
+        "value": "no-cache, no-store, must-revalidate"
       }]
     }]
   }

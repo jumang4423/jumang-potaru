@@ -55,109 +55,111 @@ export const isMessage = (command: string) => {
     return "#222222"
 }
 
-export const files: dirType = {
-    isFolder: true,
-    name: "/",
-    contents: [
-        {
-            name: "bin/",
-            isFolder: true,
-            contents: [
-                {
-                    isFolder: false,
-                    name: "rust",
-                    scripts: ["rust is way better than c++, common lisp and you (kidding)"]
-                },
-                {
-                    isFolder: false,
-                    name: "go",
-                    scripts: ["i love golang and you?"]
-                },
-                {
-                    isFolder: false,
-                    name: "c",
-                    scripts: ["i learned from uni and thats all"]
-                },
-                {
-                    isFolder: false,
-                    name: "java",
-                    scripts: ["literally meh"]
-                },
-                {
-                    isFolder: false,
-                    name: "hsp",
-                    scripts: ["Hot Soup Processor which similar to basic", "and sucks so hard"]
-                }
-            ]
-        },
-        {
-            name: "etc/",
-            isFolder: true,
-            contents: [
-                {
-                    isFolder: false,
-                    file_type: dirEnum.txt,
-                    name: "zshrc",
-                    scripts: ["PS1='\\#/ >'", "welcome && help"]
-                },
-            ]
-        },
-        {
-            name: "home/",
-            isFolder: true,
-            contents: [
-                {
-                    isFolder: true,
-                    name: "desktop/",
-                    contents: [
-                        {
-                            isFolder: false,
-                            file_type: dirEnum.app,
-                            name: "trash_can.app",
-                            scripts: ["trashing... (app feature no developed yet)"]
-                        },
-                    ]
-                },
-                {
-                    isFolder: true,
-                    name: "downloads/",
-                    contents: [
-                        {
-                            isFolder: false,
-                            file_type: dirEnum.app,
-                            name: "hentai.txt",
-                            scripts: ["boob", "boob", "boob", "boob", "boob", "boob", "boob", "boob"]
-                        },
-                    ]
-                },
-                {
-                    isFolder: false,
-                    file_type: dirEnum.txt,
-                    name: "introduction.txt",
-                    scripts: ["type whoami to see more details about me"]
-                },
-                {
-                    isFolder: false,
-                    file_type: dirEnum.txt,
-                    name: ".nyshrc",
-                    scripts: ["PS1='\\#/ >'", "welcome && help"]
-                }
-            ]
-        },
-        {
-            name: "readme.txt",
-            isFolder: false,
-            scripts: ["'help' to learn more about nysh!", "unless i gotta just stay poor nerd man..."]
-        }
-    ]
-}
+export const files: Array<dirType> = [
+    {
+        isFolder: true,
+        name: "/",
+        contents: [
+            {
+                name: "bin/",
+                isFolder: true,
+                contents: [
+                    {
+                        isFolder: false,
+                        name: "rust",
+                        scripts: ["rust is way better than c++, common lisp and you (kidding)"]
+                    },
+                    {
+                        isFolder: false,
+                        name: "go",
+                        scripts: ["i love golang and you?"]
+                    },
+                    {
+                        isFolder: false,
+                        name: "c",
+                        scripts: ["i learned from uni and thats all"]
+                    },
+                    {
+                        isFolder: false,
+                        name: "java",
+                        scripts: ["literally meh"]
+                    },
+                    {
+                        isFolder: false,
+                        name: "hsp",
+                        scripts: ["Hot Soup Processor which similar to basic", "and sucks so hard"]
+                    }
+                ]
+            },
+            {
+                name: "etc/",
+                isFolder: true,
+                contents: [
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: "zshrc",
+                        scripts: ["PS1='\\#/ >'", "welcome && help"]
+                    },
+                ]
+            },
+            {
+                name: "home/",
+                isFolder: true,
+                contents: [
+                    {
+                        isFolder: true,
+                        name: "desktop/",
+                        contents: [
+                            {
+                                isFolder: false,
+                                file_type: dirEnum.app,
+                                name: "trash_can.app",
+                                scripts: ["trashing... (app feature no developed yet)"]
+                            },
+                        ]
+                    },
+                    {
+                        isFolder: true,
+                        name: "downloads/",
+                        contents: [
+                            {
+                                isFolder: false,
+                                file_type: dirEnum.app,
+                                name: "hentai.txt",
+                                scripts: ["boob", "boob", "boob", "boob", "boob", "boob", "boob", "boob"]
+                            },
+                        ]
+                    },
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: "introduction.txt",
+                        scripts: ["type whoami to see more details about me"]
+                    },
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: ".nyshrc",
+                        scripts: ["PS1='\\#/ >'", "welcome && help"]
+                    }
+                ]
+            },
+            {
+                name: "readme.txt",
+                isFolder: false,
+                scripts: ["'help' to learn more about nysh!", "unless i gotta just stay poor nerd man..."]
+            }
+        ]
+    }
+]
 
 export const is_vaild_dir = (folder: string, current_dir: Array<string>): boolean => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
     new_path.push(folder + "/")
 
-    let _watching = [files]
+    let _watching = files
 
     for (let i = 0; i < new_path.length; i++) {
         let available = false
@@ -209,7 +211,7 @@ export const generic_ls = (
 ): Array<string> => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
-    let _watching = [files]
+    let _watching = files
     for (let i = 0; i < new_path.length; i++) {
         for (let j = 0; j < _watching.length; j++) {
             if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
@@ -227,7 +229,7 @@ export const dir_inside = (
 ): Array<string> => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
-    let _watching = [files]
+    let _watching = files
     for (let i = 0; i < new_path.length; i++) {
         for (let j = 0; j < _watching.length; j++) {
             if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
@@ -244,7 +246,7 @@ export const cat_me = (file: string, current_dir: Array<string>): Array<string> 
     const new_path = JSON.parse(JSON.stringify(current_dir))
     new_path.push(file)
 
-    let _watching = [files]
+    let _watching = files
 
     for (let i = 0; i < new_path.length; i++) {
         let available = false

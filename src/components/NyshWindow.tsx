@@ -138,10 +138,10 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
     useEffect(() => {
         document.addEventListener("keydown", (event: any) => {
-            if (
-                [13, 8, 32, 190, 9].includes(event.keyCode)
-            )
+            if ([13, 8, 32, 190, 9].includes(event.keyCode)) {
                 event.preventDefault()
+            }
+
             setUpdate(event.keyCode)
         }, false)
     }, [])
@@ -174,6 +174,9 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         } else if (update === 190) {
             // .
             setCommand(command + ".")
+        } else if (update === 191) {
+            // /
+            setCommand(command + "/")
         } else if (update === 9) {
             if (command !== "") setCommand(auto_complete(command, current_dir, modules.available_command()))
         }
