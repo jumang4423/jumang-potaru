@@ -1,3 +1,8 @@
+// mods area
+// mod file_system;
+
+// file_system::fuck(); devide by mod den read like this
+
 use js_sys::Array;
 use wasm_bindgen::prelude::*;
 
@@ -36,7 +41,6 @@ pub fn help() -> Array {
     ary.push(&JsValue::from_str(
         format!("🐱 {:?}", available_command().join(" ")).as_str()
     ));
-    ary.push(&JsValue::from_str("-! press shift key to auto-complete"));
     return ary;
 }
 
@@ -51,24 +55,3 @@ pub fn whoami_call() -> Array {
     ary.push(&JsValue::from_str("🐱 };"));
     return ary;
 }
-
-// #[wasm_bindgen]
-// // command arg -> Parse it
-// // auto_complete("cd", "b") -> "cd bin"
-// pub fn auto_complete(
-//     mut temporary_command_input: String,
-//     mut maybe_args_also: Option<String>,
-// ) -> String {
-    
-//     match maybe_args_also {
-//         Some(arg) => {
-//             // yes arg
-//             print!("");
-//         },
-//         None => {
-//             print!("");
-//         }
-//     }
-
-//     "unko".to_owned()
-// }

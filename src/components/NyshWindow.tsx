@@ -133,10 +133,20 @@ const NyshWindow: React.FC<any> = () => {
     }, [ticker])
 
     useEffect(() => {
-        document.addEventListener("keydown", (event: any) => setUpdate(event.keyCode), false)
+        document.addEventListener("keydown", (event: any) => {
+            if(
+                [13, 8, 32, 190, 9].includes(event.keyCode)
+                )
+            event.preventDefault()
+            setUpdate(event.keyCode)
+        }, false)
     }, [])
 
     useEffect(() => {
+
+        console.log(update);
+        
+
         if (update == 13) {
             // enter
             command !== '' && run_command()
@@ -148,8 +158,6 @@ const NyshWindow: React.FC<any> = () => {
         }
         else if (update == 32) {
             // spaces
-            scrollTo(0, 0)
-            setTimeout(() => scrollTo(0, 0), 140)
             command != "" && setCommand(command + " ")
         }
         else if (update >= 48 && 57 >= update) {
@@ -162,7 +170,7 @@ const NyshWindow: React.FC<any> = () => {
         } else if (update === 190) {
             // .
             setCommand(command + ".")
-        } else if (update === 16) {
+        } else if (update === 9) {
             if (command !== "") setCommand(auto_complete(command, current_dir, modules.available_command()))
         }
         setUpdate(null)
