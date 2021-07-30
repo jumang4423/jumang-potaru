@@ -47,14 +47,14 @@ export const AddNysh = (props) => {
                 }}
             className="MDArea-sc2 pointme 'a-remove'"
             onClick={() => props.setOpenNysh(true)} >
-                <div
-                    className="MDArea2 'a-remove'"
-                    onClick={() => {
-                        props.setIsNysh(true)
-                    }}>
-                    <SpecialButton Name={`+ launch nysh`} />
-                </div>
-            </motion.div >
+            <div
+                className="MDArea2 'a-remove'"
+                onClick={() => {
+                    props.setIsNysh(true)
+                }}>
+                <SpecialButton Name={`+ launch nysh`} />
+            </div>
+        </motion.div >
     )
 }
 
@@ -77,7 +77,7 @@ const MainPage: React.FC<any> = () => {
 
             {
                 path === "/" && openNysh &&
-                <NyshWindow path="/nysh" />
+                <NyshWindow setIsNysh={setOpenNysh} />
             }
 
             <MDArea />

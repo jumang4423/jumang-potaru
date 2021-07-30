@@ -37,7 +37,6 @@ const Layout: React.FC<Props> = () => {
           <MainPage path="/about" />
           <MainPage path="/backwash" />
           <MainPage path="/404" />
-          <NyshWindow path="/nysh" />
           <MainPage default />
         </Router>
       </div>

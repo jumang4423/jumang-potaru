@@ -18,7 +18,11 @@ export const commandParser = (command: string) => {
 
 }
 
-const NyshWindow: React.FC<any> = () => {
+export type NyshWindowType = {
+    setIsNysh: Function
+}
+
+const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => {
 
     // nysh variables
     const [command, setCommand] = useState<string>("")
@@ -47,7 +51,7 @@ const NyshWindow: React.FC<any> = () => {
 
         switch (com) {
             case "exit":
-                setRouter("/")
+                setIsNysh(false)
                 break
             case "clear":
                 setHistories([
@@ -134,10 +138,10 @@ const NyshWindow: React.FC<any> = () => {
 
     useEffect(() => {
         document.addEventListener("keydown", (event: any) => {
-            if(
+            if (
                 [13, 8, 32, 190, 9].includes(event.keyCode)
-                )
-            event.preventDefault()
+            )
+                event.preventDefault()
             setUpdate(event.keyCode)
         }, false)
     }, [])
@@ -145,7 +149,7 @@ const NyshWindow: React.FC<any> = () => {
     useEffect(() => {
 
         console.log(update);
-        
+
 
         if (update == 13) {
             // enter
