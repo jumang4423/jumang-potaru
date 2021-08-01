@@ -38,7 +38,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [ticker, setTicker] = useState<boolean>(false)
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
-    const [isWasmFetching, setIsWasmFetching] = useState<boolean>(true)
+    const [init_loading_status, set_init_loading_status] = useState<number>(0)
     const setRouter = goRouter()
     // const el = useRef(null);
 
@@ -121,8 +121,28 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         } else {
             setTimeout(
                 () => {
-                    setIsWasmFetching(false)
-                }, 1000
+                    // fetch wasm
+                    set_init_loading_status(1)
+                    setTimeout(
+                        () => {
+                            // file system
+                            set_init_loading_status(2)
+                            setTimeout(
+                                () => {
+                                    // preparing nysh
+                                    set_init_loading_status(3)
+                                    setTimeout(
+                                        () => {
+                                            // lauch nysh
+                                            set_init_loading_status(4)
+                                        }, 100
+                                    )
+
+                                }, 500
+                            )
+                        }, 200
+                    )
+                }, 100
             )
         }
 
@@ -197,14 +217,17 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     <div className={"nysh_back what_the"}>
 
                         {
-                            isWasmFetching == true &&
+                            init_loading_status !== 4 &&
                             <>
-                                fetching WASM modules...
+                                    {init_loading_status == 0 && <>fetching WASM modules...</>}
+                                    {init_loading_status == 1 && <>preparing nysh...</>}
+                                    {init_loading_status == 2 && <>mounting file system...</>}
+                                    {init_loading_status == 3 && <>ok!</>}
                             </>
                         }
 
                         {
-                            isWasmFetching == false &&
+                            init_loading_status == 4 &&
                             <>
                                 {
                                     histories.map((history: any) => {
