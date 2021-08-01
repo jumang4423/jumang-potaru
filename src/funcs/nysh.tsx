@@ -50,6 +50,8 @@ export const isMessage = (command: string) => {
     if (command.slice(0, 2) == "->") {
         return "#555555"
     } else if (command.slice(0, 2) == "-!") {
+        return "#884444"
+    } else if (command.slice(0, 2) == "-o") {
         return "#448844"
     }
     return "#222222"
