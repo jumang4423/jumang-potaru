@@ -13,8 +13,11 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-pub fn welcome_nysh() -> String {
-    return "-> welcome to nysh! is the shell written in rust".to_owned();
+pub fn welcome_nysh() -> Array {
+    let ary = Array::new();
+    ary.push(&JsValue::from_str("-> welcome to nysh! is the shell written in rust"));
+    ary.push(&JsValue::from_str("-o logined as guest currently"));
+    return ary
 }
 
 #[wasm_bindgen]

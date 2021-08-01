@@ -1,0 +1,35 @@
+.cuteText {
+
+    font-family: FCODE;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 42px;
+    /* identical to box height, or 208% */
+
+    text-align: center;
+
+    color: #333333;
+}
+
+.cute-item {
+    border-radius: 16px;
+    cursor: pointer;
+    // box-sizing: border-box;
+    margin-top: 32px;
+    width: 164px;
+
+    margin-right: 32px;
+}
+
+.goLeft {
+    width: 100%;
+}
+
+.cute_flex {
+    display: flex;
+    flex-direction: row;
+}
+.killa a{
+    text-decoration: none;
+}

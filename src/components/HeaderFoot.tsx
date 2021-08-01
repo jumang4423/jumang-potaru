@@ -24,6 +24,9 @@ const HeaderFoot = () => {
         case "/backwash":
             location = "backwash"
             break
+        case "/morenysh":
+            location = "about nysh"
+            break
         case "/nysh":
             location = "nysh"
             break

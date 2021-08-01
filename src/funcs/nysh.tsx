@@ -1,7 +1,5 @@
 // TODO: 汚物コード故、リファクタリング必須
 
-import { commandParser } from "@/components/NyshWindow"
-
 // ひでえtypes
 
 export enum dirEnum {
@@ -17,7 +15,18 @@ export type dirType = {
     scripts?: Array<string>
 }
 
+export const commandParser = (command: string) => {
+    const splited = command.split(" ")
+    return {
+        com: splited[0], arg: splited[1]
+    }
+}
+
 // functions
+
+export const loadWasm = async (potaru: string, setModules: Function) => {
+    await import("../../static/" + potaru + "_wasm").then(modules => setModules(modules))
+}
 
 export const put_into_history = (command: Array<string>, histories: Array<object>, maxSize: number) => {
     let insertValue = Object.assign(new Array, histories)
@@ -47,11 +56,11 @@ export const up_shift = (insertValue: Array<object>, maxSize: number) => {
 }
 
 export const isMessage = (command: string) => {
-    if (command.slice(0, 2) == "->") {
+    if (command.includes("->")) {
         return "#555555"
-    } else if (command.slice(0, 2) == "-!") {
+    } else if (command.includes("-!")) {
         return "#884444"
-    } else if (command.slice(0, 2) == "-o") {
+    } else if (command.includes("-o")) {
         return "#448844"
     }
     return "#222222"
@@ -144,6 +153,30 @@ export const files: Array<dirType> = [
                         file_type: dirEnum.txt,
                         name: ".nyshrc",
                         scripts: ["PS1='\\#/ >'", "welcome && help"]
+                    }
+                ]
+            },
+            {
+                name: "social/",
+                isFolder: true,
+                contents: [
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: "github",
+                        scripts: ["-o id: @jumang4423", "-o url: https://github.com/jumang4423"]
+                    },
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: "twitter",
+                        scripts: ["-o id: @jumang4423", "-o url: https://twitter.com/jumang4423"]
+                    },
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: "soundcloud",
+                        scripts: ["-o id: @jumang4423", "-o url: https://soundcloud.com/jumang4423"]
                     }
                 ]
             },

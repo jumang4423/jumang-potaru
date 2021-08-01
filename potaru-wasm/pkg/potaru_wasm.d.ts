@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @returns {string}
+* @returns {Array<any>}
 */
-export function welcome_nysh(): string;
+export function welcome_nysh(): Array<any>;
 /**
 * @returns {Array<any>}
 */

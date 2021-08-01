@@ -62,33 +62,30 @@ export const AddNysh = (props) => {
 const MainPage: React.FC<any> = () => {
 
     const path: string = useLocation().pathname
-    const [openNysh, setOpenNysh] = useState<boolean>(false)
+    const [openNysh, setOpenNysh] = useState<boolean>(true)
 
     return (
-        <>
-            {
-                path === "/" && !openNysh &&
-                <div
-                    className={"centering"}
-                >
-                    <AddNysh setOpenNysh={setOpenNysh} />
-                </div>
-            }
-
+        <div className={"upput"}>
             {
                 path === "/" && openNysh &&
                 <NyshWindow setIsNysh={setOpenNysh} />
             }
 
-            <MDArea />
+            {
+                ((path === "/" && !openNysh) || path !== "/") &&
+                <MDArea setIsNysh={setOpenNysh} />
+            }
 
             {
                 path === "/projects" &&
                 <SoundCloudArea />
             }
 
-            <GoDownMan />
-        </>
+            {
+                path === "/about" &&
+                <GoDownMan />
+            }
+        </div>
     );
 };
 

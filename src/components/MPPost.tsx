@@ -3,9 +3,9 @@ import { graphql, StaticQuery } from "gatsby"
 import { useLocation } from "@reach/router"
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
-import SpecialButton from './SpecialButton'
+import CutieButton from './CutieButton'
 
-export default function MPPost() {
+export default function MPPost(props) {
 
     //get page from useLocation
     const path: string = useLocation().pathname
@@ -22,6 +22,9 @@ export default function MPPost() {
             break
         case "/backwash":
             PageName = "Backwash"
+            break
+        case "/morenysh":
+            PageName = "MoreNysh"
             break
         default:
             PageName = "404"
@@ -67,6 +70,15 @@ export default function MPPost() {
             render={(data) => (
                 <div className="MPPost">
                     <Viewer data={data} />
+                    {path === "/" &&
+                        <div className={"cute_flex goLeft"}>
+                            <div onClick={() => {
+                                props.setIsNysh(true)
+                            }}>
+                                <CutieButton Name={"back to nysh"} />
+                            </div>
+                        </div>
+                    }
                 </div>
             )}
         />
