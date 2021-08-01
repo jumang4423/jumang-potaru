@@ -1,7 +1,7 @@
 
 <h1 align="center"> <a href="#english">english</a> |<a href="#japanese">日本語</a></h1>
 
-![README LOGO](_design/bk.png)
+![README LOGO](_design/ss.png)
 #  jumang potaru
 
 [![Node.js CI](https://github.com/jumang4423/jumang-potaru/actions/workflows/blog_post.yml/badge.svg?branch=main)](https://github.com/jumang4423/jumang-potaru/actions/workflows/blog_post.yml)
