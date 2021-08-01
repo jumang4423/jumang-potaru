@@ -35,7 +35,8 @@
     "react-particles-js": "^3.4.1",
     "react-three-fiber": "^5.3.18",
     "react-wasm": "^1.0.1",
-    "three": "^0.125.2"
+    "three": "^0.125.2",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "gatsby-plugin-root-import": "^2.0.6",

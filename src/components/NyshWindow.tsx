@@ -10,6 +10,7 @@ import '@/styles/component/MPPost.scss'
 import "@/styles/component/nysh.scss"
 import "@/styles/component/cutieButton.scss"
 import { Link } from '@reach/router'
+import useSound from 'use-sound'
 
 export type NyshWindowType = {
     setIsNysh: Function
@@ -32,6 +33,9 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
     const [init_loading_status, set_init_loading_status] = useState<number>(0)
+    const [play1] = useSound('/on.mp3')
+    const [play2] = useSound('/on2.mp3')
+    const [nn] = useSound('/nn.mp3')
     // const el = useRef(null);
 
     const run_command = () => {
@@ -158,13 +162,18 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     useEffect(() => {
         // TODO: ENUMにしようね〜
 
-        console.log(update);
-
 
         if (update == 13) {
             // enter
             command !== '' && run_command()
             setCommand("")
+
+            play1()
+
+            setTimeout(() => {
+                play2()
+            }, 50);
+            
         }
         else if (update == 8) {
             // delete
@@ -188,6 +197,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             // /
             setCommand(command + "/")
         } else if (update === 9) {
+            // tab
+            nn()
             if (command !== "") setCommand(auto_complete(command, current_dir, modules.available_command()))
         }
         setUpdate(null)
