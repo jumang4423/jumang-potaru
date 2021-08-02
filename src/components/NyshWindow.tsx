@@ -71,7 +71,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 setIsNysh(false)
                 break
             case "sl":
-                setHistories(put_into_history([modules.sl()], histories, max_size))
+                setHistories(put_into_history([modules.sl(), "", "", "", ""], histories, max_size))
                 break
             case "clear":
                 setHistories([
