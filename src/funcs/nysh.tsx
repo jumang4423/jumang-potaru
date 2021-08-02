@@ -1,5 +1,7 @@
 // TODO: 汚物コード故、リファクタリング必須
 
+import { commmand_tags } from "@/components/NyshWindow"
+
 // ひでえtypes
 
 export enum dirEnum {
@@ -34,12 +36,13 @@ export const put_into_history = (command: Array<string>, histories: Array<object
     command.forEach((st: string) => {
 
         if (insertValue.length + 1 <= maxSize) {
-            insertValue.push({ id: insertValue.length + 1, com: st, col: isMessage(st) })
+            insertValue.push({ id: insertValue.length + 1, com: st, col: isMessage(st), tag: tagParser(st) })
         } else {
             insertValue = up_shift(insertValue, maxSize)
             insertValue[maxSize - 1].com = st
             insertValue[maxSize - 1].id = insertValue[maxSize - 2].id + 1
             insertValue[maxSize - 1].col = isMessage(st)
+            insertValue[maxSize - 1].tag = tagParser(st)
         }
 
     })
@@ -64,6 +67,14 @@ export const isMessage = (command: string) => {
         return "#448844"
     }
     return "#222222"
+}
+
+export const tagParser = (command: string) => {
+    
+    if (command.includes("-gif")) {        
+        return commmand_tags.img
+    }
+    return commmand_tags.div
 }
 
 export const files: Array<dirType> = [

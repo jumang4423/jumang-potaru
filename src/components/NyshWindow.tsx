@@ -16,13 +16,19 @@ export type NyshWindowType = {
     setIsNysh: Function
 }
 
+export enum commmand_tags {
+    div,
+    a,
+    img
+}
+
 const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => {
 
     // nysh variables
     const [command, setCommand] = useState<string>("")
     const [histories, setHistories] = useState<Array<object>>(
         [
-            { id: 1, com: "" }
+            { id: 1, com: "", tag: commmand_tags.div }
         ]
     )
     const [current_dir, setCurrent_dir] = useState<Array<string>>(["/"])
@@ -38,12 +44,34 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [nn] = useSound('/nn.mp3')
     // const el = useRef(null);
 
+    const showHistory = (history: any) => {
+
+        if (history.tag == commmand_tags.div) {
+            return (
+                <>
+                    {history.com}
+                </>
+            )
+        }
+        else if (history.tag == commmand_tags.img) {
+            let given_img = history.com.split(" ")?.[1]
+            return (
+                <div className={"img_viewer"}>
+                    <img className={"img_round"} src={given_img} />
+                </div>
+            )
+        }
+    }
+
     const run_command = () => {
         const { com, arg } = commandParser(command)
 
         switch (com) {
             case "exit":
                 setIsNysh(false)
+                break
+            case "sl":
+                setHistories(put_into_history([modules.sl()], histories, max_size))
                 break
             case "clear":
                 setHistories([
@@ -111,32 +139,37 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             setHistories(put_into_history([...modules.welcome_nysh(), ...modules.help()], histories, max_size))
         } else {
 
-            // TODO: Promiseでじゃけんかきましょうね
-            setTimeout(
-                () => {
+            new Promise((resolve: any) => {
+                setTimeout(() => {
                     // fetch wasm
                     set_init_loading_status(1)
-                    setTimeout(
-                        () => {
-                            // file system
-                            set_init_loading_status(2)
-                            setTimeout(
-                                () => {
-                                    // preparing nysh
-                                    set_init_loading_status(3)
-                                    setTimeout(
-                                        () => {
-                                            // lauch nysh
-                                            set_init_loading_status(4)
-                                        }, 100
-                                    )
-
-                                }, 500
-                            )
-                        }, 200
-                    )
-                }, 100
-            )
+                    resolve()
+                }, 100);
+            }).then(() => {
+                return new Promise((resolve: any) => {
+                    setTimeout(() => {
+                        // fetch wasm
+                        set_init_loading_status(2)
+                        resolve()
+                    }, 200);
+                })
+            }).then(() => {
+                return new Promise((resolve: any) => {
+                    setTimeout(() => {
+                        // fetch wasm
+                        set_init_loading_status(3)
+                        resolve()
+                    }, 500);
+                })
+            }).then(() => {
+                return new Promise((resolve: any) => {
+                    setTimeout(() => {
+                        // fetch wasm
+                        set_init_loading_status(4)
+                        resolve()
+                    }, 100);
+                })
+            })
         }
 
     }, [modules])
@@ -173,7 +206,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             setTimeout(() => {
                 play2()
             }, 50);
-            
+
         }
         else if (update == 8) {
             // delete
@@ -245,7 +278,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                                                         opacity: 1
                                                     }}
                                             >
-                                                {history.com}
+                                                {showHistory(history)}
                                             </motion.div>
                                         )
                                     })

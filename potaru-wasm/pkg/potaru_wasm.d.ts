@@ -16,3 +16,7 @@ export function help(): Array<any>;
 * @returns {Array<any>}
 */
 export function whoami_call(): Array<any>;
+/**
+* @returns {string}
+*/
+export function sl(): string;
