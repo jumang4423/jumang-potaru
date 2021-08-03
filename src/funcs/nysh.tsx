@@ -20,6 +20,10 @@ export type dirType = {
 export const commandParser = (
     command: string
 ) => {
+
+    console.log(command);
+    
+
     const splited = command.split(" ")
     return {
         com: splited[0], arg: splited[1]

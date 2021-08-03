@@ -53,7 +53,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [play1] = useSound('/on.mp3')
     const [play2] = useSound('/on2.mp3')
     const [nn] = useSound('/nn.mp3')
-    const [typed_history, setTyped_history] = useState<Array<string>>([])
+    const [typed_history, setTyped_history] = useState<Array<string>>([""])
     const [me_watching_typed_history, setMe_watching_typed_history] = useState<number>(1)
     // const el = useRef(null);
 
