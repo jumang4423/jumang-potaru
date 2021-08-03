@@ -21,6 +21,17 @@ export enum commmand_tags {
     img
 }
 
+export enum Keys {
+    enter = 13,
+    delete = 8,
+    space = 32,
+    dot = 190,
+    slat = 191,
+    tab = 9,
+    up = 38,
+    down = 40
+}
+
 const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => {
 
     // nysh variables
@@ -205,7 +216,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
     useEffect(() => {
         document.addEventListener("keydown", (event: any) => {
-            if ([13, 8, 32, 190, 9].includes(event.keyCode)) {
+            if ([Keys.enter, Keys.delete, Keys.space, Keys.slat, Keys.tab, Keys.up, Keys.down].includes(event.keyCode)) {
                 event.preventDefault()
             }
 
@@ -217,7 +228,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         // TODO: use enum bruh
 
 
-        if (update == 13) {
+        if (update == Keys.enter) {
             // enter
             command !== '' && run_command()
 
@@ -230,14 +241,14 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
             setTimeout(() => {
                 play2()
-            }, 50);
+            }, 50)
 
         }
-        else if (update == 8) {
+        else if (update == Keys.delete) {
             // delete
             setCommand(command.slice(0, -1))
         }
-        else if (update == 32) {
+        else if (update == Keys.space) {
             // spaces
             command != "" && setCommand(command + " ")
         }
@@ -248,13 +259,13 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             // A-Z
             setCommand(command + String.fromCharCode(update + 32))
 
-        } else if (update === 190) {
+        } else if (update === Keys.dot) {
             // .
             setCommand(command + ".")
-        } else if (update === 191) {
+        } else if (update === Keys.slat) {
             // /
             setCommand(command + "/")
-        } else if (update === 9) {
+        } else if (update === Keys.tab) {
             // tab
             nn()
             if (command !== "") {
@@ -270,12 +281,14 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                         file_system
                     ))
             }
-        } else if (update === 38) {
+        } else if (update === Keys.up) {
             // up
+            play1()
             setMe_watching_typed_history(Math.max(0, me_watching_typed_history - 1))
             setCommand(typed_history[Math.max(0, me_watching_typed_history - 1)])
-        } else if (update === 40) {
+        } else if (update === Keys.down) {
             // down
+            play2()
             setMe_watching_typed_history(Math.min(typed_history.length - 1, me_watching_typed_history + 1))
             setCommand(typed_history[Math.min(typed_history.length - 1, me_watching_typed_history + 1)])
         }
