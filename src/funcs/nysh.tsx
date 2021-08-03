@@ -17,7 +17,9 @@ export type dirType = {
     scripts?: Array<string>
 }
 
-export const commandParser = (command: string) => {
+export const commandParser = (
+    command: string
+) => {
     const splited = command.split(" ")
     return {
         com: splited[0], arg: splited[1]
@@ -26,11 +28,18 @@ export const commandParser = (command: string) => {
 
 // functions
 
-export const loadWasm = async (potaru: string, setModules: Function) => {
+export const loadWasm = async (
+    potaru: string,
+    setModules: Function
+) => {
     await import("../../static/" + potaru + "_wasm").then(modules => setModules(modules))
 }
 
-export const put_into_history = (command: Array<string>, histories: Array<object>, maxSize: number) => {
+export const put_into_history = (
+    command: Array<string>,
+    histories: Array<object>,
+    maxSize: number
+) => {
     let insertValue = Object.assign(new Array, histories)
 
     command.forEach((st: string) => {
@@ -50,7 +59,10 @@ export const put_into_history = (command: Array<string>, histories: Array<object
     return insertValue
 }
 
-export const up_shift = (insertValue: Array<object>, maxSize: number) => {
+export const up_shift = (
+    insertValue: Array<object>,
+    maxSize: number
+) => {
     for (let i = 0; i < maxSize - 1; i++) {
         insertValue[i] = Object.assign({}, insertValue[i + 1])
     }
@@ -58,7 +70,9 @@ export const up_shift = (insertValue: Array<object>, maxSize: number) => {
 
 }
 
-export const isMessage = (command: string) => {
+export const isMessage = (
+    command: string
+) => {
     if (command.includes("->")) {
         return "#555555"
     } else if (command.includes("-!")) {
@@ -69,9 +83,11 @@ export const isMessage = (command: string) => {
     return "#222222"
 }
 
-export const tagParser = (command: string) => {
-    
-    if (command.includes("-gif")) {        
+export const tagParser = (
+    command: string
+) => {
+
+    if (command.includes("-gif")) {
         return commmand_tags.img
     }
     return commmand_tags.div
@@ -200,12 +216,16 @@ export const files: Array<dirType> = [
     }
 ]
 
-export const is_vaild_dir = (folder: string, current_dir: Array<string>): boolean => {
+export const is_vaild_dir = (
+    folder: string,
+    current_dir: Array<string>,
+    file_system: any
+): boolean => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
     new_path.push(folder + "/")
 
-    let _watching = files
+    let _watching = file_system
 
     for (let i = 0; i < new_path.length; i++) {
         let available = false
@@ -229,12 +249,13 @@ export const is_vaild_dir = (folder: string, current_dir: Array<string>): boolea
 export const auto_complete = (
     temporary_command_input: string,
     current_dir: Array<string>,
-    available_command: Array<string>
+    available_command: Array<string>,
+    file_system: any
 ) => {
 
     let { com, arg } = commandParser(temporary_command_input)
     if (arg !== undefined) {
-        const whats_in_current: Array<string> = dir_inside(current_dir)
+        const whats_in_current: Array<string> = dir_inside(current_dir, file_system)
         whats_in_current.forEach((st: string) => {
             if (st.includes(arg, 0)) {
                 arg = (st.includes("/") ? st.slice(0, -1) : st)
@@ -253,11 +274,12 @@ export const auto_complete = (
 }
 
 export const generic_ls = (
-    current_dir: Array<string>
+    current_dir: Array<string>,
+    file_system: any
 ): Array<string> => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
-    let _watching = files
+    let _watching = file_system
     for (let i = 0; i < new_path.length; i++) {
         for (let j = 0; j < _watching.length; j++) {
             if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
@@ -271,11 +293,12 @@ export const generic_ls = (
 }
 
 export const dir_inside = (
-    current_dir: Array<string>
+    current_dir: Array<string>,
+    file_system: any
 ): Array<string> => {
 
     const new_path = JSON.parse(JSON.stringify(current_dir))
-    let _watching = files
+    let _watching = file_system
     for (let i = 0; i < new_path.length; i++) {
         for (let j = 0; j < _watching.length; j++) {
             if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
@@ -288,11 +311,15 @@ export const dir_inside = (
     })
 }
 
-export const cat_me = (file: string, current_dir: Array<string>): Array<string> => {
+export const cat_me = (
+    file: string,
+    current_dir: Array<string>,
+    file_system: any
+): Array<string> => {
     const new_path = JSON.parse(JSON.stringify(current_dir))
     new_path.push(file)
 
-    let _watching = files
+    let _watching = file_system
 
     for (let i = 0; i < new_path.length; i++) {
         let available = false
@@ -309,4 +336,12 @@ export const cat_me = (file: string, current_dir: Array<string>): Array<string> 
         }
         if (!available) return ["no file found"]
     }
+}
+
+export const pushHistory = (command: string, typed_history: Array<string>, setTyped_history: Function) => {
+    const new_array = Object.assign([], typed_history)
+    new_array.pop()
+    new_array.push(command)
+    new_array.push("")
+    setTyped_history(new_array)
 }

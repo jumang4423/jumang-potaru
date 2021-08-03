@@ -7,7 +7,11 @@ export function welcome_nysh(): Array<any>;
 /**
 * @returns {Array<any>}
 */
-export function available_command(): Array<any>;
+export function available_command_of_default(): Array<any>;
+/**
+* @returns {Array<any>}
+*/
+export function available_command_of_wasm(): Array<any>;
 /**
 * @returns {Array<any>}
 */

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { auto_complete, cat_me, commandParser, files, generic_ls, is_vaild_dir, loadWasm, put_into_history } from '@/funcs/nysh'
+import { auto_complete, cat_me, commandParser, files, generic_ls, is_vaild_dir, loadWasm, pushHistory, put_into_history } from '@/funcs/nysh'
 import { motion } from 'framer-motion'
 import CutieButton from './CutieButton'
 import "@/styles/component/MDArea.scss"
@@ -31,7 +31,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         ]
     )
     const [current_dir, setCurrent_dir] = useState<Array<string>>(["/"])
-    const [file_system, setFile_system] = useState<any>([])
+    const [file_system, setFile_system] = useState<any>([""])
 
     // tempos
     const max_size = 10
@@ -42,6 +42,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [play1] = useSound('/on.mp3')
     const [play2] = useSound('/on2.mp3')
     const [nn] = useSound('/nn.mp3')
+    const [typed_history, setTyped_history] = useState<Array<string>>([])
+    const [me_watching_typed_history, setMe_watching_typed_history] = useState<number>(1)
     // const el = useRef(null);
 
     const showHistory = (history: any) => {
@@ -82,7 +84,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 setHistories(put_into_history([...modules.welcome_nysh()], histories, max_size))
                 break
             case "cat":
-                setHistories(put_into_history([command, ...cat_me(arg, current_dir).map((st: string) => {
+                setHistories(put_into_history([command, ...cat_me(arg, current_dir, file_system).map((st: string) => {
                     return "🐱 " + st
                 })], histories, max_size))
                 break
@@ -96,7 +98,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     setHistories(put_into_history([command, "↓"], histories, max_size))
                     setCurrent_dir(newdir)
                 }
-                else if (is_vaild_dir(arg, current_dir)) {
+                else if (is_vaild_dir(arg, current_dir, file_system)) {
                     let newdir = Object.assign([], current_dir)
                     newdir.push((arg + "/"))
                     setHistories(put_into_history([command, "↓"], histories, max_size))
@@ -112,10 +114,10 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 setCurrent_dir(newdir)
                 break
             case "ls":
-                setHistories(put_into_history([command, ...generic_ls(current_dir)], histories, max_size))
+                setHistories(put_into_history([command, ...generic_ls(current_dir, file_system)], histories, max_size))
                 break
             case "la":
-                setHistories(put_into_history([command, ...generic_ls(current_dir)], histories, max_size))
+                setHistories(put_into_history([command, ...generic_ls(current_dir, file_system)], histories, max_size))
                 break
             case "whoami":
                 setHistories(put_into_history([command, ...modules.whoami_call()], histories, max_size))
@@ -212,14 +214,18 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     }, [])
 
     useEffect(() => {
-        // TODO: ENUMにしようね〜
+        // TODO: use enum bruh
 
 
         if (update == 13) {
             // enter
             command !== '' && run_command()
-            setCommand("")
 
+            // push the command to the command history
+            pushHistory(command, typed_history, setTyped_history)
+
+            setMe_watching_typed_history(typed_history.length)
+            setCommand("")
             play1()
 
             setTimeout(() => {
@@ -251,7 +257,27 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         } else if (update === 9) {
             // tab
             nn()
-            if (command !== "") setCommand(auto_complete(command, current_dir, modules.available_command()))
+            if (command !== "") {
+                setCommand(
+                    auto_complete(
+                        command,
+                        current_dir,
+                        []
+                            .concat(
+                                modules.available_command_of_default(),
+                                modules.available_command_of_wasm()
+                            ),
+                        file_system
+                    ))
+            }
+        } else if (update === 38) {
+            // up
+            setMe_watching_typed_history(Math.max(0, me_watching_typed_history - 1))
+            setCommand(typed_history[Math.max(0, me_watching_typed_history - 1)])
+        } else if (update === 40) {
+            // down
+            setMe_watching_typed_history(Math.min(typed_history.length - 1, me_watching_typed_history + 1))
+            setCommand(typed_history[Math.min(typed_history.length - 1, me_watching_typed_history + 1)])
         }
         setUpdate(null)
     }, [update])

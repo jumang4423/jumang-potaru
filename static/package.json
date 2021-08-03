@@ -1,0 +1,16 @@
+{
+  "name": "potaru-wasm",
+  "collaborators": [
+    "ryoma okuda <catontheskate4423@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "potaru_wasm_bg.wasm",
+    "potaru_wasm.js",
+    "potaru_wasm_bg.js",
+    "potaru_wasm.d.ts"
+  ],
+  "module": "potaru_wasm.js",
+  "types": "potaru_wasm.d.ts",
+  "sideEffects": false
+}

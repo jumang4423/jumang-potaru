@@ -126,8 +126,16 @@ export function welcome_nysh() {
 /**
 * @returns {Array<any>}
 */
-export function available_command() {
-    var ret = wasm.available_command();
+export function available_command_of_default() {
+    var ret = wasm.available_command_of_default();
+    return takeObject(ret);
+}
+
+/**
+* @returns {Array<any>}
+*/
+export function available_command_of_wasm() {
+    var ret = wasm.available_command_of_wasm();
     return takeObject(ret);
 }
 
