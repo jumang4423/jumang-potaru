@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { auto_complete, cat_me, commandParser, generic_ls, is_vaild_dir, loadWasm, put_into_history } from '@/funcs/nysh'
+import { auto_complete, cat_me, commandParser, files, generic_ls, is_vaild_dir, loadWasm, put_into_history } from '@/funcs/nysh'
 import { motion } from 'framer-motion'
-import { goRouter } from '@/funcs/goRouter'
 import CutieButton from './CutieButton'
 import "@/styles/component/MDArea.scss"
 import "@/styles/component/MDText.scss"
@@ -32,6 +31,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         ]
     )
     const [current_dir, setCurrent_dir] = useState<Array<string>>(["/"])
+    const [file_system, setFile_system] = useState<any>([])
 
     // tempos
     const max_size = 10
@@ -142,24 +142,43 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             new Promise((resolve: any) => {
                 setTimeout(() => {
                     // fetch wasm
-                    set_init_loading_status(1)
+                    set_init_loading_status(0)
                     resolve()
                 }, 100);
             }).then(() => {
                 return new Promise((resolve: any) => {
                     setTimeout(() => {
                         // fetch wasm
-                        set_init_loading_status(2)
+                        set_init_loading_status(1)
                         resolve()
                     }, 200);
                 })
             }).then(() => {
                 return new Promise((resolve: any) => {
                     setTimeout(() => {
-                        // fetch wasm
-                        set_init_loading_status(3)
+                        // for nysh
+                        set_init_loading_status(2)
                         resolve()
                     }, 500);
+                })
+            }).then(() => {
+                return new Promise((resolve: any) => {
+                    setTimeout(() => {
+                        // file system
+                        set_init_loading_status(3)
+                        const _stored = localStorage.getItem("mounted_dirs")
+                        if (!_stored) {
+                            console.log("not stored");
+                            console.log(JSON.stringify(files));
+
+                            localStorage.setItem("mounted_dirs", JSON.stringify(files))
+                        } else {
+                            console.log("stored");
+                            setFile_system(JSON.parse(_stored))
+                        }
+
+                        resolve()
+                    }, 100);
                 })
             }).then(() => {
                 return new Promise((resolve: any) => {

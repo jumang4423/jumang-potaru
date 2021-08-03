@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import ReactLoading from "react-loading"
 import "@/styles/component/MDText.scss"
 import '@/styles/component/MPPost.scss'
 import '@/styles/component/nysh.scss'
@@ -16,8 +17,8 @@ const MDText: React.FC<Props> = ({ setIsNysh }: Props) => {
     return (
         <div className="MDText nysh_flex" >
             {!isSSR &&
-                <React.Suspense fallback={<h2 className="MPPost"> </h2>}>
-                    <MPPost setIsNysh={setIsNysh}/>
+                <React.Suspense fallback={<ReactLoading type={"bubbles"} color="#555555" />}>
+                    <MPPost setIsNysh={setIsNysh} />
                 </React.Suspense>
             }
         </div>
