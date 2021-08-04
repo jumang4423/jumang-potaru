@@ -76,6 +76,13 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         }
     }
 
+    const run_command_of_dotdot = () => {
+        let newdir = Object.assign([], current_dir)
+        newdir.length !== 1 && newdir.pop()
+        setHistories(put_into_history([command, "↓"], histories, max_size))
+        setCurrent_dir(newdir)
+    }
+
     const run_command = () => {
         const { com, arg } = commandParser(command)
 
@@ -104,10 +111,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 break
             case "cd":
                 if (arg === "..") {
-                    let newdir = Object.assign([], current_dir)
-                    newdir.pop()
-                    setHistories(put_into_history([command, "↓"], histories, max_size))
-                    setCurrent_dir(newdir)
+                    run_command_of_dotdot()
                 }
                 else if (is_vaild_dir(arg, current_dir, file_system)) {
                     let newdir = Object.assign([], current_dir)
@@ -119,10 +123,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 }
                 break
             case "..":
-                let newdir = Object.assign([], current_dir)
-                newdir.pop()
-                setHistories(put_into_history([command, "↓"], histories, max_size))
-                setCurrent_dir(newdir)
+                run_command_of_dotdot()
                 break
             case "ls":
                 setHistories(put_into_history([command, ...generic_ls(current_dir, file_system)], histories, max_size))
