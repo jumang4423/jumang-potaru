@@ -2,7 +2,6 @@
 // mod file_system;
 
 // file_system::fuck(); devide by mod den read like this
-
 use js_sys::Array;
 use wasm_bindgen::prelude::*;
 
@@ -11,16 +10,6 @@ use wasm_bindgen::prelude::*;
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
-#[wasm_bindgen]
-pub fn welcome_nysh() -> Array {
-    let ary = Array::new();
-    ary.push(&JsValue::from_str(
-        "-> welcome to nysh! is the shell written in rust",
-    ));
-    ary.push(&JsValue::from_str("-o logined as guest currently"));
-    return ary;
-}
 
 #[wasm_bindgen]
 pub fn available_command_of_default() -> Array {
@@ -37,6 +26,11 @@ pub fn available_command_of_default() -> Array {
     ary.push(&JsValue::from_str("exit"));
 
     return ary;
+}
+
+#[wasm_bindgen]
+pub fn sl() -> String {
+    return "-gif https://media.giphy.com/media/EYkWy4vU0zNLO/giphy.gif".to_owned();
 }
 
 #[wasm_bindgen]
@@ -72,7 +66,13 @@ pub fn whoami_call() -> Array {
     return ary;
 }
 
+
 #[wasm_bindgen]
-pub fn sl() -> String {
-    return "-gif https://media.giphy.com/media/EYkWy4vU0zNLO/giphy.gif".to_owned();
+pub fn welcome_nysh() -> Array {
+    let ary = Array::new();
+    ary.push(&JsValue::from_str(
+        "-> welcome to nysh! is the shell written in rust",
+    ));
+    ary.push(&JsValue::from_str("-o logined as guest currently"));
+    return ary;
 }

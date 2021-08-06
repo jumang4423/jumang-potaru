@@ -118,17 +118,25 @@ function getInt32Memory0() {
 /**
 * @returns {Array<any>}
 */
-export function welcome_nysh() {
-    var ret = wasm.welcome_nysh();
+export function available_command_of_default() {
+    var ret = wasm.available_command_of_default();
     return takeObject(ret);
 }
 
 /**
-* @returns {Array<any>}
+* @returns {string}
 */
-export function available_command_of_default() {
-    var ret = wasm.available_command_of_default();
-    return takeObject(ret);
+export function sl() {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        wasm.sl(retptr);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        return getStringFromWasm0(r0, r1);
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+        wasm.__wbindgen_free(r0, r1);
+    }
 }
 
 /**
@@ -156,19 +164,11 @@ export function whoami_call() {
 }
 
 /**
-* @returns {string}
+* @returns {Array<any>}
 */
-export function sl() {
-    try {
-        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        wasm.sl(retptr);
-        var r0 = getInt32Memory0()[retptr / 4 + 0];
-        var r1 = getInt32Memory0()[retptr / 4 + 1];
-        return getStringFromWasm0(r0, r1);
-    } finally {
-        wasm.__wbindgen_add_to_stack_pointer(16);
-        wasm.__wbindgen_free(r0, r1);
-    }
+export function welcome_nysh() {
+    var ret = wasm.welcome_nysh();
+    return takeObject(ret);
 }
 
 export function __wbindgen_string_new(arg0, arg1) {

@@ -3,11 +3,11 @@
 /**
 * @returns {Array<any>}
 */
-export function welcome_nysh(): Array<any>;
-/**
-* @returns {Array<any>}
-*/
 export function available_command_of_default(): Array<any>;
+/**
+* @returns {string}
+*/
+export function sl(): string;
 /**
 * @returns {Array<any>}
 */
@@ -21,6 +21,6 @@ export function help(): Array<any>;
 */
 export function whoami_call(): Array<any>;
 /**
-* @returns {string}
+* @returns {Array<any>}
 */
-export function sl(): string;
+export function welcome_nysh(): Array<any>;

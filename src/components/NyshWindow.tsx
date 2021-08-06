@@ -58,7 +58,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     // const el = useRef(null);
 
     const showHistory = (history: any) => {
-
         if (history.tag == commmand_tags.div) {
             return (
                 <>
@@ -76,14 +75,14 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         }
     }
 
-    const run_command_of_dotdot = () => {
+    const run_command_of_dotdot = (): void => {
         let newdir = Object.assign([], current_dir)
         newdir.length !== 1 && newdir.pop()
         setHistories(put_into_history([command, "↓"], histories, max_size))
         setCurrent_dir(newdir)
     }
 
-    const run_command = () => {
+    const run_command = (): void => {
         const { com, arg } = commandParser(command)
 
         switch (com) {
@@ -220,7 +219,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             if ([Keys.enter, Keys.delete, Keys.space, Keys.slat, Keys.tab, Keys.up, Keys.down].includes(event.keyCode)) {
                 event.preventDefault()
             }
-
             setUpdate(event.keyCode)
         }, false)
     }, [])
@@ -235,15 +233,12 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
             // push the command to the command history
             pushHistory(command, typed_history, setTyped_history)
-
             setMe_watching_typed_history(typed_history.length)
             setCommand("")
             play1()
-
             setTimeout(() => {
                 play2()
             }, 50)
-
         }
         else if (update == Keys.delete) {
             // delete
@@ -298,11 +293,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
     return (
         <>
-            <div
-                className="MDArea-nysh">
-
+            <div className="MDArea-nysh">
                 <div className="MDArea2 MDText MPPost nysh_flex">
-
                     <div className={"nysh_title"}>
                         [ nyu shell🦀 ]
                     </div>
@@ -335,8 +327,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                                                     {
                                                         color: history.col,
                                                         opacity: 1
-                                                    }}
-                                            >
+                                                    }}>
                                                 {showHistory(history)}
                                             </motion.div>
                                         )
