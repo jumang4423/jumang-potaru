@@ -14,7 +14,7 @@ export type dirType = {
     name: string,
     contents?: Array<dirType>,
     file_type?: dirEnum,
-    scripts?: Array<string>
+    scripts?: Array<string>,
 }
 
 export const commandParser = (

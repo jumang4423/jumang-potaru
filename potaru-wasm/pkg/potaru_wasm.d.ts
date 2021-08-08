@@ -23,4 +23,8 @@ export function whoami_call(): Array<any>;
 /**
 * @returns {Array<any>}
 */
+export function neofetch(): Array<any>;
+/**
+* @returns {Array<any>}
+*/
 export function welcome_nysh(): Array<any>;

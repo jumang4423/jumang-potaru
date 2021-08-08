@@ -166,6 +166,14 @@ export function whoami_call() {
 /**
 * @returns {Array<any>}
 */
+export function neofetch() {
+    var ret = wasm.neofetch();
+    return takeObject(ret);
+}
+
+/**
+* @returns {Array<any>}
+*/
 export function welcome_nysh() {
     var ret = wasm.welcome_nysh();
     return takeObject(ret);

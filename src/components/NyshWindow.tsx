@@ -69,7 +69,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             let given_img = history.com.split(" ")?.[1]
             return (
                 <div className={"img_viewer"}>
-                    <img className={"img_round"} src={given_img} />
+                    <img className={"img_round"} src={given_img} width={"500"}/>
                 </div>
             )
         }
@@ -91,6 +91,10 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 break
             case "sl":
                 setHistories(put_into_history([modules.sl(), "", "", "", ""], histories, max_size))
+                break
+
+            case "neofetch":
+                setHistories(put_into_history([command, ...modules.neofetch()], histories, max_size))
                 break
             case "clear":
                 setHistories([

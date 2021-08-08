@@ -3,6 +3,7 @@
 
 // file_system::fuck(); devide by mod den read like this
 use js_sys::Array;
+use std::time::Instant;
 use wasm_bindgen::prelude::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
@@ -38,6 +39,7 @@ pub fn available_command_of_wasm() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("welcome"));
     ary.push(&JsValue::from_str("sl"));
+    ary.push(&JsValue::from_str("neofetch"));
     return ary;
 }
 
@@ -66,6 +68,18 @@ pub fn whoami_call() -> Array {
     return ary;
 }
 
+#[wasm_bindgen]
+pub fn neofetch() -> Array {
+    let ary = Array::new();
+    ary.push(&JsValue::from_str("🐱 jumang@jumang-potaru.dev"));
+    ary.push(&JsValue::from_str("🐱 --------------------------------"));
+    ary.push(&JsValue::from_str("🐱 OS: null"));
+    ary.push(&JsValue::from_str("🐱 Shell: nysh wasm edition"));
+    ary.push(&JsValue::from_str("🐱 Terminal: nyu shell term"));
+    ary.push(&JsValue::from_str("-gif https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3.amazonaws.com%2Fmedia-p.slid.es%2Fuploads%2F164793%2Fimages%2F5512427%2Fpasted-from-clipboard.png"));
+    
+    return ary;
+}
 
 #[wasm_bindgen]
 pub fn welcome_nysh() -> Array {
