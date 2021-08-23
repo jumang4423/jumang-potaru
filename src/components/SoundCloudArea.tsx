@@ -9,7 +9,7 @@ interface Props {
 
 const SoundCloudArea: React.FC<Props> = () => {
     return (
-        <>
+        <div className={"bdroper"}>
             <motion.div
                 className="MDArea-sc"
                 drag
@@ -34,7 +34,7 @@ const SoundCloudArea: React.FC<Props> = () => {
                     </Suspense>
                 </div>
             </motion.div>
-        </>
+        </div>
     )
 }
 

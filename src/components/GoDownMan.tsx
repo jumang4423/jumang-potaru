@@ -45,7 +45,7 @@ const GoDownMan: React.FC<Props> = () => {
     }
 
     return (
-        <>
+        <div className={"bdroper"}>
             <motion.div
                 className="MDArea-sc"
 
@@ -106,7 +106,7 @@ const GoDownMan: React.FC<Props> = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </>
+        </div>
     )
 }
 

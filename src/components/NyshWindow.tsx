@@ -69,7 +69,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             let given_img = history.com.split(" ")?.[1]
             return (
                 <div className={"img_viewer"}>
-                    <img className={"img_round"} src={given_img} width={"500"}/>
+                    <img className={"img_round"} src={given_img} width={"500"} />
                 </div>
             )
         }
@@ -296,7 +296,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     }, [update])
 
     return (
-        <>
+        <div className={"bdroper"}>
             <div className="MDArea-nysh">
                 <div className="MDArea2 MDText MPPost nysh_flex">
                     <div className={"nysh_title"}>
@@ -337,7 +337,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                                         )
                                     })
                                 }
-                                <div>
+                                <div >
                                     {current_dir[current_dir.length - 1]} {'>'} {command}{ticker ? "🍙" : " "}
                                 </div>
                             </>
@@ -355,7 +355,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

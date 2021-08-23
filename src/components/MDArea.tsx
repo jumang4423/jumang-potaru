@@ -10,9 +10,11 @@ interface Props {
 
 const MDArea: React.FC<Props> = ({ setIsNysh }: Props) => {
     return (
-        <div className="MDArea">
-            <div className="MDArea2">
-                <MDText setIsNysh={setIsNysh}/>
+        <div className={"bdroper"}>
+            <div className="MDArea">
+                <div className="MDArea2">
+                    <MDText setIsNysh={setIsNysh} />
+                </div>
             </div>
         </div>
     )

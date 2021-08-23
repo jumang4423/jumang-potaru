@@ -10,9 +10,6 @@
     animation-duration: 0.4s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .MDArea-sc {
@@ -27,9 +24,6 @@
     animation-duration: 0.4s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .MDArea-nysh {
@@ -44,9 +38,6 @@
     animation-duration: 0.4s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .MDArea-in {
@@ -96,9 +87,10 @@
     animation-duration: 0.4s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+}
 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+.bdroper {
+    backdrop-filter: blur(5px);
 }
 
 @keyframes huwa_window {
