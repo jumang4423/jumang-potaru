@@ -1,8 +1,7 @@
 .MDArea {
     width: 90vw;
-    margin: 70px 5vw;
+    margin: 50px 5vw;
     background: #ffffff;
-    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
     border-radius: 48px;
 
@@ -14,9 +13,8 @@
 
 .MDArea-sc {
     width: 90vw;
-    margin: 140px 5vw;
+    margin: 100px 5vw;
     background: #ffffff;
-    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
     border-radius: 48px;
 
@@ -28,9 +26,8 @@
 
 .MDArea-nysh {
     width: 90vw;
-    margin: 140px 5vw;
+    margin: 100px 5vw;
     background: #ffffff;
-    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
     border-radius: 48px;
 
@@ -42,10 +39,9 @@
 
 .MDArea-in {
     width: 90vw;
-    margin: 140px 5vw;
+    margin: 100px 5vw;
     margin-bottom: -70px;
     background: #ffffff;
-    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
     border-radius: 48px;
 
@@ -79,7 +75,6 @@
     margin: 140px 5vw;
     margin-bottom: -70px;
     background: #ffffff;
-    box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.13);
     opacity: 0;
     border-radius: 48px;
 
@@ -95,14 +90,14 @@
 
 @keyframes huwa_window {
     0% {
-        box-shadow: -2px -2px 2px rgba(240, 240, 243, 0.42), 2px 2px 2px rgba(0, 0, 0, 0.096);
         opacity: 0.1;
         transform: translateY(8px);
+        box-shadow: -20px -20px 40px rgba(240, 240, 243, 0.601), 20px 20px 40px rgba(95, 95, 95, 0.093);
         filter: blur(5px);
     }
     100% {
-        box-shadow: -10px -10px 34px rgba(240, 240, 243, 0.712), 10px 10px 34px rgba(0, 0, 0, 0.103);
         opacity: 0.9;
+        box-shadow: -20px -20px 40px rgba(240, 240, 243, 0.601), 20px 20px 40px rgba(95, 95, 95, 0.093);
         transform: translateY(0px);
         filter: blur(0px);
     }
