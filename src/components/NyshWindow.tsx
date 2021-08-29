@@ -189,6 +189,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                             console.log(JSON.stringify(files));
 
                             localStorage.setItem("mounted_dirs", JSON.stringify(files))
+                            setFile_system(JSON.stringify(files))
                         } else {
                             console.log("stored");
                             setFile_system(JSON.parse(_stored))
