@@ -12,3 +12,23 @@
     /* background */
     background: #ffffff;
 }
+
+.opaopa {
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 8px;
+}
+
+.nodeco {
+    text-decoration: none;
+    color: black;
+}
+
+.clear_font {
+    font-size: 18px;
+    font-family: NSJP;
+}
