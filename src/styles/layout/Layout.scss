@@ -69,3 +69,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.pinker {
+	background-color: rgb(255, 228, 233);
+	position: absolute;
+	z-index: -10;
+	top: 0px;
+	width: 100vw;
+	height: 100vh;
+}

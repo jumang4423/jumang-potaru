@@ -3,7 +3,6 @@ import { Router } from "@reach/router"
 import Header from "@/components/Header"
 import MainPage from "@/layouts/MainPage"
 import "@/styles/layout/Layout.scss"
-import NyshWindow from "@/components/NyshWindow"
 const RotateJumang = React.lazy(() =>
   import("@/components/RotateJumang")
 )
@@ -14,21 +13,26 @@ interface Props {
 const Layout: React.FC<Props> = () => {
 
   // states
+  const [is3dState, setIs3dState] = useState<boolean>(false)
   const isSSR: any = typeof window === "undefined"
   const [isRotateJumang, setIsRotateJumang] = useState<Boolean>(false)
 
   useEffect(() => {
     setTimeout(() => { setIsRotateJumang(true) }, 500);
+    const _stored = localStorage.getItem("is3d")
+
+    if (_stored == "true") {
+      setIs3dState(true)
+    }
   }, []);
 
   return (
     <>
-
       <Header />
       <div className="MainPage">
         {!isSSR && isRotateJumang &&
           <React.Suspense fallback={<div />}>
-            <RotateJumang />
+            {is3dState && <RotateJumang />}
           </React.Suspense>
         }
         <Router>

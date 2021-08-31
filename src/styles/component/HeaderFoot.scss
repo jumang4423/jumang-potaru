@@ -28,4 +28,25 @@
 }
 
 
+.potaru {
+    display: flex;
+    flex-direction: row;
+}
 
+.potaruswitch {
+    font-size: 18px;
+    font-family: NSJP;
+    color: rgba(43, 141, 108, 0.658);
+    background-color: #cbcbcb5a;
+    padding: 4px;
+    width: 64px;
+    border-radius: 8px;
+}
+
+.cent {
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
