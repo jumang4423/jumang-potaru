@@ -9,6 +9,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    z-index: 1;
     /* background */
     background: #ffffff;
 }
@@ -31,4 +32,19 @@
 .clear_font {
     font-size: 18px;
     font-family: NSJP;
+}
+
+.MuiMenu-paper {
+
+    .MuiMenu-paper {
+        box-shadow: -10px -10px 20px rgba(240, 240, 243, 0.601), 10px 10px 20px rgba(95, 95, 95, 0.093);
+        border-radius: 24px;
+        padding: 4px;
+
+        .MuiMenuItem-root {
+            margin: 4px;
+            border-radius: 12px;
+        }
+    }
+    
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HeaderFoot from "@/components/HeaderFoot"
 import { motion } from "framer-motion";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { Menu, MenuItem } from "@material-ui/core"
+import { makeStyles, Menu, MenuItem } from "@material-ui/core"
 import { Link } from "gatsby"
 import "@/styles/component/Header.scss";
 
@@ -51,7 +51,8 @@ const Header: React.FC<Props> = () => {
                 keepMounted
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                onClose={() => setAnchorEl(null)}>
+                onClose={() => setAnchorEl(null)}
+                className={"MuiMenu-paper"}>
 
                 <Link to="/projects" className={"nodeco"}>
                     <MenuItem onClick={() => {
