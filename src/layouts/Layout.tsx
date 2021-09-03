@@ -15,24 +15,21 @@ const Layout: React.FC<Props> = () => {
   // states
   const [is3dState, setIs3dState] = useState<boolean>(false)
   const isSSR: any = typeof window === "undefined"
-  const [isRotateJumang, setIsRotateJumang] = useState<Boolean>(false)
 
   useEffect(() => {
-    setTimeout(() => { setIsRotateJumang(true) }, 500);
     const _stored = localStorage.getItem("is3d")
-
     if (_stored == "true") {
       setIs3dState(true)
     }
-  }, []);
+  }, [])
 
   return (
     <>
       <Header />
       <div className="MainPage">
-        {!isSSR && isRotateJumang &&
+        {!isSSR  && is3dState &&
           <React.Suspense fallback={<div />}>
-            {is3dState && <RotateJumang />}
+            <RotateJumang />
           </React.Suspense>
         }
         <Router>

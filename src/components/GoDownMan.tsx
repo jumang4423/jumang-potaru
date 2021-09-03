@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { motion } from "framer-motion"
 import { navigate } from "gatsby"
 import "@/styles/component/MDArea.scss"
@@ -17,6 +17,7 @@ interface Props {
 }
 
 const GoDownMan: React.FC<Props> = () => {
+    const [is3d, setIs3d] = useState<boolean>(false)
     const [open, setOpen] = useState<string>(null)
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -44,8 +45,12 @@ const GoDownMan: React.FC<Props> = () => {
         }
     }
 
+    useEffect(() => {
+        setIs3d(localStorage.getItem("is3d") === "true")
+    }, [])
+
     return (
-        <div className={"bdroper"}>
+        <div className={is3d ? "bdroper" : ""}>
             <motion.div
                 className="MDArea-sc"
 

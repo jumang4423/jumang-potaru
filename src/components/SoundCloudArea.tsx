@@ -1,6 +1,7 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { motion } from "framer-motion";
 import "@/styles/component/MDArea.scss";
+import { useEffect } from 'react';
 
 const EmbedSC = React.lazy(() => import('./EmbedSC'))
 
@@ -8,8 +9,17 @@ interface Props {
 }
 
 const SoundCloudArea: React.FC<Props> = () => {
+
+        // is3d parformance check
+        const [is3d, setIs3d] = useState<boolean>(false)
+
+        useEffect(() => {
+            setIs3d(localStorage.getItem("is3d") === "true")
+        }, [])
+    
+
     return (
-        <div className={"bdroper"}>
+        <div className={is3d ? "bdroper" : ""}>
             <motion.div
                 className="MDArea-sc"
                 drag

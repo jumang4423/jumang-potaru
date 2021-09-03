@@ -34,6 +34,9 @@ export enum Keys {
 
 const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => {
 
+    // is3d parformance check
+    const [is3d, setIs3d] = useState<boolean>(false)
+
     // nysh variables
     const [command, setCommand] = useState<string>("")
     const [histories, setHistories] = useState<Array<object>>(
@@ -55,7 +58,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [nn] = useSound('/nn.mp3')
     const [typed_history, setTyped_history] = useState<Array<string>>([""])
     const [me_watching_typed_history, setMe_watching_typed_history] = useState<number>(0)
-    // const el = useRef(null);
+    // const el = useRef(null)
 
     const showHistory = (history: any) => {
         if (history.tag == commmand_tags.div) {
@@ -146,11 +149,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         }
     }
 
-    // load wasm
-    useEffect(() => {
-        loadWasm("potaru", setModules)
-    }, [])
-
     useEffect(() => {
         if (modules) {
             setHistories(put_into_history([...modules.welcome_nysh(), ...modules.help()], histories, max_size))
@@ -161,14 +159,14 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     // fetch wasm
                     set_init_loading_status(0)
                     resolve()
-                }, 100);
+                }, 100)
             }).then(() => {
                 return new Promise((resolve: any) => {
                     setTimeout(() => {
                         // fetch wasm
                         set_init_loading_status(1)
                         resolve()
-                    }, 200);
+                    }, 200)
                 })
             }).then(() => {
                 return new Promise((resolve: any) => {
@@ -176,7 +174,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                         // for nysh
                         set_init_loading_status(2)
                         resolve()
-                    }, 500);
+                    }, 500)
                 })
             }).then(() => {
                 return new Promise((resolve: any) => {
@@ -185,18 +183,18 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                         set_init_loading_status(3)
                         const _stored = localStorage.getItem("mounted_dirs")
                         if (!_stored) {
-                            console.log("not stored");
-                            console.log(JSON.stringify(files));
+                            console.log("not stored")
+                            console.log(JSON.stringify(files))
 
                             localStorage.setItem("mounted_dirs", JSON.stringify(files))
                             setFile_system(files)
                         } else {
-                            console.log("stored");
+                            console.log("stored")
                             setFile_system(JSON.parse(_stored))
                         }
 
                         resolve()
-                    }, 100);
+                    }, 100)
                 })
             }).then(() => {
                 return new Promise((resolve: any) => {
@@ -204,7 +202,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                         // fetch wasm
                         set_init_loading_status(4)
                         resolve()
-                    }, 100);
+                    }, 100)
                 })
             })
         }
@@ -212,26 +210,27 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     }, [modules])
     // useEffects
     useEffect(() => {
-
         setTimeout(() => {
             setTicker(!ticker)
-        }, 500);
-
+        }, 500)
     }, [ticker])
 
     useEffect(() => {
+
+        // preventDefault
         document.addEventListener("keydown", (event: any) => {
             if ([Keys.enter, Keys.delete, Keys.space, Keys.slat, Keys.tab, Keys.up, Keys.down].includes(event.keyCode)) {
                 event.preventDefault()
             }
             setUpdate(event.keyCode)
         }, false)
+
+        // actual wasm loading async
+        loadWasm("potaru", setModules)
+        setIs3d(localStorage.getItem("is3d") === "true")
     }, [])
 
     useEffect(() => {
-        // TODO: use enum bruh
-
-
         if (update == Keys.enter) {
             // enter
             command !== '' && run_command()
@@ -297,7 +296,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     }, [update])
 
     return (
-        <div className={"bdroper"}>
+        <div className={is3d ? "bdroper" : ""}>
             <div className="MDArea-nysh">
                 <div className="MDArea2 MDText MPPost nysh_flex">
                     <div className={"nysh_title"}>

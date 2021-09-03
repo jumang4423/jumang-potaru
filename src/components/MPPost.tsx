@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { graphql, StaticQuery } from "gatsby"
 import { useLocation } from "@reach/router"
 import cheerio from 'cheerio'
