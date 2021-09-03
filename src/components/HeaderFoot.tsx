@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "gatsby"
 import { useLocation } from "@reach/router"
 import { motion } from "framer-motion"
 import "@/styles/component/HeaderFoot.scss";
-import { is } from 'cheerio/lib/api/traversing';
 
 interface Props {
 }
 
-const HeaderFoot = () => {
-
-    const [is3d, setIs3d] = useState(false)
+const HeaderFoot = ({}: Props) => {
 
     const path: string = useLocation().pathname
     let location: string = ""

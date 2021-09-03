@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import * as THREE from "three"
 import { Canvas, useFrame } from "react-three-fiber"
+import { globalHistory } from '@reach/router'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import "@/styles/component/RotateJumang.scss"
 interface Props {
@@ -24,23 +25,33 @@ function isWebGLAvailable() {
 const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   const [model, setModel] = useState<any>(null)
   const [radRotate, setradRotate] = useState<any>(0.0)
+  const [ticker, setTicker] = useState<number>(40)
 
   // load model
   useEffect(() => {
     new GLTFLoader().load("/jumang.glb", setModel)
   }, [])
 
+  useEffect(() => {
+    return globalHistory.listen(({ action }) => {
+      if (action === 'PUSH') setTicker(40)
+    })
+  }, [setTicker])
+
   // rotate jumang boi
   useFrame(() => {
-    setradRotate(radRotate + 0.0125);
+    // rotate thing
+    setradRotate(radRotate + 0.0125)
+    ticker !== 0 && setTicker(ticker => ticker - 1)
   })
 
   // if model is loaded, return jumang 3d model!
   return model ? <primitive
     object={model.scene}
     rotation={[0, 0, radRotate]}
-    antialias={true}
-    onClick={(event) => setHover(!hovered)}
+    position={[0, (ticker / 40) * Math.sin(ticker / 3.0),0]}
+    antialias={false}
+    onClick={() => setHover(!hovered)}
   /> : null
 }
 
