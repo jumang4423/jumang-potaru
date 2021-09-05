@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HeaderFoot from "@/components/HeaderFoot"
 import { motion } from "framer-motion";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { makeStyles, Menu, MenuItem } from "@material-ui/core"
+import { Menu, MenuItem } from "@material-ui/core"
 import { Link } from "gatsby"
 import "@/styles/component/Header.scss";
 
@@ -15,6 +15,7 @@ const Header: React.FC<Props> = () => {
 
     return (
         <div className="Header">
+
             <HeaderFoot />
             {/* <HeaderThings /> */}
             <motion.div
@@ -82,6 +83,16 @@ const Header: React.FC<Props> = () => {
                     }}>
                         <div className={"clear_font"}>
                             backwash
+                        </div>
+                    </MenuItem>
+                </Link>
+
+                <Link to="https://universe-jumang.web.app/" className={"nodeco"}>
+                    <MenuItem onClick={() => {
+                        setAnchorEl(null)
+                    }}>
+                        <div className={"clear_font"}>
+                            blog
                         </div>
                     </MenuItem>
                 </Link>
