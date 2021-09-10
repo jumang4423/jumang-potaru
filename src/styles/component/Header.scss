@@ -38,11 +38,22 @@
 
     .MuiMenu-paper {
         box-shadow: -10px -10px 20px rgba(240, 240, 243, 0.601), 10px 10px 20px rgba(95, 95, 95, 0.093);
-        border-radius: 16px;
+        border-radius: 14px;
         padding: 4px;
         .MuiMenuItem-root {
             margin: 4px;
             border-radius: 8px;
         }
     }
+}
+
+.mentagwrapper {
+    margin: 18px;
+    font-weight: 800;
+    color: rgb(78, 136, 86);
+}
+
+.pd16 {
+    margin-left: 16px;
+    margin-right: 16px
 }

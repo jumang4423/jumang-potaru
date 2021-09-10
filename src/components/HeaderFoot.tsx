@@ -7,13 +7,13 @@ import "@/styles/component/HeaderFoot.scss";
 interface Props {
 }
 
-const HeaderFoot = ({}: Props) => {
+const HeaderFoot = ({ }: Props) => {
 
     const path: string = useLocation().pathname
     let location: string = ""
     switch (path) {
         case "/":
-            location = "ジュマンポータル"
+            location = "ジーマンポータル"
             break
         case "/projects":
             location = "projects"
@@ -65,8 +65,10 @@ const HeaderFoot = ({}: Props) => {
                             scrollTo(0, 0)
                         }
                     }>
-                    <div className="potaruText1 Jet">
-                        JUMANG POTARU ☯ <span className="DPGreen">{location}</span>
+                    <div className="potaruText1 Jet flex-row">
+                        JUMANG POTARU
+                        <div className={"rotate"}><div className={"centering"}>☯</div></div>
+                        <span className="DPGreen">{location}</span>
                     </div>
                 </motion.div>
             </div>

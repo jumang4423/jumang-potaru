@@ -50,3 +50,32 @@
     justify-content: center;
     text-align: center;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+    .rotate {
+        animation: App-logo-spin infinite 4s linear;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.centering {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+}

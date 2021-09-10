@@ -26,6 +26,7 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   const [model, setModel] = useState<any>(null)
   const [radRotate, setradRotate] = useState<any>(0.0)
   const [ticker, setTicker] = useState<number>(40)
+  const [ticker2, setTicker2] = useState<number>(0)
 
   // load model
   useEffect(() => {
@@ -34,22 +35,23 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
 
   useEffect(() => {
     return globalHistory.listen(({ action }) => {
-      if (action === 'PUSH') setTicker(40)
+      if (action === 'PUSH') setTicker2(40)
     })
   }, [setTicker])
 
   // rotate jumang boi
-  useFrame(() => {
+  useFrame(({clock}) => {
     // rotate thing
     setradRotate(radRotate + 0.0125)
     ticker !== 0 && setTicker(ticker => ticker - 1)
+    ticker2 !== 0 && setTicker2(ticker => ticker - 1)
   })
 
   // if model is loaded, return jumang 3d model!
   return model ? <primitive
     object={model.scene}
     rotation={[0, 0, radRotate]}
-    position={[0, (ticker / 40) * Math.sin(ticker / 3.0),0]}
+    position={[0, (ticker / 40) * Math.sin(ticker / 3.0) + (ticker2 * ticker2 / 250.0),0]}
     antialias={false}
     onClick={() => setHover(!hovered)}
   /> : null
