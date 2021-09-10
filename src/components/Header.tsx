@@ -47,57 +47,56 @@ const Header: React.FC<Props> = () => {
                 <ExpandMoreIcon />
             </motion.div>
 
-            <Menu
-                id="simple-menu"
-                keepMounted
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={() => setAnchorEl(null)}
-                className={"MuiMenu-paper"}>
+                <Menu
+                    id="simple-menu"
+                    keepMounted
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={() => setAnchorEl(null)}
+                    className={"MuiMenu-paper"}>
 
-                <Link to="/projects" className={"nodeco"}>
-                    <MenuItem onClick={() => {
-                        setAnchorEl(null)
+                    <Link to="/projects" className={"nodeco"}>
+                        <MenuItem onClick={() => {
+                            setAnchorEl(null)
 
-                    }}>
-                        <div className={"clear_font"}>
-                            projects
-                        </div>
-                    </MenuItem>
-                </Link>
+                        }}>
+                            <div className={"clear_font"}>
+                                projects
+                            </div>
+                        </MenuItem>
+                    </Link>
 
-                <Link to="/about" className={"nodeco"}>
-                    <MenuItem onClick={() => {
-                        setAnchorEl(null)
+                    <Link to="/about" className={"nodeco"}>
+                        <MenuItem onClick={() => {
+                            setAnchorEl(null)
 
-                    }}>
-                        <div className={"clear_font"}>
-                            about
-                        </div>
-                    </MenuItem>
-                </Link>
+                        }}>
+                            <div className={"clear_font"}>
+                                about
+                            </div>
+                        </MenuItem>
+                    </Link>
 
-                <Link to="/backwash" className={"nodeco"}>
-                    <MenuItem onClick={() => {
-                        setAnchorEl(null)
-                    }}>
-                        <div className={"clear_font"}>
-                            backwash
-                        </div>
-                    </MenuItem>
-                </Link>
+                    <Link to="/backwash" className={"nodeco"}>
+                        <MenuItem onClick={() => {
+                            setAnchorEl(null)
+                        }}>
+                            <div className={"clear_font"}>
+                                backwash
+                            </div>
+                        </MenuItem>
+                    </Link>
 
-                <Link to="https://universe-jumang.web.app/" className={"nodeco"}>
-                    <MenuItem onClick={() => {
-                        setAnchorEl(null)
-                    }}>
-                        <div className={"clear_font"}>
-                            blog
-                        </div>
-                    </MenuItem>
-                </Link>
-
-            </Menu>
+                    <Link to="https://universe-jumang.web.app/" className={"nodeco little_blue"}>
+                        <MenuItem onClick={() => {
+                            setAnchorEl(null)
+                        }}>
+                            <div className={"clear_font"}>
+                                blog
+                            </div>
+                        </MenuItem>
+                    </Link>
+                </Menu>
 
         </div>
     )

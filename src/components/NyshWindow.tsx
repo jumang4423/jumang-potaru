@@ -340,7 +340,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                             </>
                         }
                     </div>
-                    <div className={"cute_flex goLeft"}>
+                    <div className={"cute_flex goLeft overscrollx"}>
                         <div className={"killa"}>
                             <Link to={"/morenysh"}>
                                 <CutieButton Name={"more details..."} />
