@@ -239,10 +239,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             pushHistory(command, typed_history, setTyped_history)
             setMe_watching_typed_history(typed_history.length)
             setCommand("")
-            play1()
-            setTimeout(() => {
-                play2()
-            }, 50)
+            play2()
         }
         else if (update == Keys.delete) {
             // delete
@@ -283,12 +280,12 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             }
         } else if (update === Keys.up) {
             // up
-            play1()
+            // play1()
             setMe_watching_typed_history(Math.max(0, me_watching_typed_history - 1))
             setCommand(typed_history[Math.max(0, me_watching_typed_history - 1)])
         } else if (update === Keys.down) {
             // down
-            play2()
+            // play2()
             setMe_watching_typed_history(Math.min(typed_history.length - 1, me_watching_typed_history + 1))
             setCommand(typed_history[Math.min(typed_history.length - 1, me_watching_typed_history + 1)])
         }
