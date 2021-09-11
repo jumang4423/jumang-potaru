@@ -1,5 +1,5 @@
 // TODO: 汚物コード故、リファクタリング必須
-
+import React from 'react'
 import { commmand_tags } from "@/components/NyshWindow"
 
 // ひでえtypes
@@ -348,4 +348,36 @@ export const pushHistory = (command: string, typed_history: Array<string>, setTy
     new_array.push(command)
     new_array.push("")
     setTyped_history(new_array)
+}
+
+export const showHistory = (history: any) => {
+    if (history.tag == commmand_tags.div) {
+        return (
+            <>
+                {history.com}
+            </>
+        )
+    }
+    else if (history.tag == commmand_tags.img) {
+        let given_img = history.com.split(" ")?.[1]
+        return (
+            <div className={"img_viewer"}>
+                <img className={"img_round"} src={given_img} width={"500"} />
+            </div>
+        )
+    }
+}
+
+export const run_command_of_dotdot = (
+    command: string,
+    max_size: number,
+    current_dir: Array<string>,
+    histories: Array<object>,
+    setHistories: Function,
+    setCurrent_dir: Function
+): void => {
+    let newdir = Object.assign([], current_dir)
+    newdir.length !== 1 && newdir.pop()
+    setHistories(put_into_history([command, "↓"], histories, max_size))
+    setCurrent_dir(newdir)
 }

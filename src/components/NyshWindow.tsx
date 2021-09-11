@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { auto_complete, cat_me, commandParser, files, generic_ls, is_vaild_dir, loadWasm, pushHistory, put_into_history } from '@/funcs/nysh'
+import { auto_complete, cat_me, commandParser, files, generic_ls, is_vaild_dir, loadWasm, pushHistory, put_into_history, run_command_of_dotdot, showHistory } from '@/funcs/nysh'
 import { motion } from 'framer-motion'
 import CutieButton from './CutieButton'
 import "@/styles/component/MDArea.scss"
@@ -10,6 +10,7 @@ import "@/styles/component/nysh.scss"
 import "@/styles/component/cutieButton.scss"
 import { Link } from '@reach/router'
 import useSound from 'use-sound'
+import { goRouter } from '@/funcs/goRouter'
 
 export type NyshWindowType = {
     setIsNysh: Function
@@ -29,7 +30,8 @@ export enum Keys {
     slat = 191,
     tab = 9,
     up = 38,
-    down = 40
+    down = 40,
+    under_bar = 189
 }
 
 const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => {
@@ -53,37 +55,15 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
     const [init_loading_status, set_init_loading_status] = useState<number>(0)
-    const [play1] = useSound('/on.mp3')
+    // const [play1] = useSound('/on.mp3')
     const [play2] = useSound('/on2.mp3')
     const [nn] = useSound('/nn.mp3')
     const [typed_history, setTyped_history] = useState<Array<string>>([""])
     const [me_watching_typed_history, setMe_watching_typed_history] = useState<number>(0)
     // const el = useRef(null)
 
-    const showHistory = (history: any) => {
-        if (history.tag == commmand_tags.div) {
-            return (
-                <>
-                    {history.com}
-                </>
-            )
-        }
-        else if (history.tag == commmand_tags.img) {
-            let given_img = history.com.split(" ")?.[1]
-            return (
-                <div className={"img_viewer"}>
-                    <img className={"img_round"} src={given_img} width={"500"} />
-                </div>
-            )
-        }
-    }
-
-    const run_command_of_dotdot = (): void => {
-        let newdir = Object.assign([], current_dir)
-        newdir.length !== 1 && newdir.pop()
-        setHistories(put_into_history([command, "↓"], histories, max_size))
-        setCurrent_dir(newdir)
-    }
+    // goRouter
+    const goRoute = goRouter()
 
     const run_command = (): void => {
         const { com, arg } = commandParser(command)
@@ -117,7 +97,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 break
             case "cd":
                 if (arg === "..") {
-                    run_command_of_dotdot()
+                    run_command_of_dotdot(command, max_size, current_dir, histories, setHistories, setCurrent_dir)
                 }
                 else if (is_vaild_dir(arg, current_dir, file_system)) {
                     let newdir = Object.assign([], current_dir)
@@ -129,7 +109,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 }
                 break
             case "..":
-                run_command_of_dotdot()
+                run_command_of_dotdot(command, max_size, current_dir, histories, setHistories, setCurrent_dir)
                 break
             case "ls":
                 setHistories(put_into_history([command, ...generic_ls(current_dir, file_system)], histories, max_size))
@@ -142,6 +122,9 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 break
             case "help":
                 setHistories(put_into_history([command, ...modules.help()], histories, max_size))
+                break
+            case "su_sudo":
+                goRoute("/su_sudo")
                 break
             default:
                 setHistories(put_into_history([command, "-! Unknown command: " + com], histories, max_size))
@@ -259,6 +242,9 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         } else if (update === Keys.dot) {
             // .
             setCommand(command + ".")
+        } else if (update === Keys.under_bar) {
+            // _
+            setCommand(command + "_")
         } else if (update === Keys.slat) {
             // /
             setCommand(command + "/")

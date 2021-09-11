@@ -30,6 +30,9 @@ const HeaderFoot = ({ }: Props) => {
         case "/nysh":
             location = "nysh"
             break
+        case "/su_sudo":
+            location = "su_sudo"
+            break
         default:
             location = "404"
             break

@@ -25,7 +25,7 @@ pub fn available_command_of_default() -> Array {
     ary.push(&JsValue::from_str("help"));
     ary.push(&JsValue::from_str("clear"));
     ary.push(&JsValue::from_str("exit"));
-
+    ary.push(&JsValue::from_str("su_sudo"));
     return ary;
 }
 
@@ -73,7 +73,7 @@ pub fn neofetch() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("🐱 jumang@jumang-potaru.dev"));
     ary.push(&JsValue::from_str("🐱 --------------------------------"));
-    ary.push(&JsValue::from_str("🐱 OS: null"));
+    ary.push(&JsValue::from_str("🐱 OS: chrome"));
     ary.push(&JsValue::from_str("🐱 Shell: nysh wasm edition"));
     ary.push(&JsValue::from_str("🐱 Terminal: nyu shell term"));
     ary.push(&JsValue::from_str("-gif https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3.amazonaws.com%2Fmedia-p.slid.es%2Fuploads%2F164793%2Fimages%2F5512427%2Fpasted-from-clipboard.png"));

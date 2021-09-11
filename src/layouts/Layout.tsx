@@ -27,7 +27,7 @@ const Layout: React.FC<Props> = () => {
     <>
       <Header />
       <div className="MainPage">
-        {!isSSR  && is3dState &&
+        {!isSSR && is3dState &&
           <React.Suspense fallback={<div />}>
             <RotateJumang />
           </React.Suspense>
@@ -39,6 +39,7 @@ const Layout: React.FC<Props> = () => {
           <MainPage path="/backwash" />
           <MainPage path="/morenysh" />
           <MainPage path="/404" />
+          <MainPage path="/su_sudo" />
           <MainPage default />
         </Router>
       </div>
