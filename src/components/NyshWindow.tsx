@@ -283,7 +283,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             <div className="MDArea-nysh">
                 <div className="MDArea2 MDText MPPost nysh_flex">
                     <div className={"nysh_title"}>
-                        [ nyu shell🦀 ]
+                        nyu shell🦀
                     </div>
 
                     <div className={"nysh_back what_the"}>
@@ -320,7 +320,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                                         )
                                     })
                                 }
-                                <div >
+                                <div className={"inside_commands"}>
                                     {current_dir[current_dir.length - 1]} {'>'} {command}{ticker ? "🍙" : " "}
                                 </div>
                             </>

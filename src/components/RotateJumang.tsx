@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
+import { EffectComposer, Noise, DepthOfField } from '@react-three/postprocessing'
 import * as THREE from "three"
-import { Canvas, useFrame } from "react-three-fiber"
+import { Canvas, useFrame } from "@react-three/fiber"
 import { globalHistory } from '@reach/router'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import "@/styles/component/RotateJumang.scss"
@@ -40,7 +41,7 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   }, [setTicker])
 
   // rotate jumang boi
-  useFrame(({clock}) => {
+  useFrame(({ clock }) => {
     // rotate thing
     setradRotate(radRotate + 0.0125)
     ticker !== 0 && setTicker(ticker => ticker - 1)
@@ -50,8 +51,9 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   // if model is loaded, return jumang 3d model!
   return model ? <primitive
     object={model.scene}
+    opacity={1 - (ticker2 / 40)}
     rotation={[0, 0, radRotate]}
-    position={[0, (ticker / 40) * Math.sin(ticker / 3.0) + (ticker2 * ticker2 * ticker2 * ticker2 / 100000.0),0]}
+    position={[0, (ticker / 40) * Math.sin(ticker / 3.0) + (ticker2 * ticker2 * ticker2 * ticker2 / 100000.0), 0]}
     antialias={false}
     onClick={() => setHover(!hovered)}
   /> : null
@@ -64,7 +66,7 @@ export default () => {
   return (
     <div id="container">
       <Canvas
-        camera={{ position: [0, 12, 1], fov: 45 }}
+        camera={{ position: [0, 12, 1], fov: 40 }}
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = false
           gl.shadowMap.type = THREE.PCFSoftShadowMap
@@ -83,6 +85,12 @@ export default () => {
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
         />
+
+        <EffectComposer>
+          <Noise opacity={0.3} />
+
+        </EffectComposer>
+
         {/*some point light*/}
         {isWebGLAvailable() ? <Jumang3D hovered={hovered} setHover={setHover} /> : <p id="webglError"></p>}
       </Canvas>
