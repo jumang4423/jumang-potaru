@@ -51,7 +51,7 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   return model ? <primitive
     object={model.scene}
     rotation={[0, 0, radRotate]}
-    position={[0, (ticker / 40) * Math.sin(ticker / 3.0) - (ticker2 * ticker2 * ticker2 * ticker2 / 100000.0),0]}
+    position={[0, (ticker / 40) * Math.sin(ticker / 3.0) + (ticker2 * ticker2 * ticker2 * ticker2 / 100000.0),0]}
     antialias={false}
     onClick={() => setHover(!hovered)}
   /> : null
