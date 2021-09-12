@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { EffectComposer, Noise, DepthOfField } from '@react-three/postprocessing'
 import * as THREE from "three"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { globalHistory } from '@reach/router'
@@ -86,10 +85,6 @@ export default () => {
           shadow-camera-bottom={-10}
         />
 
-        <EffectComposer>
-          <Noise opacity={0.3} />
-
-        </EffectComposer>
 
         {/*some point light*/}
         {isWebGLAvailable() ? <Jumang3D hovered={hovered} setHover={setHover} /> : <p id="webglError"></p>}
