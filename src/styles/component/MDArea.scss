@@ -1,9 +1,9 @@
 .MDArea {
-    width: 90vw;
-    margin: 50px 5vw;
-    background: #ffffff;
+    width: 95vw;
+    margin: 0px 2.5vw;
     opacity: 0;
     border-radius: 48px;
+    background: #ffffffdc;
 
     animation-name: huwa_window;
     animation-duration: 0.4s;
@@ -12,11 +12,11 @@
 }
 
 .MDArea-sc {
-    width: 90vw;
-    margin: 100px 5vw;
-    background: #ffffff;
+    width: 95vw;
+    margin: 0px 2.5vw;
     opacity: 0;
     border-radius: 48px;
+    background: #ffffffdc;
 
     animation-name: huwa_window;
     animation-duration: 0.4s;
@@ -25,9 +25,9 @@
 }
 
 .MDArea-nysh {
-    width: 90vw;
-    margin: 100px 5vw;
-    background: #ffffff;
+    width: 95vw;
+    margin: 0px 2.5vw;
+    background-color: #ffffffdc;
     opacity: 0;
     border-radius: 48px;
 
@@ -38,10 +38,10 @@
 }
 
 .MDArea-in {
-    width: 90vw;
-    margin: 100px 5vw;
+    width: 95vw;
+    margin: 100px 2.5vw;
     margin-bottom: -70px;
-    background: #ffffff;
+    background: #ffffffdc;
     opacity: 0;
     border-radius: 48px;
 
@@ -72,9 +72,9 @@
 
 .MDArea-sc2 {
     width: 256px;
-    margin: 140px 5vw;
+    margin: 140px 2.5vw;
     margin-bottom: -70px;
-    background: #ffffff;
+    background: #ffffffdc;
     opacity: 0;
     border-radius: 48px;
 
@@ -85,19 +85,17 @@
 }
 
 .bdroper {
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
 }
 
 @keyframes huwa_window {
     0% {
         opacity: 0.1;
         transform: translateY(8px);
-        box-shadow: -20px -20px 40px rgba(240, 240, 243, 0.601), 20px 20px 40px rgba(95, 95, 95, 0.093);
-        filter: blur(5px);
+        filter: blur(10px);
     }
     100% {
-        opacity: 0.9;
-        box-shadow: -20px -20px 40px rgba(240, 240, 243, 0.601), 20px 20px 40px rgba(95, 95, 95, 0.093);
+        opacity: 1;
         transform: translateY(0px);
         filter: blur(0px);
     }

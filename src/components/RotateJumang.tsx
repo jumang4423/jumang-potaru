@@ -51,7 +51,7 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   return model ? <primitive
     object={model.scene}
     opacity={1 - (ticker2 / 40)}
-    rotation={[0, 0, radRotate]}
+    rotation={[0, 0.25, radRotate]}
     position={[0, (ticker / 40) * Math.sin(ticker / 3.0) + (ticker2 * ticker2 * ticker2 * ticker2 / 100000.0), 0]}
     antialias={false}
     onClick={() => setHover(!hovered)}
@@ -65,7 +65,7 @@ export default () => {
   return (
     <div id="container">
       <Canvas
-        camera={{ position: [0, 12, 1], fov: 40 }}
+        camera={{ position: [0, 12, 1], fov: 20 }}
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = false
           gl.shadowMap.type = THREE.PCFSoftShadowMap

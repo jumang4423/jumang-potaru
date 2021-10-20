@@ -1,7 +1,7 @@
 .MPPost {
     width: 100%;
     // margin: 0 5vw;
-    padding: 70px 70px;
+    padding: 70px 50px;
     box-sizing: border-box;
 
     * {
@@ -39,6 +39,17 @@
         font-size: 32px !important;
         margin-bottom: 16px;
         margin-top: 8px;
+    }
+
+    a {
+        font-size: 20px !important;
+        text-decoration: none;
+    }
+
+
+    li {
+        font-size: 20px !important;
+        margin-left: 8px;
     }
 }
 

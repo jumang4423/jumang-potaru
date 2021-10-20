@@ -36,11 +36,8 @@ export enum Keys {
 
 const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => {
 
-    // is3d parformance check
-    const [is3d, setIs3d] = useState<boolean>(false)
-
     // nysh variables
-    const [command, setCommand] = useState<string>("")
+    const [command, setCommand] = useState<string>("whoami")
     const [histories, setHistories] = useState<Array<object>>(
         [
             { id: 1, com: "", tag: commmand_tags.div }
@@ -134,7 +131,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
     useEffect(() => {
         if (modules) {
-            setHistories(put_into_history([...modules.welcome_nysh(), ...modules.help()], histories, max_size))
+            setHistories(put_into_history([...modules.welcome_nysh()], histories, max_size))
         } else {
 
             new Promise((resolve: any) => {
@@ -210,7 +207,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
         // actual wasm loading async
         loadWasm("potaru", setModules)
-        setIs3d(localStorage.getItem("is3d") === "true")
     }, [])
 
     useEffect(() => {
@@ -279,7 +275,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     }, [update])
 
     return (
-        <div className={is3d ? "bdroper" : ""}>
+        <div className={""}>
             <div className="MDArea-nysh">
                 <div className="MDArea2 MDText MPPost nysh_flex">
                     <div className={"nysh_title"}>
@@ -291,10 +287,10 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                         {
                             init_loading_status !== 4 &&
                             <>
-                                {init_loading_status == 0 && <>fetching WASM modules...</>}
-                                {init_loading_status == 1 && <>preparing nysh...</>}
-                                {init_loading_status == 2 && <>mounting file system...</>}
-                                {init_loading_status == 3 && <>ok!</>}
+                                {init_loading_status == 0 && <div className={"nysh_history"}>fetching WASM modules...</div>}
+                                {init_loading_status == 1 && <div className={"nysh_history"}>preparing nysh...</div>}
+                                {init_loading_status == 2 && <div className={"nysh_history"}>mounting file system...</div>}
+                                {init_loading_status == 3 && <div className={"nysh_history"}>ok!</div>}
                             </>
                         }
 
@@ -305,6 +301,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                                     histories.map((history: any) => {
                                         return (
                                             <motion.div
+                                                className={"nysh_history"}
                                                 key={history.id}
                                                 initial={{
                                                     color: '#00FF00',
@@ -326,7 +323,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                             </>
                         }
                     </div>
-                    <div className={"cute_flex goLeft overscrollx"}>
+                    {/* <div className={"cute_flex goLeft overscrollx"}>
                         <div className={"killa"}>
                             <Link to={"/morenysh"}>
                                 <CutieButton Name={"more details..."} />
@@ -335,7 +332,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                         <div onClick={() => setIsNysh(false)}>
                             <CutieButton Name={"static profile"} />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

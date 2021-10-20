@@ -3,7 +3,7 @@
     font-family: FCODE;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 42px;
     /* identical to box height, or 208% */
 
@@ -17,9 +17,9 @@
     cursor: pointer;
     // box-sizing: border-box;
     margin-top: 32px;
-    width: 164px;
+    width: 180px;
 
-    margin-right: 32px;
+    margin-right: 46px;
 }
 
 .goLeft {
@@ -35,5 +35,5 @@
 }
 
 .overscrollx {
-    overflow-x: scroll;
+    overflow-x: none;
 }

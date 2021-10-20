@@ -6,26 +6,26 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 
 export default () => {
 
-    const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
+    // const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
 
     const theme: Theme = useTheme()
-    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
+    // const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
-    const handleClose = () => {
-        setIsOpenModal(false)
-    }
+    // const handleClose = () => {
+    //     setIsOpenModal(false)
+    // }
 
-    const setStorage = (bl: boolean) => {
-        localStorage.setItem("is3d", bl ? "true" : "false")
-        window.location.reload();
-    }
+    // const setStorage = (bl: boolean) => {
+    //     localStorage.setItem("is3d", bl ? "true" : "false")
+    //     window.location.reload();
+    // }
 
-    useEffect(() => {
-        const _stored = localStorage.getItem("is3d")
-        if (!_stored) {
-            setIsOpenModal(true)
-        }
-    }, [])
+    // useEffect(() => {
+    //     const _stored = localStorage.getItem("is3d")
+    //     if (!_stored) {
+    //         setIsOpenModal(true)
+    //     }
+    // }, [])
 
     return (
         <>
@@ -33,7 +33,7 @@ export default () => {
             <Layout />
             <SEO title="jumang potaru" />
 
-            {
+            {/* {
                 isOpenModal &&
                 <Dialog
                     fullScreen={fullScreen}
@@ -62,7 +62,7 @@ export default () => {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            }
+            } */}
         </>
     )
 }

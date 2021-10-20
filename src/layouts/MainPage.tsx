@@ -47,10 +47,10 @@ const MainPage: React.FC<any> = () => {
                 <MemoedSoundCLoudArea />
             }
 
-            {
+            {/* {
                 path === "/about" &&
                 <MemoedGoDownMan />
-            }
+            } */}
         </div>
     );
 };

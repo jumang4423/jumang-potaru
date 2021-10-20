@@ -109,12 +109,17 @@ export const files: Array<dirType> = [
                     {
                         isFolder: false,
                         name: "rust",
-                        scripts: ["rust is way better than c++, common lisp and you (kidding)"]
+                        scripts: ["u should learn rust if you are not smart like me"]
                     },
                     {
                         isFolder: false,
                         name: "go",
                         scripts: ["i love golang and you?"]
+                    },
+                    {
+                        isFolder: false,
+                        name: "typescript",
+                        scripts: ["better than js, worse than everything"]
                     },
                     {
                         isFolder: false,
@@ -140,8 +145,8 @@ export const files: Array<dirType> = [
                     {
                         isFolder: false,
                         file_type: dirEnum.txt,
-                        name: "zshrc",
-                        scripts: ["PS1='\\#/ >'", "welcome && help"]
+                        name: "nyshrc",
+                        scripts: ["PS1='\\#/ >'", "welcome"]
                     },
                 ]
             },
@@ -214,7 +219,7 @@ export const files: Array<dirType> = [
             {
                 name: "readme.txt",
                 isFolder: false,
-                scripts: ["'help' to learn more about nysh!", "unless i gotta just stay poor nerd man..."]
+                scripts: ["'help' to learn more about nysh!", "its a boring shell!"]
             }
         ]
     }

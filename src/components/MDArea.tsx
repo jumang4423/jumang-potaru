@@ -10,14 +10,14 @@ interface Props {
 
 const MDArea: React.FC<Props> = ({ setIsNysh }: Props) => {
 
-    const [is3d, setIs3d] = useState<boolean>(false)
+    // const [is3d, setIs3d] = useState<boolean>(false)
 
-    useEffect(() => {
-        setIs3d(localStorage.getItem("is3d") === "true")
-    }, [])
+    // useEffect(() => {
+    //     setIs3d(localStorage.getItem("is3d") === "true")
+    // }, [])
 
     return (
-        <div className={is3d ? "bdroper" : ""}>
+        <div className={""}>
             <div className="MDArea">
                 <div className="MDArea2">
                     <MDText setIsNysh={setIsNysh} />
