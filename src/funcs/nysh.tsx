@@ -41,13 +41,11 @@ export const loadWasm = async (
     await import("../../static/" + potaru + "_wasm").then(modules => setModules(modules))
 }
 
+// loadNylang
 export const loadNylang = async (
     setModules: Function
 ) => {
-    const nylang_str = "nylang"
-    await import(nylang_str).then(modules => {
-        setModules(modules)
-    })
+    await import("nylang" + "").then(modules => setModules(modules))
 }
 
 export const put_into_history = (
