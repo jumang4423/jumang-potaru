@@ -42,8 +42,9 @@ pub fn available_command_of_wasm() -> Array {
     ary.push(&JsValue::from_str("welcome"));
     ary.push(&JsValue::from_str("whoami"));
     ary.push(&JsValue::from_str("sl"));
-    ary.push(&JsValue::from_str("neofetch"));
+    ary.push(&JsValue::from_str("nyfetch"));
     ary.push(&JsValue::from_str("nylang"));
+    ary.push(&JsValue::from_str("_nylang_parser"));
     return ary;
 }
 
@@ -73,7 +74,7 @@ pub fn whoami_call() -> Array {
 }
 
 #[wasm_bindgen]
-pub fn neofetch() -> Array {
+pub fn nyfetch() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("🐱 jumang@jumang-potaru.dev"));
     ary.push(&JsValue::from_str("🐱 --------------------------------"));
@@ -91,6 +92,6 @@ pub fn welcome_nysh() -> Array {
     ary.push(&JsValue::from_str(
         "-> welcome to nysh! is the shell written in rust",
     ));
-    ary.push(&JsValue::from_str("-o logined as guest currently"));
+    ary.push(&JsValue::from_str("-o logined as guest"));
     return ary;
 }

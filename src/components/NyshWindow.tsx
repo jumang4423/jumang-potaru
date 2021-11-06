@@ -77,8 +77,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 setHistories(put_into_history([modules.sl(), "", "", "", ""], histories, max_size))
                 break
 
-            case "neofetch":
-                setHistories(put_into_history([command, ...modules.neofetch()], histories, max_size))
+            case "nyfetch":
+                setHistories(put_into_history([command, ...modules.nyfetch()], histories, max_size))
                 break
             case "clear":
                 setHistories([
@@ -128,8 +128,11 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 if (arg == undefined) {
                     setHistories(put_into_history([command, "-! no file found"], histories, max_size))
                 } else {
-                    setEditedContents(file_system, setFile_system, current_dir, arg, prompt("'" + arg + "' CONTENTS", cat_me(arg, current_dir, file_system).join("\n")))
-                    updateFiles(file_system)
+                    const prompt_vle = prompt("'" + arg + "' CONTENTS", cat_me(arg, current_dir, file_system).join("\n"))
+                    if (prompt_vle != null) {
+                        setEditedContents(file_system, setFile_system, current_dir, arg, prompt_vle)
+                        updateFiles(file_system)
+                    }
                 }
                 setHistories(put_into_history([command], histories, max_size))
                 break
@@ -152,7 +155,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 goRoute("/su_sudo")
                 break
             case "nylang":
-
                 if (arg == undefined) {
                     setHistories(put_into_history([command, "-> welcome to nylang, is the interplitor written in rust"], histories, max_size))
                 } else {
@@ -160,6 +162,16 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     const code = cat_me(arg, current_dir, file_system).join("\n")
                     // run the code
                     setHistories(put_into_history([command, ...excute_nyl.excute_nyl(imports_nyl + code, Excute_nyl_options.run)], histories, max_size))
+                }
+                break
+            case "_nylang_parser":
+                if (arg == undefined) {
+                    setHistories(put_into_history([command, "-! NYLANG PARSER FOR DEBUG"], histories, max_size))
+                } else {
+                    // get the code from file
+                    const code = cat_me(arg, current_dir, file_system).join("\n")
+                    // run the code
+                    setHistories(put_into_history([command, ...excute_nyl.excute_nyl(code, Excute_nyl_options.parser)], histories, max_size))
                 }
                 break
             default:

@@ -288,11 +288,12 @@ export const auto_complete = (
             }
         })
     } else {
-        available_command.forEach((st: string) => {
-            if (st.includes(com, 0)) {
-                com = st
+        for (let i = 0; i < available_command.length; i++) {
+            if (available_command[i].includes(com, 0)) {
+                com = available_command[i]
+                break
             }
-        })
+        }
     }
 
     return com + (arg ? " " + arg : "")

@@ -23,7 +23,7 @@ export function whoami_call(): Array<any>;
 /**
 * @returns {Array<any>}
 */
-export function neofetch(): Array<any>;
+export function nyfetch(): Array<any>;
 /**
 * @returns {Array<any>}
 */

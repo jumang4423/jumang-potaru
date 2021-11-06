@@ -166,8 +166,8 @@ export function whoami_call() {
 /**
 * @returns {Array<any>}
 */
-export function neofetch() {
-    var ret = wasm.neofetch();
+export function nyfetch() {
+    var ret = wasm.nyfetch();
     return takeObject(ret);
 }
 
