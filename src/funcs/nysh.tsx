@@ -44,7 +44,8 @@ export const loadWasm = async (
 export const loadNylang = async (
     setModules: Function
 ) => {
-    await import("nylang").then(modules => {
+    const nylang_str = "nylang"
+    await import(nylang_str).then(modules => {
         setModules(modules)
     })
 }
