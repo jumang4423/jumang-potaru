@@ -17,26 +17,36 @@ export type dirType = {
     scripts?: Array<string>,
 }
 
+export const updateFiles = (
+    files: Array<dirType>,
+) => {
+    localStorage.setItem("mounted_dirs", JSON.stringify(files))
+}
+
 export const commandParser = (
     command: string
 ) => {
 
-    console.log(command);
-    
-
     const splited = command.split(" ")
     return {
-        com: splited[0], arg: splited[1]
+        com: splited[0], arg: splited[1], arg2: splited[2]
     }
 }
 
 // functions
-
 export const loadWasm = async (
     potaru: string,
     setModules: Function
 ) => {
     await import("../../static/" + potaru + "_wasm").then(modules => setModules(modules))
+}
+
+export const loadNylang = async (
+    setModules: Function
+) => {
+    await import("nylang").then(modules => {
+        setModules(modules)
+    })
 }
 
 export const put_into_history = (
@@ -109,12 +119,12 @@ export const files: Array<dirType> = [
                     {
                         isFolder: false,
                         name: "rust",
-                        scripts: ["u should learn rust if you are not smart like me"]
+                        scripts: ["love community and documents"]
                     },
                     {
                         isFolder: false,
                         name: "go",
-                        scripts: ["i love golang and you?"]
+                        scripts: ["simple language which i barely use"]
                     },
                     {
                         isFolder: false,
@@ -129,25 +139,13 @@ export const files: Array<dirType> = [
                     {
                         isFolder: false,
                         name: "java",
-                        scripts: ["literally meh"]
+                        scripts: ["literally okay"]
                     },
                     {
                         isFolder: false,
                         name: "hsp",
                         scripts: ["Hot Soup Processor which similar to basic", "and sucks so hard"]
                     }
-                ]
-            },
-            {
-                name: "etc/",
-                isFolder: true,
-                contents: [
-                    {
-                        isFolder: false,
-                        file_type: dirEnum.txt,
-                        name: "nyshrc",
-                        scripts: ["PS1='\\#/ >'", "welcome"]
-                    },
                 ]
             },
             {
@@ -190,6 +188,26 @@ export const files: Array<dirType> = [
                         name: ".nyshrc",
                         scripts: ["PS1='\\#/ >'", "welcome && help"]
                     }
+                ]
+            },
+            {
+                name: "nylang_scripts/",
+                isFolder: true,
+                contents: [
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: "print.nyl",
+                        scripts: [
+                            `🍙 main = 🏨 ( ) {`,
+                            `   🎤 ( "hello nylang!" ) ;`,
+                            `   🍙 calculated = 3 + 3 ;`,
+                            `   🎤 ( "3 + 3 = " + calculated ) ;`,
+                            `   🌸 ( 🏨 () { `,
+                            `       🎤 ( "bolzoy is a dog kind" ) ;`,
+                            `}, 5 ) ; } ;`
+                        ]
+                    },
                 ]
             },
             {
@@ -385,4 +403,117 @@ export const run_command_of_dotdot = (
     newdir.length !== 1 && newdir.pop()
     setHistories(put_into_history([command, "↓"], histories, max_size))
     setCurrent_dir(newdir)
+}
+
+export const touchFile = (
+    file_system: any,
+    setFile_system: Function,
+    current_dir: Array<string>,
+    filename: String
+): void => {
+    const newFilesystem = Object.assign([], file_system)
+
+    let _watching = file_system
+    for (let i = 0; i < current_dir.length; i++) {
+        for (let j = 0; j < _watching.length; j++) {
+            if (_watching[j].isFolder === true && _watching[j].name === current_dir[i]) {
+                _watching = _watching[j].contents
+            }
+        }
+    }
+
+    _watching.push({
+        name: filename,
+        isFolder: false,
+        scripts: []
+    })
+
+    setFile_system(newFilesystem)
+}
+
+export const mkdirDir = (
+    file_system: any,
+    setFile_system: Function,
+    current_dir: Array<string>,
+    filename: String
+): void => {
+    const newFilesystem = Object.assign([], file_system)
+
+    let _watching = file_system
+    for (let i = 0; i < current_dir.length; i++) {
+        for (let j = 0; j < _watching.length; j++) {
+            if (_watching[j].isFolder === true && _watching[j].name === current_dir[i]) {
+                _watching = _watching[j].contents
+            }
+        }
+    }
+
+    _watching.push({
+        name: filename,
+        isFolder: true,
+        contents: []
+    })
+
+    setFile_system(newFilesystem)
+}
+
+export const removeFileOrDir = (
+    file_system: any,
+    setFile_system: Function,
+    current_dir: Array<string>,
+    filename: String
+): void => {
+    const newFilesystem = Object.assign([], file_system)
+    let _watching = file_system
+
+    for (let i = 0; i < current_dir.length; i++) {
+        for (let j = 0; j < _watching.length; j++) {
+            if (_watching[j].isFolder === true && _watching[j].name === current_dir[i]) {
+                _watching = _watching[j].contents
+            }
+        }
+    }
+
+    _watching.forEach((obj: any, index: number) => {
+
+        if (obj.name === filename) {
+            // delete the obj
+            _watching.splice(index, 1)
+        }
+
+        if (obj.name === filename + "/") {
+            // delete the obj
+            _watching.splice(index, 1)
+        }
+    })
+
+    setFile_system(newFilesystem)
+}
+
+export const setEditedContents = (
+    file_system: any,
+    setFile_system: Function,
+    current_dir: Array<string>,
+    filename: string,
+    contents: string
+): void => {
+    const newFilesystem = Object.assign([], file_system)
+
+    let _watching = file_system
+    for (let i = 0; i < current_dir.length; i++) {
+        for (let j = 0; j < _watching.length; j++) {
+            if (_watching[j].isFolder === true && _watching[j].name === current_dir[i]) {
+                _watching = _watching[j].contents
+            }
+        }
+    }
+
+    _watching.forEach((obj: any, index: number) => {
+        if (obj.name === filename) {
+            // delete the obj
+            _watching[index].scripts = contents.split("\n")
+        }
+    })
+
+    setFile_system(newFilesystem)
 }

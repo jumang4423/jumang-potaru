@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { auto_complete, cat_me, commandParser, files, generic_ls, is_vaild_dir, loadWasm, pushHistory, put_into_history, run_command_of_dotdot, showHistory } from '@/funcs/nysh'
+import { auto_complete, cat_me, commandParser, files, generic_ls, is_vaild_dir, loadNylang, loadWasm, mkdirDir, pushHistory, put_into_history, removeFileOrDir, run_command_of_dotdot, setEditedContents, showHistory, touchFile, updateFiles } from '@/funcs/nysh'
 import { motion } from 'framer-motion'
 import "@/styles/component/MDArea.scss"
 import "@/styles/component/MDText.scss"
@@ -9,6 +9,12 @@ import "@/styles/component/nysh.scss"
 import "@/styles/component/cutieButton.scss"
 import useSound from 'use-sound'
 import { goRouter } from '@/funcs/goRouter'
+import { imports_nyl } from '@/funcs/nylang_lib'
+
+enum Excute_nyl_options {
+    parser,
+    run
+}
 
 export type NyshWindowType = {
     setIsNysh: Function
@@ -49,6 +55,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [ticker, setTicker] = useState<boolean>(false)
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
+    const [excute_nyl, setExcute_nyl] = useState<any>()
     const [init_loading_status, set_init_loading_status] = useState<number>(0)
     const [play2] = useSound('/on2.mp3')
     const [nn] = useSound('/nn.mp3')
@@ -60,7 +67,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const goRoute = goRouter()
 
     const run_command = (): void => {
-        const { com, arg } = commandParser(command)
+        const { com, arg, arg2 } = commandParser(command)
 
         switch (com) {
             case "exit":
@@ -102,6 +109,30 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     setHistories(put_into_history([command, "-! no directory found"], histories, max_size))
                 }
                 break
+            case "touch":
+                touchFile(file_system, setFile_system, current_dir, arg)
+                updateFiles(file_system)
+                setHistories(put_into_history([command], histories, max_size))
+                break
+            case "mkdir":
+                mkdirDir(file_system, setFile_system, current_dir, arg + "/")
+                updateFiles(file_system)
+                setHistories(put_into_history([command], histories, max_size))
+                break
+            case "rm":
+                removeFileOrDir(file_system, setFile_system, current_dir, arg)
+                updateFiles(file_system)
+                setHistories(put_into_history([command], histories, max_size))
+                break
+            case "edit":
+                if (arg == undefined) {
+                    setHistories(put_into_history([command, "-! no file found"], histories, max_size))
+                } else {
+                    setEditedContents(file_system, setFile_system, current_dir, arg, prompt("'" + arg + "' CONTENTS", cat_me(arg, current_dir, file_system).join("\n")))
+                    updateFiles(file_system)
+                }
+                setHistories(put_into_history([command], histories, max_size))
+                break
             case "..":
                 run_command_of_dotdot(command, max_size, current_dir, histories, setHistories, setCurrent_dir)
                 break
@@ -119,6 +150,17 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 break
             case "su_sudo":
                 goRoute("/su_sudo")
+                break
+            case "nylang":
+
+                if (arg == undefined) {
+                    setHistories(put_into_history([command, "-> welcome to nylang, is the interplitor written in rust"], histories, max_size))
+                } else {
+                    // get the code from file
+                    const code = cat_me(arg, current_dir, file_system).join("\n")
+                    // run the code
+                    setHistories(put_into_history([command, ...excute_nyl.excute_nyl(imports_nyl + code, Excute_nyl_options.run)], histories, max_size))
+                }
                 break
             default:
                 setHistories(put_into_history([command, "-! Unknown command: " + com], histories, max_size))
@@ -204,6 +246,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
         // actual wasm loading async
         loadWasm("potaru", setModules)
+        loadNylang(setExcute_nyl)
     }, [])
 
     useEffect(() => {
@@ -280,7 +323,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     </div>
 
                     <div className={"nysh_back what_the"}>
-
                         {
                             init_loading_status !== 4 &&
                             <>
@@ -290,7 +332,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                                 {init_loading_status == 3 && <div className={"nysh_history"}>ok!</div>}
                             </>
                         }
-
                         {
                             init_loading_status == 4 &&
                             <>
@@ -320,16 +361,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                             </>
                         }
                     </div>
-                    {/* <div className={"cute_flex goLeft overscrollx"}>
-                        <div className={"killa"}>
-                            <Link to={"/morenysh"}>
-                                <CutieButton Name={"more details..."} />
-                            </Link>
-                        </div>
-                        <div onClick={() => setIsNysh(false)}>
-                            <CutieButton Name={"static profile"} />
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>

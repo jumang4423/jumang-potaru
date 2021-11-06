@@ -3,7 +3,6 @@
 
 // file_system::fuck(); devide by mod den read like this
 use js_sys::Array;
-use std::time::Instant;
 use wasm_bindgen::prelude::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
@@ -15,7 +14,6 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 #[wasm_bindgen]
 pub fn available_command_of_default() -> Array {
     let ary = Array::new();
-    ary.push(&JsValue::from_str("whoami"));
     ary.push(&JsValue::from_str("cd"));
     ary.push(&JsValue::from_str("ls"));
     ary.push(&JsValue::from_str("la"));
@@ -26,6 +24,10 @@ pub fn available_command_of_default() -> Array {
     ary.push(&JsValue::from_str("clear"));
     ary.push(&JsValue::from_str("exit"));
     ary.push(&JsValue::from_str("su_sudo"));
+    ary.push(&JsValue::from_str("touch"));
+    ary.push(&JsValue::from_str("mkdir"));
+    ary.push(&JsValue::from_str("rm"));
+    ary.push(&JsValue::from_str("edit"));
     return ary;
 }
 
@@ -38,8 +40,10 @@ pub fn sl() -> String {
 pub fn available_command_of_wasm() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("welcome"));
+    ary.push(&JsValue::from_str("whoami"));
     ary.push(&JsValue::from_str("sl"));
     ary.push(&JsValue::from_str("neofetch"));
+    ary.push(&JsValue::from_str("nylang"));
     return ary;
 }
 
