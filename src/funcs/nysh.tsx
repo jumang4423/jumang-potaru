@@ -108,6 +108,12 @@ export const tagParser = (
 
 export const files: Array<dirType> = [
     {
+        isFolder: false,
+        file_type: dirEnum.txt,
+        name: ".version",
+        scripts: ["v1.0.0"]
+    },
+    {
         isFolder: true,
         name: "/",
         contents: [
@@ -180,12 +186,6 @@ export const files: Array<dirType> = [
                         file_type: dirEnum.txt,
                         name: "introduction.txt",
                         scripts: ["type whoami to see more details about me"]
-                    },
-                    {
-                        isFolder: false,
-                        file_type: dirEnum.txt,
-                        name: ".nyshrc",
-                        scripts: ["PS1='\\#/ >'", "welcome && help"]
                     }
                 ]
             },
@@ -198,13 +198,56 @@ export const files: Array<dirType> = [
                         file_type: dirEnum.txt,
                         name: "print.nyl",
                         scripts: [
-                            `🍙 main = 🏨 ( ) {`,
-                            `   🎤 ( "hello nylang!" ) ;`,
-                            `   🍙 calculated = 3 + 3 ;`,
-                            `   🎤 ( "3 + 3 = " + calculated ) ;`,
-                            `   🌸 ( 🏨 () { `,
-                            `       🎤 ( "bolzoy is a dog kind" ) ;`,
-                            `}, 5 ) ; } ;`
+                            `
+🍙 main = 🏨 ( ) {
+   🎤 ( "hello nylang!" ) ;
+   🍙 calculated = 3 + 3 ;
+   🎤 ( "3 + 3 = " + calculated ) ;
+   🌸 ( 🏨 () { 
+       🎤 ( "bolzoy is a dog kind" ) ;
+}, 5 ) ; } ;`
+                        ]
+                    },
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: "array_sort.nyl",
+                        scripts: [
+                            `
+🐽🐽🐽 ( ".nylang/lib/__array__.nyl" ) ;
+🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
+
+🍙 main = 🏨 () {
+    🍙 array_print = 🏨 ( x, i ) { 
+
+        🍙 str = "" ;
+        🌸 (
+            🏨 () {
+                🍙 str = str + "|" ;
+            }, 
+            x / 2
+        ) ;
+        🎤 ( str ) ;
+    } ;
+
+    🍙 un_sorted = [ ] ;
+
+    🌸 (
+        🏨 () {
+            🍙 un_sorted = 🥌 ( un_sorted, __rand__random_num_zero_to_specified_number ( 50 ) + 10 );
+        }, 
+        4
+    ) ;
+
+    🎤 ( "not sorted ( 40 elements ): " ) ;
+    __array__forEach ( un_sorted, array_print ) ;
+    🎤 ( "sorted: " ) ;
+
+    🍙 sorted = __array__sort ( un_sorted ) ;
+    
+    __array__forEach ( sorted, array_print ) ;
+} ;
+`
                         ]
                     },
                 ]

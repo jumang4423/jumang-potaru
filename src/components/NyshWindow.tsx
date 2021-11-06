@@ -253,8 +253,16 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                             localStorage.setItem("mounted_dirs", JSON.stringify(files))
                             setFile_system(files)
                         } else {
-                            console.log("stored")
-                            setFile_system(JSON.parse(_stored))
+                            // check the file is old or not
+                            const _stored_files: any = JSON.parse(_stored)
+                            if (_stored_files?.[0].scripts?.[0] != files?.[0].scripts?.[0]) {
+                                console.log("old files detected, overwrited")
+                                localStorage.setItem("mounted_dirs", JSON.stringify(files))
+                                setFile_system(files)
+                            } else {
+                                console.log("new files!")
+                                setFile_system(_stored_files)
+                            }
                         }
 
                         resolve()
