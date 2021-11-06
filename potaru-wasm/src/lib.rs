@@ -27,7 +27,7 @@ pub fn available_command_of_default() -> Array {
     ary.push(&JsValue::from_str("touch"));
     ary.push(&JsValue::from_str("mkdir"));
     ary.push(&JsValue::from_str("rm"));
-    ary.push(&JsValue::from_str("edit"));
+    ary.push(&JsValue::from_str("nyvim"));
     return ary;
 }
 
@@ -53,7 +53,7 @@ pub fn help() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str("-> available built-in commands:"));
     ary.push(&JsValue::from_str(
-        format!("🐱 builtin: {:?}", available_command_of_default().join(" ")).as_str(),
+        format!("🐱 native: {:?}", available_command_of_default().join(" ")).as_str(),
     ));
     ary.push(&JsValue::from_str(
         format!("🐱 wasm: {:?}", available_command_of_wasm().join(" ")).as_str(),
@@ -90,8 +90,8 @@ pub fn nyfetch() -> Array {
 pub fn welcome_nysh() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str(
-        "-> welcome to nysh! is the shell written in rust",
+        "-o welcome to nysh! is the shell written in rust",
     ));
-    ary.push(&JsValue::from_str("-o logined as guest"));
+    // ary.push(&JsValue::from_str("-o logined as guest"));
     return ary;
 }

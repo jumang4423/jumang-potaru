@@ -1,0 +1,73 @@
+.nyim_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+
+.nyim_hovered {
+  background-color: #ffffff;
+  border-radius: 16px;
+  height: 100%;
+}
+
+.nyim_header {
+  padding: 32px 32px 8px 32px;
+  font-size: 32px;
+  font-family: FCODE;
+}
+
+.nyim_hr_is_green {
+  background-color: #adadad79;
+  width: 100%;
+  height: 8px;
+  border-radius: 8px;
+}
+
+.text_green {
+  color: #47852b;
+  margin-left: 16px;
+}
+
+.flex_col {
+  display: flex;
+  flex-direction: row;
+}
+
+.nyim_textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 18px;
+  font-family: FCODE;
+  padding: 8px 32px 32px 32px;
+  resize: none;
+}
+
+.nyim_hr_wrapper {
+  padding: 16px 32px 32px 32px;
+  font-size: 32px;
+  font-family: FCODE;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.cutie_button {
+  border: none;
+  background-color: #e6e6e6;
+  border-radius: 8px;
+  font-size: 22px;
+  font-family: FCODE;
+  color: #000000;
+  cursor: pointer;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.place_left {
+  margin-left: 16px;
+}

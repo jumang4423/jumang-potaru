@@ -10,6 +10,7 @@ import "@/styles/component/cutieButton.scss"
 import useSound from 'use-sound'
 import { goRouter } from '@/funcs/goRouter'
 import { imports_nyl } from '@/funcs/nylang_lib'
+import NyimEditor from './NyimEditor'
 
 enum Excute_nyl_options {
     parser,
@@ -49,6 +50,11 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     )
     const [current_dir, setCurrent_dir] = useState<Array<string>>(["/"])
     const [file_system, setFile_system] = useState<any>([""])
+
+    // nyim variables
+    const [is_nyim, setIs_nyim] = useState<boolean>(false)
+    const [nyim_contents, setNyim_contents] = useState<string>("")
+    const [nyim_fileName, setNyim_fileName] = useState<string>("")
 
     // tempos
     const max_size = 10
@@ -124,15 +130,13 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 updateFiles(file_system)
                 setHistories(put_into_history([command], histories, max_size))
                 break
-            case "edit":
+            case "nyvim":
                 if (arg == undefined) {
                     setHistories(put_into_history([command, "-! no file found"], histories, max_size))
                 } else {
-                    const prompt_vle = prompt("'" + arg + "' CONTENTS", cat_me(arg, current_dir, file_system).join("\n"))
-                    if (prompt_vle != null) {
-                        setEditedContents(file_system, setFile_system, current_dir, arg, prompt_vle)
-                        updateFiles(file_system)
-                    }
+                    setNyim_contents(cat_me(arg, current_dir, file_system).join("\n"))
+                    setNyim_fileName(arg)
+                    setIs_nyim(true)
                 }
                 setHistories(put_into_history([command], histories, max_size))
                 break
@@ -159,9 +163,24 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     setHistories(put_into_history([command, "-> welcome to nylang, is the interplitor written in rust"], histories, max_size))
                 } else {
                     // get the code from file
-                    const code = cat_me(arg, current_dir, file_system).join("\n")
+                    let code: string = cat_me(arg, current_dir, file_system).join("\n")
+
+                    if (code == "no file found") {
+                        setHistories(put_into_history([command, "-! no file found"], histories, max_size))
+                        break
+                    }
+
+                    let evaluated: Array<string> = []
+
+                    try {
+                        evaluated = excute_nyl.excute_nyl(imports_nyl + code, Excute_nyl_options.run)
+                    } catch (e) {
+                        setHistories(put_into_history([command, "-! " + e], histories, max_size))
+                        break
+                    }
+
                     // run the code
-                    setHistories(put_into_history([command, ...excute_nyl.excute_nyl(imports_nyl + code, Excute_nyl_options.run)], histories, max_size))
+                    setHistories(put_into_history([command, ...evaluated], histories, max_size))
                 }
                 break
             case "_nylang_parser":
@@ -170,8 +189,22 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 } else {
                     // get the code from file
                     const code = cat_me(arg, current_dir, file_system).join("\n")
+
+                    if (code == "no file found") {
+                        setHistories(put_into_history([command, "-! no file found"], histories, max_size))
+                        break
+                    }
+
+                    let ast: Array<string> = []
+                    try {
+                        ast = excute_nyl.excute_nyl(code, Excute_nyl_options.parser)
+                    } catch (e) {
+                        setHistories(put_into_history([command, "-! " + e], histories, max_size))
+                        break
+                    }
+
                     // run the code
-                    setHistories(put_into_history([command, ...excute_nyl.excute_nyl(code, Excute_nyl_options.parser)], histories, max_size))
+                    setHistories(put_into_history([command, ...ast], histories, max_size))
                 }
                 break
             default:
@@ -182,7 +215,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
     useEffect(() => {
         if (modules) {
-            setHistories(put_into_history([...modules.welcome_nysh()], histories, max_size))
+            setHistories(put_into_history([...modules.welcome_nysh(), ...modules.help()], histories, max_size))
         } else {
 
             new Promise((resolve: any) => {
@@ -247,21 +280,26 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     }, [ticker])
 
     useEffect(() => {
-
-        // preventDefault
-        document.addEventListener("keydown", (event: any) => {
-            if ([Keys.enter, Keys.delete, Keys.space, Keys.slat, Keys.tab, Keys.up, Keys.down].includes(event.keyCode)) {
-                event.preventDefault()
-            }
-            setUpdate(event.keyCode)
-        }, false)
-
         // actual wasm loading async
         loadWasm("potaru", setModules)
         loadNylang(setExcute_nyl)
     }, [])
+    useEffect(() => {
+        // preventDefault
+        document.addEventListener("keydown", (event: any) => {
+            if ([Keys.tab, Keys.up, Keys.down].includes(event.keyCode)) {
+                event.preventDefault()
+            }
+            setUpdate(event.keyCode)
+        }, false)
+    }, [])
 
     useEffect(() => {
+
+        if (is_nyim) {
+            return
+        }
+
         if (update == Keys.enter) {
             // enter
             command !== '' && run_command()
@@ -325,6 +363,23 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         }
         setUpdate(null)
     }, [update])
+
+    if (is_nyim) {
+        return (
+            <NyimEditor
+                nyim_contents={nyim_contents}
+                setNyim_contents={setNyim_contents}
+                nyim_fileName={nyim_fileName}
+                closeNyim={() => setIs_nyim(false)}
+                save_nyim={() => {
+                    if (nyim_contents != null) {
+                        setEditedContents(file_system, setFile_system, current_dir, nyim_fileName, nyim_contents)
+                        updateFiles(file_system)
+                    }
+                }}
+            />
+        )
+    }
 
     return (
         <div className={""}>
