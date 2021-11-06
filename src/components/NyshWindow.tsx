@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { auto_complete, cat_me, commandParser, files, generic_ls, is_vaild_dir, loadWasm, pushHistory, put_into_history, run_command_of_dotdot, showHistory } from '@/funcs/nysh'
 import { motion } from 'framer-motion'
-import CutieButton from './CutieButton'
 import "@/styles/component/MDArea.scss"
 import "@/styles/component/MDText.scss"
 import '@/styles/component/MPPost.scss'
 import "@/styles/component/nysh.scss"
 import "@/styles/component/cutieButton.scss"
-import { Link } from '@reach/router'
 import useSound from 'use-sound'
 import { goRouter } from '@/funcs/goRouter'
 
@@ -37,7 +35,7 @@ export enum Keys {
 const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => {
 
     // nysh variables
-    const [command, setCommand] = useState<string>("whoami")
+    const [command, setCommand] = useState<string>("")
     const [histories, setHistories] = useState<Array<object>>(
         [
             { id: 1, com: "", tag: commmand_tags.div }
@@ -52,7 +50,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
     const [init_loading_status, set_init_loading_status] = useState<number>(0)
-    // const [play1] = useSound('/on.mp3')
     const [play2] = useSound('/on2.mp3')
     const [nn] = useSound('/nn.mp3')
     const [typed_history, setTyped_history] = useState<Array<string>>([""])
