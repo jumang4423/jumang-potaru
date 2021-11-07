@@ -11,6 +11,7 @@ import useSound from 'use-sound'
 import { goRouter } from '@/funcs/goRouter'
 import { imports_nyl } from '@/funcs/nylang_lib'
 import NyimEditor from './NyimEditor'
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader"
 
 enum Excute_nyl_options {
     parser,
@@ -457,7 +458,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 nylang_is_excuting &&
                 <div className={"loading_background"}>
                     <div className={"loading_maBox"}>
-                        <div className={"box_spinner"} />
+                        {/* <div className={"box_spinner"} /> */}
+                        <ClimbingBoxLoader color={"#ffffff"} size={25}/>
                     </div>
                 </div>
             }
