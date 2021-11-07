@@ -5,8 +5,8 @@
     border-radius: 24px;
     padding-top: 24px;
     padding-bottom: 24px;
-    padding-left: 32px;
-    padding-right: 32px;  
+    padding-left: 24px;
+    padding-right: 24px;  
     border: 1px solid rgba(240, 248, 255, 0.534);
 }
 
@@ -52,4 +52,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.commands_box {
+    max-height: 50vh;
+    overflow-y: scroll;
 }

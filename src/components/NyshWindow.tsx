@@ -57,7 +57,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [nyim_fileName, setNyim_fileName] = useState<string>("")
 
     // tempos
-    const max_size = 10
+    const max_size = 50
     const [ticker, setTicker] = useState<boolean>(false)
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
@@ -68,6 +68,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [typed_history, setTyped_history] = useState<Array<string>>([""])
     const [me_watching_typed_history, setMe_watching_typed_history] = useState<number>(0)
     // const el = useRef(null)
+
+    const command_input_ref = React.useRef<HTMLInputElement>(null)
 
     // goRouter
     const goRoute = goRouter()
@@ -212,7 +214,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 break
             default:
                 setHistories(put_into_history([command, "-! Unknown command: " + com], histories, max_size))
-
         }
     }
 
@@ -283,6 +284,16 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         }
 
     }, [modules])
+
+
+    useEffect(
+        () => {
+            command_input_ref.current !== null && command_input_ref.current.scrollIntoView()
+        },
+        [histories]
+    )
+
+
     // useEffects
     useEffect(() => {
         setTimeout(() => {
@@ -295,6 +306,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         loadWasm("potaru", setModules)
         loadNylang(setExcute_nyl)
     }, [])
+
+
     useEffect(() => {
         // preventDefault
         document.addEventListener("keydown", (event: any) => {
@@ -412,7 +425,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                         }
                         {
                             init_loading_status == 4 &&
-                            <>
+                            <div className={"commands_box"}>
                                 {
                                     histories.map((history: any) => {
                                         return (
@@ -433,10 +446,10 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                                         )
                                     })
                                 }
-                                <div className={"inside_commands"}>
+                                <div className={"inside_commands"} ref={command_input_ref}>
                                     {current_dir[current_dir.length - 1]} {'>'} {command}{ticker ? "🍙" : " "}
                                 </div>
-                            </>
+                            </div>
                         }
                     </div>
                 </div>
