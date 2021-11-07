@@ -27,11 +27,6 @@ const Layout: React.FC<Props> = () => {
     <>
       <Header />
       <div className="MainPage">
-        {/* {!isSSR && is3dState &&
-          <React.Suspense fallback={<div />}>
-            <RotateJumang />
-          </React.Suspense>
-        } */}
         <Router>
           <MainPage path="/" />
           <MainPage path="/projects" />

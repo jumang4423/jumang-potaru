@@ -105,8 +105,11 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             case "cd":
                 if (arg === "..") {
                     run_command_of_dotdot(command, max_size, current_dir, histories, setHistories, setCurrent_dir)
-                }
-                else if (is_vaild_dir(arg, current_dir, file_system)) {
+                } else if (arg == undefined) {
+                    // goto home dir
+                    setCurrent_dir(["/"])
+                    setHistories(put_into_history([command, "↓"], histories, max_size))
+                } else if (is_vaild_dir(arg, current_dir, file_system)) {
                     let newdir = Object.assign([], current_dir)
                     newdir.push((arg + "/"))
                     setHistories(put_into_history([command, "↓"], histories, max_size))
