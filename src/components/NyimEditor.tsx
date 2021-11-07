@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/component/nyimEditor.scss"
+import "../styles/component/nyimEditor.css"
 
 type Props = {
   nyim_contents: string
@@ -30,10 +30,10 @@ const NyimEditor = ({
 
         <div className={"place_left"}>
           <button className={"cutie_button"}
-          onClick={() => {
-            save_nyim()
-            closeNyim()
-          }}>
+            onClick={() => {
+              save_nyim()
+              closeNyim()
+            }}>
             save
           </button>
         </div>
@@ -42,11 +42,13 @@ const NyimEditor = ({
           <div className={"nyim_hr_is_green"} />
         </div>
 
-        <textarea
-          className={"nyim_textarea"}
-          value={nyim_contents}
-          onChange={(e) => setNyim_contents(e.target.value)}
-        />
+        <div className={"text_area_wrap"}>
+          <textarea
+            className={"nyim_textarea"}
+            value={nyim_contents}
+            onChange={(e) => setNyim_contents(e.target.value)}
+          />
+        </div>
       </div>
     </div>
   );
