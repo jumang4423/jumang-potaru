@@ -67,16 +67,17 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [nn] = useSound('/nn.mp3')
     const [typed_history, setTyped_history] = useState<Array<string>>([""])
     const [me_watching_typed_history, setMe_watching_typed_history] = useState<number>(0)
-    // const el = useRef(null)
-
     const command_input_ref = React.useRef<HTMLInputElement>(null)
+
+    // nylang variables
+    const [nylang_is_excuting, setNylang_is_excuting] = useState<boolean>(false)
+    const [nylang_code, setNylang_code] = useState<string>("")
 
     // goRouter
     const goRoute = goRouter()
 
     const run_command = (): void => {
         const { com, arg, arg2 } = commandParser(command)
-
         switch (com) {
             case "exit":
                 setIsNysh(false)
@@ -175,17 +176,9 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                         break
                     }
 
-                    let evaluated: Array<string> = []
-
-                    try {
-                        evaluated = excute_nyl.excute_nyl(imports_nyl + code, Excute_nyl_options.run)
-                    } catch (e) {
-                        setHistories(put_into_history([command, "-! " + e], histories, max_size))
-                        break
-                    }
-
-                    // run the code
-                    setHistories(put_into_history([command, ...evaluated], histories, max_size))
+                    // set the nylang is excuting
+                    setNylang_is_excuting(true)
+                    setNylang_code(code)
                 }
                 break
             case "_nylang_parser":
@@ -221,7 +214,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         if (modules) {
             setHistories(put_into_history([...modules.welcome_nysh(), ...modules.help()], histories, max_size))
         } else {
-
             new Promise((resolve: any) => {
                 setTimeout(() => {
                     // fetch wasm
@@ -285,13 +277,9 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
     }, [modules])
 
-
-    useEffect(
-        () => {
-            command_input_ref.current !== null && command_input_ref.current.scrollIntoView()
-        },
-        [histories]
-    )
+    useEffect(() => {
+        command_input_ref.current !== null && command_input_ref.current.scrollIntoView()
+    }, [histories])
 
 
     // useEffects
@@ -305,10 +293,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         // actual wasm loading async
         loadWasm("potaru", setModules)
         loadNylang(setExcute_nyl)
-    }, [])
 
-
-    useEffect(() => {
         // preventDefault
         document.addEventListener("keydown", (event: any) => {
             if ([Keys.tab, Keys.up, Keys.down].includes(event.keyCode)) {
@@ -320,10 +305,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
     useEffect(() => {
 
-        if (is_nyim) {
-            return
-        }
-
+        if (is_nyim) return
         if (update == Keys.enter) {
             // enter
             command !== '' && run_command()
@@ -387,6 +369,22 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         }
         setUpdate(null)
     }, [update])
+
+    // nylang
+    useEffect(() => {
+        if (nylang_is_excuting) {
+            setTimeout(() => {
+                let evaluated: Array<string> = []
+                try {
+                    evaluated = excute_nyl.excute_nyl(imports_nyl + nylang_code, Excute_nyl_options.run)
+                    setHistories(put_into_history([command, ...evaluated], histories, max_size))
+                } catch (e) {
+                    setHistories(put_into_history([command, "-! " + e], histories, max_size))
+                }
+                setNylang_is_excuting(false)
+            }, 10)
+        }
+    }, [nylang_is_excuting])
 
     if (is_nyim) {
         return (
@@ -454,6 +452,15 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     </div>
                 </div>
             </div>
+
+            {
+                nylang_is_excuting &&
+                <div className={"loading_background"}>
+                    <div className={"loading_maBox"}>
+                        <div className={"box_spinner"} />
+                    </div>
+                </div>
+            }
         </div>
     )
 }

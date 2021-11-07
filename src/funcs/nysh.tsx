@@ -111,7 +111,7 @@ export const files: Array<dirType> = [
         isFolder: false,
         file_type: dirEnum.txt,
         name: ".version",
-        scripts: ["v1.0.1"]
+        scripts: ["v1.0.2"]
     },
     {
         isFolder: true,
@@ -236,10 +236,10 @@ export const files: Array<dirType> = [
         🏨 () {
             🍙 un_sorted = 🥌 ( un_sorted, __rand__random_num_zero_to_specified_number ( 50 ) + 10 );
         }, 
-        4
+        10
     ) ;
 
-    🎤 ( "not sorted ( 4 elements ): " ) ;
+    🎤 ( "not sorted ( 10 elements ): " ) ;
     __array__forEach ( un_sorted, array_print ) ;
     🎤 ( "sorted: " ) ;
 
