@@ -56,7 +56,13 @@
 
 .commands_box {
   max-height: 50vh;
-  overflow-y: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+.commands_box::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 .loading_background {
