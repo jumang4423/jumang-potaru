@@ -29,7 +29,7 @@ export const commandParser = (
 
     const splited = command.split(" ")
     return {
-        com: splited[0], arg: splited[1], arg2: splited[2]
+        com: splited[0], arg: splited[1], arg2: splited[2], arg3: splited[3]
     }
 }
 
@@ -111,7 +111,7 @@ export const files: Array<dirType> = [
         isFolder: false,
         file_type: dirEnum.txt,
         name: ".version",
-        scripts: ["v1.0.8"]
+        scripts: ["v1.09"]
     },
     {
         isFolder: true,
@@ -165,24 +165,14 @@ export const files: Array<dirType> = [
                                 isFolder: false,
                                 file_type: dirEnum.app,
                                 name: "trash_can.nyl",
-                                scripts: [` 🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
+                                scripts: [
+                                    `🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
 🍙 main = 🏨 () {
-    🍙 str = "" ;
-    🍙 cnt = 0 ;
-                                
-    🌸 (
-        🏨 ( ) {
-            🍙 str = 🥌 ( str, __rand__random_num_zero_to_specified_number ( 999999999 ) ) ;
-            🍙 cnt = cnt + 1 ;
-
-            💨 cnt != 256 ;
-        }
-    ) ;
-
-    🎤 ( str ) ;
-    🎤 ( "i am the trash!" ) ;
+    🎤 ( 🌹 ( 5096 ) ) ;
+    🎤 ( "we are the earth trash!" ) ;
 } ;
-                                `]
+`
+                                ]
                             },
                         ]
                     },
@@ -203,7 +193,6 @@ export const files: Array<dirType> = [
         🏨 ( ) {
                 🎤 ( "-gif https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.explicit.bing.net%2Fth%3Fid%3DOIP.z5eN4fLhPl4Qy2niXTi90QHaKy%26pid%3DApi&f=1" ) ;
             🍙 cnt = cnt + 1 ;
-
             💨 cnt != 5 ;
         }
     ) ;
@@ -226,7 +215,7 @@ export const files: Array<dirType> = [
                     {
                         isFolder: false,
                         file_type: dirEnum.txt,
-                        name: "print.nyl",
+                        name: "print_test.nyl",
                         scripts: [
                             `
 🍙 main = 🏨 ( ) {
@@ -242,15 +231,17 @@ export const files: Array<dirType> = [
                     {
                         isFolder: false,
                         file_type: dirEnum.txt,
-                        name: "array_sort.nyl",
+                        name: "bubble_sort.nyl",
                         scripts: [
                             `
 🐽🐽🐽 ( ".nylang/lib/__array__.nyl" ) ;
 🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
 
 🍙 main = 🏨 () {
-    🍙 array_print = 🏨 ( x, i ) { 
 
+    🍙 sort_num = 256 ;
+    🍙 display_frequency = 16 ;
+    🍙 array_print = 🏨 ( x, i ) { 
         🍙 str = "" ;
         🌸 (
             🏨 () {
@@ -258,7 +249,10 @@ export const files: Array<dirType> = [
             }, 
             x / 2
         ) ;
-        🎤 ( str ) ;
+
+        🐶 ( i % display_frequency == 0 ) {
+            🎤 ( str ) ;
+        }
     } ;
 
     🍙 un_sorted = [ ] ;
@@ -267,20 +261,47 @@ export const files: Array<dirType> = [
         🏨 () {
             🍙 un_sorted = 🥌 ( un_sorted, __rand__random_num_zero_to_specified_number ( 50 ) + 10 );
         }, 
-        10
+        sort_num
     ) ;
 
-    🎤 ( "not sorted ( 10 elements ): " ) ;
+    🎤 ( "not sorted ( " + sort_num + " elements ): " ) ;
     __array__forEach ( un_sorted, array_print ) ;
     🎤 ( "sorted: " ) ;
 
     🍙 sorted = __array__sort ( un_sorted ) ;
     
     __array__forEach ( sorted, array_print ) ;
+
+    🎤 ( "\nsorted " + sort_num + " elements!" ) ;
 } ;
 `
                         ]
                     },
+                    {
+                        isFolder: false,
+                        file_type: dirEnum.txt,
+                        name: "random_10000_elements.nyl",
+                        scripts: [
+                            `
+🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
+🍙 main = 🏨 () {
+    🍙 str = "" ;
+    🍙 cnt = 0 ;
+                                
+    🌸 (
+        🏨 ( ) {
+            🍙 str = 🥌 ( str, __rand__random_num_zero_to_specified_number ( 999999999 ) ) ;
+            🍙 cnt = cnt + 1 ;
+
+            💨 cnt != 10192 ;
+        }
+    ) ;
+
+    🎤 ( str ) ;
+    🎤 ( "i am the trash!" ) ;
+} ;
+`]
+                    }
                 ]
             },
             {
@@ -312,7 +333,7 @@ export const files: Array<dirType> = [
                 isFolder: false,
                 scripts: [
                     `![cow](https://stayhipp.com/wp-content/uploads/2020/11/tenor.gif)
-ya
+
 [=> nysh repo](https://www.github.com/jumang4423/nysh)
 
 # welcome to nysh ( wasm edition )

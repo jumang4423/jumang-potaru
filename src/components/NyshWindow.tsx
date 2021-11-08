@@ -9,11 +9,12 @@ import "@/styles/component/nysh.scss"
 import "@/styles/component/cutieButton.scss"
 import useSound from 'use-sound'
 import { goRouter } from '@/funcs/goRouter'
-import { imports_nyl } from '@/funcs/nylang_lib'
+import { import_nyl } from "@/funcs/nylang_lib"
 import NyimEditor from './NyimEditor'
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader"
 
 enum Excute_nyl_options {
+    lexer,
     parser,
     run
 }
@@ -58,7 +59,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [nyim_fileName, setNyim_fileName] = useState<string>("")
 
     // tempos
-    const max_size = 50
+    const max_size = 256
     const [ticker, setTicker] = useState<boolean>(false)
     const [update, setUpdate] = useState<number | null>(null)
     const [modules, setModules] = useState<any>()
@@ -82,11 +83,11 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
         let evaluated = command
 
 
-        if ( evaluated.includes("./")) {
+        if (evaluated.includes("./")) {
             evaluated = evaluated.replace("./", "nylang")
         }
 
-        const { com, arg, arg2 } = commandParser(evaluated)
+        const { com, arg, arg2, arg3 } = commandParser(evaluated)
         switch (com) {
             case "exit":
                 setIsNysh(false)
@@ -147,7 +148,11 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 break
             case "nyvim":
                 if (arg == undefined) {
-                    setHistories(put_into_history([command, "-! no file found"], histories, max_size))
+                    setHistories(put_into_history([
+                        command,
+                        "-> welcome to nyvim, a simple text editor!",
+                        "-! nyvim <file> : to open the file"
+                    ], histories, max_size))
                 } else {
                     setNyim_contents(cat_me(arg, current_dir, file_system).join("\n"))
                     setNyim_fileName(arg)
@@ -175,7 +180,11 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 break
             case "nylang":
                 if (arg == undefined) {
-                    setHistories(put_into_history([command, "-> welcome to nylang, is the interplitor written in rust"], histories, max_size))
+                    setHistories(put_into_history([
+                        command,
+                        "-> welcome to nylang ( wasm edition ), is the interplitor written in rust",
+                        "-! nylang <file>.nyl : to excute code"
+                    ], histories, max_size))
                 } else {
                     // get the code from file
                     let code: string = cat_me(arg, current_dir, file_system).join("\n")
@@ -190,28 +199,65 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     setNylang_code(code)
                 }
                 break
-            case "_nylang_parser":
+            case "_nylang_debug":
                 if (arg == undefined) {
-                    setHistories(put_into_history([command, "-! NYLANG PARSER FOR DEBUG"], histories, max_size))
+                    setHistories(put_into_history([
+                        command,
+                        "-! NYLANG PARSER FOR DEBUG",
+                        "-! self run <file> : to excute",
+                        "-! self parser <file> : to show ast",
+                        "-! self lexer <file> : to show tokens"
+                    ], histories, max_size))
                 } else {
+
                     // get the code from file
-                    const code = cat_me(arg, current_dir, file_system).join("\n")
+                    const code = cat_me(arg2, current_dir, file_system).join("\n")
 
                     if (code == "no file found") {
                         setHistories(put_into_history([command, "-! no file found"], histories, max_size))
                         break
                     }
 
-                    let ast: Array<string> = []
-                    try {
-                        ast = excute_nyl.excute_nyl(code, Excute_nyl_options.parser)
-                    } catch (e) {
-                        setHistories(put_into_history([command, "-! " + e], histories, max_size))
-                        break
+                    const start_time = new Date(); // start timers
+
+                    if (arg == "run") {
+                        let excuted: Array<string> = []
+                        try {
+                            excuted = excute_nyl.excute_nyl(import_nyl(code) + code, Excute_nyl_options.run)
+                        } catch (e) {
+                            setHistories(put_into_history([command, "-! " + e], histories, max_size))
+                            break
+                        }
+                        // run the code
+                        setHistories(put_into_history([command, ...excuted], histories, max_size))
+                    } else if (arg == "parser") {
+                        let ast: Array<string> = []
+                        try {
+                            ast = excute_nyl.excute_nyl(code, Excute_nyl_options.parser)
+                        } catch (e) {
+                            setHistories(put_into_history([command, "-! " + e], histories, max_size))
+                            break
+                        }
+                        // run the code
+                        setHistories(put_into_history([command, ...ast], histories, max_size))
+                    } else if (arg == "lexer") {
+
+                        let ast: Array<string> = []
+                        try {
+                            ast = excute_nyl.excute_nyl(code, Excute_nyl_options.lexer)
+                        } catch (e) {
+                            setHistories(put_into_history([command, "-! " + e], histories, max_size))
+                            break
+                        }
+                        // run the code
+                        setHistories(put_into_history([command, ...ast], histories, max_size))
                     }
 
-                    // run the code
-                    setHistories(put_into_history([command, ...ast], histories, max_size))
+                    const end_time = new Date(); // finished timers
+                    const diff_as_millis: any = end_time.getTime() - start_time.getTime(); // get the time difference
+                    setTimeout(() => {
+                        setHistories(put_into_history([command, "-! time used: " + (diff_as_millis / 1000.0) + "s"], histories, max_size))
+                    }, 5);
                 }
                 break
             default:
@@ -385,7 +431,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             setTimeout(() => {
                 let evaluated: Array<string> = []
                 try {
-                    evaluated = excute_nyl.excute_nyl(imports_nyl + nylang_code, Excute_nyl_options.run)
+                    evaluated = excute_nyl.excute_nyl(import_nyl(nylang_code) + nylang_code, Excute_nyl_options.run)
                     setHistories(put_into_history([command, ...evaluated], histories, max_size))
                 } catch (e) {
                     setHistories(put_into_history([command, "-! " + e], histories, max_size))
@@ -467,7 +513,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 <div className={"loading_background"}>
                     <div className={"loading_maBox"}>
                         {/* <div className={"box_spinner"} /> */}
-                        <ClimbingBoxLoader color={"#ffffff"} size={25}/>
+                        <ClimbingBoxLoader color={"#ffffff"} size={25} />
                     </div>
                 </div>
             }
