@@ -481,6 +481,11 @@ export const touchFile = (
         }
     }
 
+    if (filename == "" || filename == undefined || filename == null) {
+        setFile_system(newFilesystem)
+        return
+    }
+
     _watching.push({
         name: filename,
         isFolder: false,
@@ -505,6 +510,11 @@ export const mkdirDir = (
                 _watching = _watching[j].contents
             }
         }
+    }
+
+    if (filename == "" || filename == undefined || filename == null) {
+        setFile_system(newFilesystem)
+        return
     }
 
     _watching.push({
