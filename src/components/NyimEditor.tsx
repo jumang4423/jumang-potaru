@@ -71,7 +71,7 @@ const NyimEditor = ({
         </div>
 
         <div className={"flex-row"}>
-          <div className={"text_area_wrap"}>
+          <div className={`text_area_wrap ${modules != null ? "wid75" : ""}`}>
             <textarea
               className={"nyim_textarea"}
               value={nyim_contents}

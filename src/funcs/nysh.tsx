@@ -111,7 +111,7 @@ export const files: Array<dirType> = [
         isFolder: false,
         file_type: dirEnum.txt,
         name: ".version",
-        scripts: ["v1.0.3"]
+        scripts: ["v1.0.5"]
     },
     {
         isFolder: true,
@@ -279,15 +279,22 @@ export const files: Array<dirType> = [
             {
                 name: "readme.md",
                 isFolder: false,
-                scripts: [`# welcome to nylang ( wasm edition )
+                scripts: [
+                    `![cow](https://stayhipp.com/wp-content/uploads/2020/11/tenor.gif)
+# welcome to nysh ( wasm edition )
 
 'help' to learn more about nysh
 
 there are two powerful features available:
 
-- nyvim: to edit any contents ( you can open this "readme.md" by 'nyvim readme.md' )
+- nyvim
+     => edit any contents
+     => you can open this "readme.md" by 'nyvim readme.md'
+     => which can preview the markdown contents
 
-- nylang: to compile the specific program
+- nylang
+     => compile the specific program
+     => you can open this "print.nyl" by 'nylang print.nyl'
 `]
             }
         ]
