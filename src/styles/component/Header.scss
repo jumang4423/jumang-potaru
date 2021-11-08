@@ -30,9 +30,17 @@
     color: black;
 }
 
+.clear_font_menu {
+    font-size:22px;
+    font-family: FCODE;
+}
+
 .clear_font {
-    font-size: 18px;
-    font-family: NSJP;
+    font-size:20px;
+    font-family: FCODE;
+    text-decoration: underline;
+    text-decoration-color: rgb(196, 196, 196);  
+    text-underline-offset: 8px;
 }
 
 .MuiMenu-paper {
@@ -43,7 +51,7 @@
         height: 100vh !important;
         padding: 4px;
         .MuiMenuItem-root {
-            margin: 2px;
+            margin: 16px;
             border-radius: 8px;
         }
     }

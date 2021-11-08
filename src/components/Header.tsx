@@ -54,12 +54,10 @@ const Header: React.FC<Props> = () => {
                 open={Boolean(anchorEl)}
                 onClose={() => setAnchorEl(null)}
                 className={"MuiMenu-paper"}>
-
-                <div className={"clear_font nodeco mentagwrapper"}>
-                    menu
+                
+                <div className={"clear_font_menu nodeco mentagwrapper"}>
+                    {"> "}menu
                 </div>
-
-                <div className={"pd16"} />
 
                 <Link to="/projects" className={"nodeco"}>
                     <MenuItem onClick={() => {
@@ -67,7 +65,7 @@ const Header: React.FC<Props> = () => {
 
                     }}>
                         <div className={"clear_font"}>
-                            projects
+                            {"🐤 "}projects
                         </div>
                     </MenuItem>
                 </Link>
@@ -78,7 +76,7 @@ const Header: React.FC<Props> = () => {
 
                     }}>
                         <div className={"clear_font"}>
-                            about
+                            {"🌸 "}about
                         </div>
                     </MenuItem>
                 </Link>
@@ -88,7 +86,7 @@ const Header: React.FC<Props> = () => {
                         setAnchorEl(null)
                     }}>
                         <div className={"clear_font"}>
-                            backwash
+                            {"🍰 "}backwash
                         </div>
                     </MenuItem>
                 </Link>
@@ -98,7 +96,7 @@ const Header: React.FC<Props> = () => {
                         setAnchorEl(null)
                     }}>
                         <div className={"clear_font"}>
-                            blog
+                            {"🐶 "}blog
                         </div>
                     </MenuItem>
                 </Link>
