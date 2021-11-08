@@ -43,6 +43,7 @@
     "react-three-fiber": "^5.3.18",
     "react-wasm": "^1.0.1",
     "three": "^0.125.2",
+    "tiny_md_parser": "^0.1.1",
     "use-sound": "^4.0.1"
   },
   "devDependencies": {

@@ -13769,6 +13769,11 @@ tiny-warning@^1.0.2:
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
+tiny_md_parser@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/tiny_md_parser/-/tiny_md_parser-0.1.1.tgz#40fec2afeff4bd4adfc1e51cee39e209b86c3d22"
+  integrity sha512-7sDVGrJ3q8ssmLEczRgeTSRc3fLqn2ekipOc0oz0DKbJubkA9dA4/tcENW58bjSBUY10NiEumgx5+7zY9yDXBA==
+
 tinycolor2@^1.4.1:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"

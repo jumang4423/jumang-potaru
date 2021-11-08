@@ -111,7 +111,7 @@ export const files: Array<dirType> = [
         isFolder: false,
         file_type: dirEnum.txt,
         name: ".version",
-        scripts: ["v1.0.2"]
+        scripts: ["v1.0.3"]
     },
     {
         isFolder: true,
@@ -277,9 +277,18 @@ export const files: Array<dirType> = [
                 ]
             },
             {
-                name: "readme.txt",
+                name: "readme.md",
                 isFolder: false,
-                scripts: ["'help' to learn more about nysh!", "its a boring shell!"]
+                scripts: [`# welcome to nylang ( wasm edition )
+
+'help' to learn more about nysh
+
+there are two powerful features available:
+
+- nyvim: to edit any contents ( you can open this "readme.md" by 'nyvim readme.md' )
+
+- nylang: to compile the specific program
+`]
             }
         ]
     }
