@@ -41,6 +41,25 @@ export enum Keys {
     under_bar = 189
 }
 
+const functions = {
+    print_dirs: (directories: Array<string>): string => {
+        let result = ""
+        if (directories.length == 1) {
+            return `/`
+        }
+        directories.forEach((dir: string, num: number) => {
+            if (num != 0 && num != directories.length) {
+                if (num == directories.length - 1) {
+                    result += `${dir}`
+                } else {
+                    result += `${dir[0]}/`
+                }
+            }
+        })
+        return result
+    },
+}
+
 const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => {
 
     // nysh variables
@@ -463,7 +482,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             <div className="MDArea-nysh">
                 <div className="MDArea2 MDText MPPost nysh_flex">
                     <div className={"nysh_title"}>
-                        nyu shell🦀
+                        {'>'} nyu shell🦀
                     </div>
 
                     <div className={"nysh_back what_the"}>
@@ -500,7 +519,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                                     })
                                 }
                                 <div className={"inside_commands"} ref={command_input_ref}>
-                                    {current_dir[current_dir.length - 1]} {'>'} {command}{ticker ? "🍙" : " "}
+                                    {functions.print_dirs(current_dir)} {command}{ticker ? "🍙" : " "}
                                 </div>
                             </div>
                         }
@@ -512,7 +531,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                 nylang_is_excuting &&
                 <div className={"loading_background"}>
                     <div className={"loading_maBox"}>
-                        {/* <div className={"box_spinner"} /> */}
                         <ClimbingBoxLoader color={"#ffffff"} size={25} />
                     </div>
                 </div>

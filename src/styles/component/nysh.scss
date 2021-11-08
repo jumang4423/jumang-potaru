@@ -16,7 +16,7 @@
 }
 
 .nysh_title {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   text-align: left;
   height: 100%;
   color: #33b178;
@@ -80,8 +80,8 @@
 .loading_maBox {
   width: 256px;
   height: 256px;
-  background-color: rgba(95, 95, 95, 0.4);
-  backdrop-filter: blur(10px);
+  background-color: rgba(95, 95, 95, 0.6);
+  backdrop-filter: blur(8px);
   border-radius: 24px;
   display: flex;
   justify-content: center;
