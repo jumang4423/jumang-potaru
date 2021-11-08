@@ -312,7 +312,7 @@ export const files: Array<dirType> = [
                 isFolder: false,
                 scripts: [
                     `![cow](https://stayhipp.com/wp-content/uploads/2020/11/tenor.gif)
-
+ya
 [=> nysh repo](https://www.github.com/jumang4423/nysh)
 
 # welcome to nysh ( wasm edition )

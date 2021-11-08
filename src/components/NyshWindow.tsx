@@ -64,7 +64,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [modules, setModules] = useState<any>()
     const [excute_nyl, setExcute_nyl] = useState<any>()
     const [init_loading_status, set_init_loading_status] = useState<number>(0)
-    const [play2] = useSound('/on2.mp3')
+    // const [play2] = useSound('/on2.mp3')
     const [nn] = useSound('/nn.mp3')
     const [typed_history, setTyped_history] = useState<Array<string>>([""])
     const [me_watching_typed_history, setMe_watching_typed_history] = useState<number>(0)
@@ -323,7 +323,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
             pushHistory(command, typed_history, setTyped_history)
             setMe_watching_typed_history(typed_history.length)
             setCommand("")
-            play2()
+            // play2()
         }
         else if (update == Keys.delete) {
             // delete

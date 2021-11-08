@@ -59,7 +59,7 @@ const Header: React.FC<Props> = () => {
                     menu
                 </div>
 
-                <hr className={"pd16"} />
+                <div className={"pd16"} />
 
                 <Link to="/projects" className={"nodeco"}>
                     <MenuItem onClick={() => {
