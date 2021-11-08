@@ -111,7 +111,7 @@ export const files: Array<dirType> = [
         isFolder: false,
         file_type: dirEnum.txt,
         name: ".version",
-        scripts: ["v1.0.5"]
+        scripts: ["v1.0.8"]
     },
     {
         isFolder: true,
@@ -164,8 +164,25 @@ export const files: Array<dirType> = [
                             {
                                 isFolder: false,
                                 file_type: dirEnum.app,
-                                name: "trash_can.app",
-                                scripts: ["trashing... (app feature no developed yet)"]
+                                name: "trash_can.nyl",
+                                scripts: [` 🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
+🍙 main = 🏨 () {
+    🍙 str = "" ;
+    🍙 cnt = 0 ;
+                                
+    🌸 (
+        🏨 ( ) {
+            🍙 str = 🥌 ( str, __rand__random_num_zero_to_specified_number ( 999999999 ) ) ;
+            🍙 cnt = cnt + 1 ;
+
+            💨 cnt != 256 ;
+        }
+    ) ;
+
+    🎤 ( str ) ;
+    🎤 ( "i am the trash!" ) ;
+} ;
+                                `]
                             },
                         ]
                     },
@@ -176,8 +193,21 @@ export const files: Array<dirType> = [
                             {
                                 isFolder: false,
                                 file_type: dirEnum.app,
-                                name: "hentai.txt",
-                                scripts: ["boob", "boob", "boob", "boob", "boob", "boob", "boob", "boob"]
+                                name: "hentai.nyl",
+                                scripts: [`🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
+🍙 main = 🏨 () {
+    🍙 str = "" ;
+    🍙 cnt = 0 ;
+                                
+    🌸 (
+        🏨 ( ) {
+                🎤 ( "-gif https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.explicit.bing.net%2Fth%3Fid%3DOIP.z5eN4fLhPl4Qy2niXTi90QHaKy%26pid%3DApi&f=1" ) ;
+            🍙 cnt = cnt + 1 ;
+
+            💨 cnt != 5 ;
+        }
+    ) ;
+} ;`]
                             },
                         ]
                     },
@@ -201,6 +231,7 @@ export const files: Array<dirType> = [
                             `
 🍙 main = 🏨 ( ) {
    🎤 ( "hello nylang!" ) ;
+   🎤 ( "-gif https://static.hiper.cool/books/lolicon-special-6/01/lolicon-special-6-chapter-01-page-13.jpg?revision=11" ) ;
    🍙 calculated = 3 + 3 ;
    🎤 ( "3 + 3 = " + calculated ) ;
    🌸 ( 🏨 () { 
@@ -281,9 +312,13 @@ export const files: Array<dirType> = [
                 isFolder: false,
                 scripts: [
                     `![cow](https://stayhipp.com/wp-content/uploads/2020/11/tenor.gif)
+
+[=> nysh repo](https://www.github.com/jumang4423/nysh)
+
 # welcome to nysh ( wasm edition )
 
 'help' to learn more about nysh
+
 
 there are two powerful features available:
 
@@ -295,6 +330,7 @@ there are two powerful features available:
 - nylang
      => compile the specific program
      => you can open this "print.nyl" by 'nylang print.nyl'
+[=> nylang repo](https://www.github.com/jumang4423/nylang)
 `]
             }
         ]

@@ -78,7 +78,15 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const goRoute = goRouter()
 
     const run_command = (): void => {
-        const { com, arg, arg2 } = commandParser(command)
+
+        let evaluated = command
+
+
+        if ( evaluated.includes("./")) {
+            evaluated = evaluated.replace("./", "nylang")
+        }
+
+        const { com, arg, arg2 } = commandParser(evaluated)
         switch (com) {
             case "exit":
                 setIsNysh(false)
