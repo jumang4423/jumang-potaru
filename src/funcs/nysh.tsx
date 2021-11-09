@@ -111,7 +111,7 @@ export const files: Array<dirType> = [
         isFolder: false,
         file_type: dirEnum.txt,
         name: ".version",
-        scripts: ["v1.09"]
+        scripts: ["v1.1.0"]
     },
     {
         isFolder: true,
@@ -334,24 +334,62 @@ export const files: Array<dirType> = [
                 scripts: [
                     `![cow](https://stayhipp.com/wp-content/uploads/2020/11/tenor.gif)
 
-[=> nysh repo](https://www.github.com/jumang4423/nysh)
+[=> nysh native repo](https://www.github.com/jumang4423/nysh)
 
 # welcome to nysh ( wasm edition )
+a cute shell thingy that written in rust
 
-'help' to learn more about nysh
-
-
-there are two powerful features available:
-
-- nyvim
-     => edit any contents
-     => you can open this "readme.md" by 'nyvim readme.md'
+![crab](https://media4.giphy.com/media/2O9yUMWGYSHkI/giphy.gif?cid=ecf05e475kkmyvgehmvvuy16jhalhbc5hzdea7y14ixa71ir&rid=giphy.gif)
+# wasmed features
+### nyvim
+     => you can edit any contents
+> 'nyvim readme.md'
      => which can preview the markdown contents
-
-- nylang
-     => compile the specific program
-     => you can open this "print.nyl" by 'nylang print.nyl'
+### nylang
+     => you can compile the specific program
+> nylang print.nyl
+> ./ print.nyl
 [=> nylang repo](https://www.github.com/jumang4423/nylang)
+
+
+![hentai](https://media3.giphy.com/media/8xY7sOv7CbebS/giphy.gif?cid=ecf05e47x5u7ryay70354gl6jd558gxvd6aahhmexus6hvll&rid=giphy.gif&ct=g)
+# basic features
+### help
+     => list of commands
+> help
+### ls (la)
+     => list directory contents
+> ls
+### cd <directory>
+     => change directory
+> cd home
+### pwd
+     => show current path
+> pwd
+### touch <filename>
+     => make new file
+> touch hoge.nyl
+### mkdir <directory>
+     => make new directory
+> touch projects
+### rm <directory | file>
+     => remove contents
+> rm hoge.nyl
+### clear
+     => clear all terminal histories
+> clear
+
+![sonic](https://media1.giphy.com/media/vdSEJx5YEpXtm/giphy.gif?cid=ecf05e4798pl3g0dz8lct7plqlpoewiek24dxco4yg6i6su6&rid=giphy.gif)
+# features for fun
+### whoami
+     => about me
+> whoami
+### nyfetch
+     => like neofetch
+> nyfetch
+### sl
+     => run sl
+> sl
 `]
             }
         ]

@@ -84,7 +84,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const [modules, setModules] = useState<any>()
     const [excute_nyl, setExcute_nyl] = useState<any>()
     const [init_loading_status, set_init_loading_status] = useState<number>(0)
-    // const [play2] = useSound('/on2.mp3')
     const [nn] = useSound('/on.mp3')
     const [kk] = useSound('/okay.mp3')
     const [typed_history, setTyped_history] = useState<Array<string>>([""])
@@ -101,8 +100,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
     const run_command = (): void => {
 
         let evaluated = command
-
-
         if (evaluated.includes("./")) {
             evaluated = evaluated.replace("./", "nylang")
         }
@@ -287,7 +284,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
 
     useEffect(() => {
         if (modules) {
-            setHistories(put_into_history([...modules.welcome_nysh(), ...modules.help()], histories, max_size))
+            setHistories(put_into_history([...modules.welcome_nysh(), "-> what is nysh? then type 'nyvim readme.md'"], histories, max_size))
         } else {
             new Promise((resolve: any) => {
                 setTimeout(() => {
