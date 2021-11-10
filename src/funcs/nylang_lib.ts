@@ -390,13 +390,6 @@ _imports.push(...__test__)
 export const import_nyl = (code: string) => {
   let library = ""
   _imports.forEach((element: LibType) => {
-
-    console.log("[][][]")
-    console.log(code.includes(element.name))
-    console.log("element.name", element.name);
-    console.log("element.source", element.source);
-    
-
     if (code.includes(element.name)) {
       library = library + element.source
     }

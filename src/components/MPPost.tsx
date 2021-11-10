@@ -8,35 +8,32 @@ import CutieButton from './CutieButton'
 export default function MPPost(props) {
 
     //get page from useLocation
+
     const path: string = useLocation().pathname
-    let PageName: string = ""
-    switch (path) {
-        case "/":
-            PageName = "MainPage"
-            break
-        case "/projects":
-            PageName = "Projects"
-            break
-        case "/about":
-            PageName = "About"
-            break
-        case "/backwash":
-            PageName = "Backwash"
-            break
-        case "/morenysh":
-            PageName = "MoreNysh"
-            break
-        default:
-            PageName = "404"
-            break
-    }
+
+    let pageName: string = ((): string => {
+        switch (path) {
+            case "/":
+                return "MainPage"
+            case "/projects":
+                return "Projects"
+            case "/about":
+                return "About"
+            case "/backwash":
+                return "Backwash"
+            case "/morenysh":
+                return "MoreNysh"
+            default:
+                return "404"
+        }
+    })()
 
 
     //md into html
-    const Viewer: React.FC<any> = (props) => {
+    const Viewer = React.memo((props: any) => {
         let body: string = ""
         for (let i: number = 0; i < props.data.allMicrocmsPotaruCms.totalCount; i++) {
-            if (PageName === props.data.allMicrocmsPotaruCms.nodes[i].title) {
+            if (pageName === props.data.allMicrocmsPotaruCms.nodes[i].title) {
                 body = props.data.allMicrocmsPotaruCms.nodes[i].contents
             }
         }
@@ -52,7 +49,7 @@ export default function MPPost(props) {
         return (
             <div dangerouslySetInnerHTML={{ __html: $.html() }} />
         )
-    }
+      });
 
     return (
         <StaticQuery

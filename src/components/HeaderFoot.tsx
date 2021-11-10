@@ -9,34 +9,26 @@ interface Props {
 
 const HeaderFoot = ({ }: Props) => {
 
-    const path: string = useLocation().pathname
-    let location: string = ""
-    switch (path) {
-        case "/":
-            location = "ジーマンポータル"
-            break
-        case "/projects":
-            location = "projects"
-            break
-        case "/about":
-            location = "about"
-            break
-        case "/backwash":
-            location = "backwash"
-            break
-        case "/morenysh":
-            location = "about nysh"
-            break
-        case "/nysh":
-            location = "nysh"
-            break
-        case "/su_sudo":
-            location = "su_sudo"
-            break
-        default:
-            location = "404"
-            break
-    }
+    let location: string = ((): string => {
+        switch (useLocation().pathname) {
+            case "/":
+                return "ジーマンポータル"
+            case "/projects":
+                return "projects"
+            case "/about":
+                return "about"
+            case "/backwash":
+                return "backwash"
+            case "/morenysh":
+                return "about nysh"
+            case "/nysh":
+                return "nysh"
+            case "/su_sudo":
+                return "su_sudo"
+            default:
+                return "404"
+        }
+    })()
 
     return (
         <Link to="/" className="HeaderFoot">

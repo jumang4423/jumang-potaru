@@ -504,7 +504,6 @@ export const cat_me = (
 
     for (let i = 0; i < new_path.length; i++) {
         let available = false
-
         for (let j = 0; j < _watching.length; j++) {
             if (!_watching[j].isFolder && _watching[j].name === new_path[i]) {
                 return _watching[j].scripts

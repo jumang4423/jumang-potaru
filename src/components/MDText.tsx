@@ -13,10 +13,9 @@ interface Props {
 }
 
 const MDText: React.FC<Props> = ({ setIsNysh }: Props) => {
-    const isSSR = typeof window === "undefined"
     return (
         <div className="MDText nysh_flex" >
-            {!isSSR &&
+            {typeof window !== "undefined" &&
                 <React.Suspense fallback={<ReactLoading type={"bubbles"} color="#555555" />}>
                     <MPPost setIsNysh={setIsNysh} />
                 </React.Suspense>

@@ -35,11 +35,9 @@ const NyimEditor = ({
   : Props) => {
 
   const [modules, setModules] = useState<any>(null)
-  const [renderer, set_renderer] = useState<string>("")
 
   useEffect(() => {
     // actual wasm loading async
-
     if (nyim_fileName.includes(".md")) {
       functions.loadMdParser(setModules)
     }
