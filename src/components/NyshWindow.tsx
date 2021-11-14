@@ -282,7 +282,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({ setIsNysh }: NyshWindowType) => 
                     </div>
 
                     <div className={"nysh_back what_the"}>
-                        <textarea className={"nysh_back what_the pos_abs"}/>
                         {
                             init_loading_status !== 4 &&
                             <>
