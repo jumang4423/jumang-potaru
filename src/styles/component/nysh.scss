@@ -126,3 +126,12 @@ box_spinner::before {
     transform: scaleY(1);
   }
 }
+
+.pos_abs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  opacity: 0;
+}
