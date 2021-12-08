@@ -680,3 +680,32 @@ export const setEditedContents = (
 
     setFile_system(newFilesystem)
 }
+
+export const writeFile = (
+    file_system: any,
+    setFile_system: Function,
+    current_dir: Array<string>,
+    filename: string,
+    contents: string
+): void => {
+
+    const newFilesystem = Object.assign([], file_system)
+
+    let _watching = file_system
+    for (let i = 0; i < current_dir.length; i++) {
+        for (let j = 0; j < _watching.length; j++) {
+            if (_watching[j].isFolder === true && _watching[j].name === current_dir[i]) {
+                _watching = _watching[j].contents
+            }
+        }
+    }
+
+    _watching.forEach((obj: any, index: number) => {
+        if (obj.name === filename) {
+            // delete the obj
+            _watching[index].scripts = contents.split("\n")
+        }
+    })
+
+    setFile_system(newFilesystem)
+}
