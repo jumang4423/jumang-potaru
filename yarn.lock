@@ -10167,10 +10167,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nylang@0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/nylang/-/nylang-0.1.7.tgz#107baadef5f93d3e0dd58ee0992cf2bc8bddd3c9"
-  integrity sha512-maIWUqjeHIZ/zRq6pKsNwfyaw6lDbL8r0o2DoIY0vykyO+5vtyDnuQyyny4buQfSjg7VYNdDgxwM9/7uYiLAMA==
+nylang@0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/nylang/-/nylang-0.1.9.tgz#a09bf7e967598878010599feb9ebffa6e917a0a9"
+  integrity sha512-4n2fqG6amLT3+1YlcFzgyrjmCXvfrHy7dy0mmgohXnTOw8RpnHijwoBKguEklZZifXXveM+9MzTXFrpv9BHq1A==
 
 oauth-sign@~0.9.0:
   version "0.9.0"
