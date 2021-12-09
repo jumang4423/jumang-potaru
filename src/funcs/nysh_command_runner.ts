@@ -154,20 +154,27 @@ export const run_command = (
                     setHistories(put_into_history([command, "-! no file found"], histories, max_size))
                 } else {
                     // transpile the code
-                    let transpiled_code = excute_nyl.transpile_to_rust_from_nylang(code)
+
+                    let transpiled_code: string;
+
+                    try {
+                        transpiled_code = excute_nyl.transpile_to_rust_from_nylang(code)
+                    } catch (e) {
+                        setHistories(put_into_history([command, "-! probaly something not implemened yet ( maybe )"], histories, max_size))
+                        break
+                    }
 
                     // put the code into file
                     let file_name = arg.replace(".nyl", ".rs")
-                    let file_content = transpiled_code
 
                     // touch file
                     touchFile(file_system, setFile_system, current_dir, file_name)
 
                     // write the code into file
-                    writeFile(file_system, setFile_system, current_dir, file_name, file_content)
+                    writeFile(file_system, setFile_system, current_dir, file_name, transpiled_code)
 
                     // output the transpiled code
-                    setHistories(put_into_history([command, file_content], histories, max_size))
+                    setHistories(put_into_history([command, transpiled_code], histories, max_size))
                 }
             }
             break
