@@ -100,7 +100,7 @@ export const files: Array<dirType> = [
     isFolder: false,
     file_type: dirEnum.txt,
     name: ".version",
-    scripts: ["v1.1.2"],
+    scripts: ["v1.1.5"],
   },
   {
     isFolder: true,
@@ -113,12 +113,12 @@ export const files: Array<dirType> = [
           {
             isFolder: false,
             name: "rust",
-            scripts: ["love community and documents"],
+            scripts: ["lovely community"],
           },
           {
             isFolder: false,
             name: "go",
-            scripts: ["simple language which i barely use"],
+            scripts: ["simple language which only for backend"],
           },
           {
             isFolder: false,
@@ -140,7 +140,7 @@ export const files: Array<dirType> = [
             name: "hsp",
             scripts: [
               "Hot Soup Processor which similar to basic",
-              "and sucks so hard",
+              "and i dont know why i use it",
             ],
           },
         ],
@@ -161,7 +161,7 @@ export const files: Array<dirType> = [
                   `🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
 🍙 main = 🏨 () {
     🎤 ( 🌹 ( 5096 ) ) ;
-    🎤 ( "we are the earth trash!" ) ;
+    🎤 ( "we are here!" ) ;
 } ;
 `,
                 ],
@@ -216,19 +216,17 @@ export const files: Array<dirType> = [
                 file_type: dirEnum.txt,
                 scripts: [
                   `
-    🍄🍄( "https://atcoder.jp/contests/practice/tasks/practice_1" ) ;
-    🍙 main = 🏨 () {
-      🍙 a = 👀 ( "number" ) ;
-      🍙 b = 👀 ( "number" ) ;
-      🍙 c = 👀 ( "number" ) ;
-      🍙 s = 👀 ( "string" ) ;
-      🍄🍄( "calculation" ) ;
-      🍙 calc = a + b ;
-      🍙 res = calc + c ;
-      🎤 ( res + " " ) ;
-      🎤🎶 ( s ) ;
-    }
-    `,
+🍄🍄( "https://atcoder.jp/contests/practice/tasks/practice_1" ) ;
+🍙 main = 🏨 () {
+  🍙 a = 👀 ( "number" ) ;
+  🍙 b = 👀 ( "number" ) ;
+  🍙 c = 👀 ( "number" ) ;
+  🍙 s = 👀 ( "string" ) ;
+  🍄🍄( "calculation" ) ;
+  🍙 calc = a + b + c ;
+  🎤🎶 ( calc + " " + s ) ;
+} ;
+`,
                 ],
               },
               {
@@ -397,6 +395,10 @@ a cute shell thingy that written in rust
 > nylang print.nyl
 > ./ print.nyl
 [=> nylang repo](https://www.github.com/jumang4423/nylang)
+### transpiler_rust_nylang
+     => transpile the nylang code to rust code
+> transpiler_rust_nylang print.nyl
+> <some rust code prints and output print.rs in the same directory>
 
 
 ![hentai](https://media3.giphy.com/media/8xY7sOv7CbebS/giphy.gif?cid=ecf05e47x5u7ryay70354gl6jd558gxvd6aahhmexus6hvll&rid=giphy.gif&ct=g)
