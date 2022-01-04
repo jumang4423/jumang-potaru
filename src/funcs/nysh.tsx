@@ -1,12 +1,18 @@
 // TODO: 汚物コード故、リファクタリング必須
 import React from "react"
 import { commmand_tags } from "@/components/NyshWindow"
+import { string } from "prop-types"
 
 // ひでえtypes
 
 export enum dirEnum {
   txt,
   app,
+}
+
+export interface history_type  {
+  name: string,
+  date: Date,
 }
 
 export type dirType = {
@@ -95,12 +101,33 @@ export const tagParser = (command: string) => {
   return commmand_tags.div
 }
 
+export const init_history = (): Array<history_type> => {
+  let histories: Array<history_type> = []
+  histories.push({ name: "nyvim readme.md", date: new Date() })
+  histories.push({ name: "la", date: new Date() })
+  histories.push({ name: "ls", date: new Date() })
+  histories.push({ name: "cat", date: new Date() })
+  histories.push({ name: "nylang", date: new Date() })
+  histories.push({ name: "clear", date: new Date() })
+  histories.push({ name: "transpiler_rust_nylang", date: new Date() })
+  histories.push({ name: "_nylang_debug", date: new Date() })
+  histories.push({ name: "./", date: new Date() })
+  histories.push({ name: "nyfetch", date: new Date() })
+  histories.push({ name: "whoami", date: new Date() })
+  histories.push({ name: "touch", date: new Date() })
+  histories.push({ name: "mkdir", date: new Date() })
+  histories.push({ name: "rm", date: new Date() })
+  histories.push({ name: "..", date: new Date() })
+  histories.push({ name: "pwd", date: new Date() })
+  return histories
+}
+
 export const files: Array<dirType> = [
   {
     isFolder: false,
     file_type: dirEnum.txt,
     name: ".version",
-    scripts: ["v1.1.5"],
+    scripts: ["v1.1.7"],
   },
   {
     isFolder: true,
