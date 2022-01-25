@@ -12453,6 +12453,11 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
+rustic-ts@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/rustic-ts/-/rustic-ts-1.0.5.tgz#69509aea93deb9179bf675d0fc37533d7542edb1"
+  integrity sha512-FDxpvfbc3u9sKnXjNr5YY6Rf35xZW2lzV5Xsg8qZHvfeiR92Agj8c4f/jyAiN3D6kFrLR27HXIoPWltaEBI6zw==
+
 rx-lite-aggregates@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite-aggregates/-/rx-lite-aggregates-4.0.8.tgz#753b87a89a11c95467c4ac1626c4efc4e05c67be"

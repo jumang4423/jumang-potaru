@@ -1,4 +1,5 @@
 import { Excute_nyl_options } from "@/components/NyshWindow"
+import { match } from "rustic-ts"
 import { import_nyl } from "./nylang_lib"
 import {
   cat_me,
@@ -156,17 +157,32 @@ export const run_command = (
       break
     case "touch":
       touchFile(file_system, setFile_system, current_dir, arg)
-      updateFiles(file_system)
+      match(updateFiles(file_system), {
+        Ok: _ => {},
+        Err: e => {
+          console.log(e)
+        },
+      })
       setHistories(put_into_history([command], histories, max_size))
       break
     case "mkdir":
       mkdirDir(file_system, setFile_system, current_dir, arg + "/")
-      updateFiles(file_system)
+      match(updateFiles(file_system), {
+        Ok: _ => {},
+        Err: e => {
+          console.log(e)
+        },
+      })
       setHistories(put_into_history([command], histories, max_size))
       break
     case "rm":
       removeFileOrDir(file_system, setFile_system, current_dir, arg)
-      updateFiles(file_system)
+      match(updateFiles(file_system), {
+        Ok: _ => {},
+        Err: e => {
+          console.log(e)
+        },
+      })
       setHistories(put_into_history([command], histories, max_size))
       break
     case "nyvim":

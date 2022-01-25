@@ -42,6 +42,7 @@
     "react-spinners": "^0.11.0",
     "react-three-fiber": "^5.3.18",
     "react-wasm": "^1.0.1",
+    "rustic-ts": "1.0.5",
     "three": "^0.125.2",
     "tiny_md_parser": "^0.1.1",
     "use-sound": "^4.0.1"

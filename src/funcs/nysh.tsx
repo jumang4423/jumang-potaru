@@ -1,18 +1,16 @@
-// TODO: 汚物コード故、リファクタリング必須
 import React from "react"
 import { commmand_tags } from "@/components/NyshWindow"
-import { string } from "prop-types"
+import { Result, trycatch_to_result } from "rustic-ts"
 
 // ひでえtypes
-
 export enum dirEnum {
   txt,
   app,
 }
 
-export interface history_type  {
-  name: string,
-  date: Date,
+export interface history_type {
+  name: string
+  date: Date
 }
 
 export type dirType = {
@@ -23,8 +21,10 @@ export type dirType = {
   scripts?: Array<string>
 }
 
-export const updateFiles = (files: Array<dirType>) => {
-  localStorage.setItem("mounted_dirs", JSON.stringify(files))
+export const updateFiles = (files: Array<dirType>): Result<void, Error> => {
+  return trycatch_to_result<void, Error>(() =>
+    localStorage.setItem("mounted_dirs", JSON.stringify(files))
+  )
 }
 
 export const commandParser = (command: string) => {

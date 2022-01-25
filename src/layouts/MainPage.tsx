@@ -18,9 +18,6 @@ const MainPage: React.FC<any> = () => {
     const MemoedSoundCLoudArea = React.memo(() => {
         return <SoundCloudArea />
     })
-    const MemoedGoDownMan = React.memo(() => {
-        return <GoDownMan />
-    })
 
     if (path === "/su_sudo") {
         return (
@@ -46,11 +43,7 @@ const MainPage: React.FC<any> = () => {
                 path === "/projects" &&
                 <MemoedSoundCLoudArea />
             }
-
-            {/* {
-                path === "/about" &&
-                <MemoedGoDownMan />
-            } */}
+            
         </div>
     );
 };

@@ -3,7 +3,6 @@ import { useEffect } from "react"
 import {
   auto_complete,
   files,
-  history_type,
   init_history,
   loadNylang,
   loadWasm,
@@ -25,6 +24,7 @@ import { import_nyl } from "@/funcs/nylang_lib"
 import NyimEditor from "./NyimEditor"
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader"
 import { run_command, update_prediction } from "@/funcs/nysh_command_runner"
+import { match } from "rustic-ts"
 
 export enum Excute_nyl_options {
   lexer,
@@ -56,6 +56,7 @@ export enum Keys {
 }
 
 const functions = {
+  // prints indicator of nysh
   print_dirs: (directories: Array<string>): string => {
     let result = ""
     if (directories.length == 1) {
@@ -63,11 +64,7 @@ const functions = {
     }
     directories.forEach((dir: string, num: number) => {
       if (num != 0 && num != directories.length) {
-        if (num == directories.length - 1) {
-          result += `${dir}`
-        } else {
-          result += `${dir[0]}/`
-        }
+        result += num == directories.length - 1 ? `${dir}` : `${dir[0]}/`
       }
     })
     return result
@@ -91,7 +88,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({
   const [is_nyim, setIs_nyim] = useState<boolean>(false)
   const [nyim_contents, setNyim_contents] = useState<string>("")
   const [nyim_fileName, setNyim_fileName] = useState<string>("")
-  const [isWelcome, setIsWelcome] = useState<boolean>(true)
 
   // tempos
   const max_size = 256
@@ -99,7 +95,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({
   const [update, setUpdate] = useState<number | null>(null)
   const [modules, setModules] = useState<any>()
   const [excute_nyl, setExcute_nyl] = useState<any>()
-  const [init_loading_status, set_init_loading_status] = useState<number>(0)
   const [nn] = useSound("/on.mp3")
   const [kk] = useSound("/okay.mp3")
   const [typed_history, setTyped_history] = useState<Array<string>>([""])
@@ -131,7 +126,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({
     } else {
       new Promise((resolve: any) => {
         // file system
-        set_init_loading_status(3)
         const _stored = localStorage.getItem("mounted_dirs")
         const _stored_pre = localStorage.getItem("predict_his")
         if (!_stored) {
@@ -139,7 +133,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({
           localStorage.setItem("predict_his", JSON.stringify(init_history()))
           setFile_system(files)
           setPredict_command(init_history())
-          setIsWelcome(true)
         } else {
           // check the file is old or not
           const _stored_files: any = JSON.parse(_stored)
@@ -158,7 +151,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({
       }).then(() => {
         return new Promise((resolve: any) => {
           // fetch wasm
-          set_init_loading_status(4)
           resolve()
         })
       })
@@ -347,7 +339,13 @@ const NyshWindow: React.FC<NyshWindowType> = ({
               nyim_fileName,
               nyim_contents
             )
-            updateFiles(file_system)
+
+            match(updateFiles(file_system), {
+              Ok: _ => {},
+              Err: e => {
+                console.log(e)
+              },
+            })
           }
         }}
       />
@@ -359,55 +357,36 @@ const NyshWindow: React.FC<NyshWindowType> = ({
       <div className="MDArea-nysh">
         <div className="MDArea2 MDText MPPost nysh_flex">
           <div className={"nysh_title"}>{">"} nyu shell🦀</div>
-
           <div className={"nysh_back what_the"}>
-            {init_loading_status !== 4 && (
-              <>
-                {init_loading_status == 0 && (
-                  <div className={"nysh_history"}>fetching WASM modules...</div>
+            <div className={"commands_box"}>
+              {histories.map((history: any) => {
+                return (
+                  <motion.div
+                    className={"nysh_history"}
+                    key={history.id}
+                    initial={{
+                      color: "#00FF00",
+                      opacity: 0,
+                    }}
+                    animate={{
+                      color: history.col,
+                      opacity: 1,
+                    }}
+                  >
+                    {showHistory(history)}
+                  </motion.div>
+                )
+              })}
+              <div className={"inside_commands"} ref={command_input_ref}>
+                {prediction !== "" && (
+                  <div className="predict">
+                    {"->"} {prediction}
+                  </div>
                 )}
-                {init_loading_status == 1 && (
-                  <div className={"nysh_history"}>preparing nysh...</div>
-                )}
-                {init_loading_status == 2 && (
-                  <div className={"nysh_history"}>mounting file system...</div>
-                )}
-                {init_loading_status == 3 && (
-                  <div className={"nysh_history"}>ok!</div>
-                )}
-              </>
-            )}
-            {init_loading_status == 4 && (
-              <div className={"commands_box"}>
-                {histories.map((history: any) => {
-                  return (
-                    <motion.div
-                      className={"nysh_history"}
-                      key={history.id}
-                      initial={{
-                        color: "#00FF00",
-                        opacity: 0,
-                      }}
-                      animate={{
-                        color: history.col,
-                        opacity: 1,
-                      }}
-                    >
-                      {showHistory(history)}
-                    </motion.div>
-                  )
-                })}
-                <div className={"inside_commands"} ref={command_input_ref}>
-                  {prediction !== "" && (
-                    <div className="predict">
-                      {"->"} {prediction}
-                    </div>
-                  )}
-                  {functions.print_dirs(current_dir)} {command}
-                  {ticker ? "🍙" : " "}
-                </div>
+                {functions.print_dirs(current_dir)} {command}
+                {ticker ? "🍙" : " "}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
