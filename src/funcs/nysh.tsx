@@ -439,6 +439,10 @@ a cute shell thingy that written in rust
      => you can edit any contents
 > 'nyvim readme.md'
      => which can preview the markdown contents
+### nylisp
+     => you can compile emoji lisp
+> nylisp hello.nlsp
+[=> nylisp repo](https://www.github.com/jumang4423/nylisp)
 ### nylang
      => you can compile the specific program
 > nylang print.nyl
