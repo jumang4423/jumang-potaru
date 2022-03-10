@@ -4,7 +4,7 @@ import {
   auto_complete,
   files,
   init_history,
-  loadNylang,
+  loadNylang, loadNylisp,
   loadWasm,
   pushHistory,
   put_into_history,
@@ -95,6 +95,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({
   const [update, setUpdate] = useState<number | null>(null)
   const [modules, setModules] = useState<any>()
   const [excute_nyl, setExcute_nyl] = useState<any>()
+  const [nylisp_env, setNylispEnv] = useState<any>(undefined)
+  const [excute_nylisp, setExcute_nylisp] = useState<any>()
   const [nn] = useSound("/on.mp3")
   const [kk] = useSound("/okay.mp3")
   const [typed_history, setTyped_history] = useState<Array<string>>([""])
@@ -107,6 +109,10 @@ const NyshWindow: React.FC<NyshWindowType> = ({
   // nylang variables
   const [nylang_is_excuting, setNylang_is_excuting] = useState<boolean>(false)
   const [nylang_code, setNylang_code] = useState<string>("")
+
+  // nylisp variables
+  const [nylisp_is_excuting, setNylisp_is_excuting] = useState<boolean>(false)
+  const [nylisp_code, setNylisp_code] = useState<string>("")
 
   // goRouter
   const goRoute = goRouter()
@@ -173,6 +179,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({
     // actual wasm loading async
     loadWasm("potaru", setModules)
     loadNylang(setExcute_nyl)
+    loadNylisp(setExcute_nylisp)
 
     // preventDefault
     document.addEventListener(
@@ -206,6 +213,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({
           setFile_system,
           setNylang_is_excuting,
           setNylang_code,
+          setNylisp_is_excuting,
+          setNylisp_code,
           setNyim_contents,
           setNyim_fileName,
           setIs_nyim,
@@ -322,6 +331,28 @@ const NyshWindow: React.FC<NyshWindowType> = ({
     }
   }, [nylang_is_excuting])
 
+  // nylisp
+  useEffect(() => {
+    if (nylisp_is_excuting) {
+      let env = nylisp_env
+      if (env == undefined) {
+        env = new excute_nylisp.NyLisp()
+        setNylispEnv(env)
+      }
+
+      setTimeout(() => {
+        let evaluated: Array<string> = []
+        evaluated = env.run(
+            nylisp_code,
+        )
+        setHistories(
+            put_into_history([command, ...evaluated], histories, max_size)
+        )
+        setNylisp_is_excuting(false)
+      }, 10)
+    }
+  }, [nylisp_is_excuting])
+
   // is nyim is enabled, show the nyim instead of the nysh interface
   if (is_nyim) {
     return (
@@ -340,12 +371,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({
               nyim_contents
             )
 
-            match(updateFiles(file_system), {
-              Ok: _ => {},
-              Err: e => {
-                console.log(e)
-              },
-            })
+            updateFiles(file_system)
           }
         }}
       />

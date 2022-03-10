@@ -10172,6 +10172,11 @@ nylang@0.1.22:
   resolved "https://registry.yarnpkg.com/nylang/-/nylang-0.1.22.tgz#5571a1d065a442563858cda1996d14cb462e49e9"
   integrity sha512-uMTEaFSjfcLXOpmJdsHkeKkdKOWMVycE8Eg0GA8F1o01lLr8JG0Y8Bvi1jLRQKXvsMeZsUopKHNiDqC4IHUHzA==
 
+nylisp_wasm@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/nylisp_wasm/-/nylisp_wasm-0.1.2.tgz#61c922a15ace3160ebd7564fcdec04b1b55201fc"
+  integrity sha512-PD/hSeW4GWmnT2FBxDSBScF7n1WBOcVdva0T49QDJA3JiFifG5dtToMwltNWS7HwI7qcK1lbc1yn2ADPjp7WKQ==
+
 oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"

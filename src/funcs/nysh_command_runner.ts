@@ -1,5 +1,4 @@
 import { Excute_nyl_options } from "@/components/NyshWindow"
-import { match } from "rustic-ts"
 import { import_nyl } from "./nylang_lib"
 import {
   cat_me,
@@ -63,6 +62,8 @@ export const run_command = (
   setFile_system: Function,
   setNylang_is_excuting: Function,
   setNylang_code: Function,
+  setNylisp_is_excuting: Function,
+  setNylisp_code: Function,
   setNyim_contents: Function,
   setNyim_fileName: Function,
   setIs_nyim: Function,
@@ -157,32 +158,17 @@ export const run_command = (
       break
     case "touch":
       touchFile(file_system, setFile_system, current_dir, arg)
-      match(updateFiles(file_system), {
-        Ok: _ => {},
-        Err: e => {
-          console.log(e)
-        },
-      })
+      updateFiles(file_system)
       setHistories(put_into_history([command], histories, max_size))
       break
     case "mkdir":
       mkdirDir(file_system, setFile_system, current_dir, arg + "/")
-      match(updateFiles(file_system), {
-        Ok: _ => {},
-        Err: e => {
-          console.log(e)
-        },
-      })
+      updateFiles(file_system)
       setHistories(put_into_history([command], histories, max_size))
       break
     case "rm":
       removeFileOrDir(file_system, setFile_system, current_dir, arg)
-      match(updateFiles(file_system), {
-        Ok: _ => {},
-        Err: e => {
-          console.log(e)
-        },
-      })
+      updateFiles(file_system)
       setHistories(put_into_history([command], histories, max_size))
       break
     case "nyvim":
@@ -277,6 +263,42 @@ export const run_command = (
         // set the nylang is excuting
         setNylang_is_excuting(true)
         setNylang_code(code)
+      }
+      break
+    case "nylisp":
+      if (arg == undefined) {
+        setHistories(
+            put_into_history(
+                [
+                  command,
+                  "-> nyu lisp, emoji lisp written in rust",
+                  "-! nylisp <file>.nlsp : to excute code",
+                ],
+                histories,
+                max_size
+            )
+        )
+      } else {
+        // get the code from file
+        let code: string = cat_me(arg, current_dir, file_system).join("\n")
+        if (code == "no file found") {
+          setHistories(
+              put_into_history([command, "-! no file found"], histories, max_size)
+          )
+          break
+        }
+
+        setHistories(
+            put_into_history(
+                [command],
+                histories,
+                max_size
+            )
+        )
+
+        // set the nylisp is excuting
+        setNylisp_is_excuting(true)
+        setNylisp_code(code)
       }
       break
     case "transpiler_rust_nylang":
@@ -424,6 +446,13 @@ export const run_command = (
         }, 5)
       }
       break
+    case "_nylisp_debug":
+      // TODO: implement
+      setHistories(
+        put_into_history([command, "-! NYLISP PARSER FOR DEBUG"], histories, max_size)
+      )
+      break
+
     default:
       setHistories(
         put_into_history(

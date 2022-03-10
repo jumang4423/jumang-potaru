@@ -21,10 +21,8 @@ export type dirType = {
   scripts?: Array<string>
 }
 
-export const updateFiles = (files: Array<dirType>): Result<void, Error> => {
-  return trycatch_to_result<void, Error>(() =>
+export const updateFiles = (files: Array<dirType>): void => {
     localStorage.setItem("mounted_dirs", JSON.stringify(files))
-  )
 }
 
 export const commandParser = (command: string) => {
@@ -47,6 +45,11 @@ export const loadWasm = async (potaru: string, setModules: Function) => {
 // loadNylang
 export const loadNylang = async (setModules: Function) => {
   await import("nylang" + "").then(modules => setModules(modules))
+}
+
+// loadNylisp
+export const loadNylisp = async (setModules: Function) => {
+  await import("nylisp_wasm" + "").then(modules => setModules(modules))
 }
 
 export const put_into_history = (
@@ -107,6 +110,7 @@ export const init_history = (): Array<history_type> => {
   histories.push({ name: "la", date: new Date() })
   histories.push({ name: "ls", date: new Date() })
   histories.push({ name: "cat", date: new Date() })
+  histories.push({ name: "nylisp", date: new Date() })
   histories.push({ name: "nylang", date: new Date() })
   histories.push({ name: "clear", date: new Date() })
   histories.push({ name: "transpiler_rust_nylang", date: new Date() })
@@ -127,7 +131,7 @@ export const files: Array<dirType> = [
     isFolder: false,
     file_type: dirEnum.txt,
     name: ".version",
-    scripts: ["v1.1.7"],
+    scripts: ["v1.1.8"],
   },
   {
     isFolder: true,
@@ -230,7 +234,25 @@ export const files: Array<dirType> = [
         ],
       },
       {
-        name: "nylang_samples/",
+        name: "nylisp/",
+        isFolder: true,
+        contents: [
+          {
+            isFolder: false,
+            file_type: dirEnum.app,
+            name: "hello_world.nlsp",
+            scripts: ["😪💖hello world💔"]
+          },
+          {
+            isFolder: false,
+            file_type: dirEnum.app,
+            name: "if.nlsp",
+            scripts: ["💖🐶 💖🚗😪💖👍 👍 👎💔💔 😪ok_if_is_working 😪unexpected_if_is_broken💔"]
+          }
+        ]
+      },
+      {
+        name: "nylang/",
         isFolder: true,
         contents: [
           {

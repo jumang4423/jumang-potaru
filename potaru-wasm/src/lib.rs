@@ -44,6 +44,8 @@ pub fn available_command_of_wasm() -> Array {
     ary.push(&JsValue::from_str("sl"));
     ary.push(&JsValue::from_str("nyfetch"));
     ary.push(&JsValue::from_str("nylang"));
+    ary.push(&JsValue::from_str("nylisp"));
+    ary.push(&JsValue::from_str("_nylisp_debug"));
     ary.push(&JsValue::from_str("transpiler_rust_nylang"));
     ary.push(&JsValue::from_str("./"));
     ary.push(&JsValue::from_str("_nylang_debug"));
