@@ -90,11 +90,11 @@ export const isMessage = (command: string) => {
   if (command.includes("->")) {
     return "#555555"
   } else if (command.includes("-!")) {
-    return "#884444"
+    return "#af4b4b"
   } else if (command.includes("-o")) {
-    return "#448844"
+    return "#7f8e5b"
   }
-  return "#222222"
+  return "#333333"
 }
 
 export const tagParser = (command: string) => {
@@ -108,6 +108,7 @@ export const init_history = (): Array<history_type> => {
   let histories: Array<history_type> = []
   histories.push({ name: "nyvim readme.md", date: new Date() })
   histories.push({ name: "la", date: new Date() })
+  histories.push({ name: "open", date: new Date() })
   histories.push({ name: "ls", date: new Date() })
   histories.push({ name: "cat", date: new Date() })
   histories.push({ name: "nylisp", date: new Date() })
@@ -131,7 +132,7 @@ export const files: Array<dirType> = [
     isFolder: false,
     file_type: dirEnum.txt,
     name: ".version",
-    scripts: ["v1.1.8"],
+    scripts: ["v1.3.1"],
   },
   {
     isFolder: true,
@@ -143,36 +144,18 @@ export const files: Array<dirType> = [
         contents: [
           {
             isFolder: false,
-            name: "rust",
-            scripts: ["lovely community"],
+            name: "nylang",
+            scripts: ["nylang is a emoji language. you can run it here with nylang run hoge.nyl"],
           },
           {
             isFolder: false,
-            name: "go",
-            scripts: ["simple language which only for backend"],
+            name: "nylisp",
+            scripts: ["nylisp is a emoji lisp language. you can run it here with nylisp run hoge.nlsp"],
           },
           {
             isFolder: false,
-            name: "typescript",
-            scripts: ["better than js, worse than everything"],
-          },
-          {
-            isFolder: false,
-            name: "c",
-            scripts: ["i learned from uni and thats all"],
-          },
-          {
-            isFolder: false,
-            name: "java",
-            scripts: ["literally okay"],
-          },
-          {
-            isFolder: false,
-            name: "hsp",
-            scripts: [
-              "Hot Soup Processor which similar to basic",
-              "and i dont know why i use it",
-            ],
+            name: "nyvim",
+            scripts: ["me personalized vim. you can also open md file with nyvim hoge.md"],
           },
         ],
       },
@@ -396,28 +379,25 @@ export const files: Array<dirType> = [
           {
             isFolder: false,
             file_type: dirEnum.txt,
-            name: "github",
+            name: "github.url",
             scripts: [
-              "-o id: @jumang4423",
-              "-o url: https://github.com/jumang4423",
+              "https://github.com/jumang4423"
             ],
           },
           {
             isFolder: false,
             file_type: dirEnum.txt,
-            name: "twitter",
+            name: "twitter.url",
             scripts: [
-              "-o id: @jumang4423",
-              "-o url: https://twitter.com/jumang4423",
+              "https://twitter.com/jumang4423",
             ],
           },
           {
             isFolder: false,
             file_type: dirEnum.txt,
-            name: "soundcloud",
+            name: "soundcloud.url",
             scripts: [
-              "-o id: @jumang4423",
-              "-o url: https://soundcloud.com/jumang4423",
+              "https://soundcloud.com/jumang4423"
             ],
           },
         ],
@@ -716,6 +696,36 @@ export const mkdirDir = (
   })
 
   setFile_system(newFilesystem)
+}
+
+export const open_file = (
+  file_system: any,
+  current_dir: Array<string>,
+  filename: String
+) => {
+  let _watching = file_system
+
+  for (let i = 0; i < current_dir.length; i++) {
+    for (let j = 0; j < _watching.length; j++) {
+      if (
+        _watching[j].isFolder === true &&
+        _watching[j].name === current_dir[i]
+      ) {
+        _watching = _watching[j].contents
+      }
+    }
+  }
+
+  _watching.forEach((obj: any, index: number) => {
+    if (obj.name === filename) {
+      const url = _watching[index].scripts.join()
+      // open the url
+      window.open(url, "_blank")
+      return
+    }
+  })
+
+
 }
 
 export const removeFileOrDir = (

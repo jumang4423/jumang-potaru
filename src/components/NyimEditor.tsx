@@ -46,26 +46,64 @@ const NyimEditor = ({
   return (
     <div className={"nyim_background"}>
       <div className={"nyim_hovered"}>
-
         <div className={"nyim_header"}>
-          <h1 className={"flex_col"}>
-            <div>nyvim {"<-"}</div>
-            <div className={"text_green"}>{nyim_fileName}</div>
-          </h1>
+          <div style={{
+            color: "#fff",
+            borderRadius: '5px',
+            margin: '5px',
+            opacity: 0.5,
+            fontSize: '18px',
+          }}>
+            <p style={{
+              backgroundColor: `#3f5c2d`,
+              width: "75%",
+              // gradient
+              backgroundImage: `linear-gradient(90deg, rgba(134,176,110,1) 0%, rgba(255,255,255,1) 100%)`,
+            }}>{`= nyvim - ${nyim_fileName}`}</p>
+          </div>
         </div>
 
         <div className={"place_left"}>
-          <button className={"cutie_button"}
+          <button style={{
+            backgroundColor: "#f5a1c7",
+            borderRadius: "5px",
+            margin: "0 0 0 32px",
+            padding: "4px 36px 4px 12px",
+            fontSize: "18px",
+            border: "none",
+            color: "#fff",
+            textDecoration: "underline",
+          }}
             onClick={() => {
               save_nyim()
               closeNyim()
             }}>
             save
           </button>
+
+          <button style={{
+            backgroundColor: "#f5a1c7",
+            borderRadius: "5px",
+            margin: "0 0 0 32px",
+            padding: "4px 36px 4px 12px",
+            fontSize: "18px",
+            border: "none",
+            color: "#fff",
+            textDecoration: "underline",
+          }}
+                  onClick={() => {
+                    alert(JSON.stringify(nyim_fileName))
+                  }}>
+            info
+          </button>
         </div>
 
+
         <div className={"nyim_hr_wrapper"}>
-          <div className={"nyim_hr_is_green"} />
+          <div className={"nyim_hr_is_green"} style={{
+            width: "75%",
+            backgroundImage: `linear-gradient(90deg, rgba(200,200,200,1) 0%, rgba(255,255,255,1) 100%)`,
+          }} />
         </div>
 
         <div className={"flex-row"}>

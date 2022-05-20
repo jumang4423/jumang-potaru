@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { useEffect } from "react"
+import React, {useState} from "react"
+import {useEffect} from "react"
 import {
   auto_complete,
   files,
@@ -12,19 +12,19 @@ import {
   showHistory,
   updateFiles,
 } from "@/funcs/nysh"
-import { motion } from "framer-motion"
+import {motion} from "framer-motion"
 import "@/styles/component/MDArea.scss"
 import "@/styles/component/MDText.scss"
 import "@/styles/component/MPPost.scss"
 import "@/styles/component/nysh.scss"
 import "@/styles/component/cutieButton.scss"
 import useSound from "use-sound"
-import { goRouter } from "@/funcs/goRouter"
-import { import_nyl } from "@/funcs/nylang_lib"
+import {goRouter} from "@/funcs/goRouter"
+import {import_nyl} from "@/funcs/nylang_lib"
 import NyimEditor from "./NyimEditor"
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader"
-import { run_command, update_prediction } from "@/funcs/nysh_command_runner"
-import { match } from "rustic-ts"
+import {run_command, update_prediction} from "@/funcs/nysh_command_runner"
+import {match} from "rustic-ts"
 
 export enum Excute_nyl_options {
   lexer,
@@ -32,9 +32,7 @@ export enum Excute_nyl_options {
   run,
 }
 
-export type NyshWindowType = {
-  setIsNysh: Function
-}
+export type NyshWindowType = {}
 
 export enum commmand_tags {
   div,
@@ -71,13 +69,11 @@ const functions = {
   },
 }
 
-const NyshWindow: React.FC<NyshWindowType> = ({
-  setIsNysh,
-}: NyshWindowType) => {
+const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
   // nysh variables
   const [command, setCommand] = useState<string>("")
   const [histories, setHistories] = useState<Array<object>>([
-    { id: 1, com: "", tag: commmand_tags.div },
+    {id: 1, com: "", tag: commmand_tags.div},
   ])
   const [current_dir, setCurrent_dir] = useState<Array<string>>(["/"])
   const [file_system, setFile_system] = useState<any>([""])
@@ -123,7 +119,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({
         put_into_history(
           [
             ...modules.welcome_nysh(),
-            "-> what is nysh? then type 'nyvim readme.md'",
+            "-> 'help' command to show help",
           ],
           histories,
           max_size
@@ -165,7 +161,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({
 
   useEffect(() => {
     command_input_ref.current !== null &&
-      command_input_ref.current.scrollIntoView()
+    command_input_ref.current.scrollIntoView()
   }, [histories])
 
   // useEffects
@@ -205,27 +201,26 @@ const NyshWindow: React.FC<NyshWindowType> = ({
       localStorage.setItem("predict_his", JSON.stringify(updated_pred))
 
       command !== "" &&
-        run_command(
-          command,
-          setIsNysh,
-          setHistories,
-          setCurrent_dir,
-          setFile_system,
-          setNylang_is_excuting,
-          setNylang_code,
-          setNylisp_is_excuting,
-          setNylisp_code,
-          setNyim_contents,
-          setNyim_fileName,
-          setIs_nyim,
-          modules,
-          histories,
-          max_size,
-          current_dir,
-          file_system,
-          goRoute,
-          excute_nyl
-        )
+      run_command(
+        command,
+        setHistories,
+        setCurrent_dir,
+        setFile_system,
+        setNylang_is_excuting,
+        setNylang_code,
+        setNylisp_is_excuting,
+        setNylisp_code,
+        setNyim_contents,
+        setNyim_fileName,
+        setIs_nyim,
+        modules,
+        histories,
+        max_size,
+        current_dir,
+        file_system,
+        goRoute,
+        excute_nyl
+      )
 
       // push the command to the command history
       pushHistory(command, typed_history, setTyped_history)
@@ -281,7 +276,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({
       setCommand(
         typed_history[
           Math.min(typed_history.length - 1, me_watching_typed_history + 1)
-        ]
+          ]
       )
     } else if (update === Keys.right) {
       // right
@@ -343,10 +338,10 @@ const NyshWindow: React.FC<NyshWindowType> = ({
       setTimeout(() => {
         let evaluated: Array<string> = []
         evaluated = env.run(
-            nylisp_code,
+          nylisp_code,
         )
         setHistories(
-            put_into_history([command, ...evaluated], histories, max_size)
+          put_into_history([command, ...evaluated], histories, max_size)
         )
         setNylisp_is_excuting(false)
       }, 10)
@@ -379,51 +374,104 @@ const NyshWindow: React.FC<NyshWindowType> = ({
   }
 
   return (
-    <div className={""}>
-      <div className="MDArea-nysh">
-        <div className="MDArea2 MDText MPPost nysh_flex">
-          <div className={"nysh_title"}>{">"} nyu shell🦀</div>
-          <div className={"nysh_back what_the"}>
-            <div className={"commands_box"}>
-              {histories.map((history: any) => {
-                return (
-                  <motion.div
-                    className={"nysh_history"}
-                    key={history.id}
-                    initial={{
-                      color: "#00FF00",
-                      opacity: 0,
-                    }}
-                    animate={{
-                      color: history.col,
-                      opacity: 1,
-                    }}
-                  >
-                    {showHistory(history)}
-                  </motion.div>
-                )
-              })}
-              <div className={"inside_commands"} ref={command_input_ref}>
-                {prediction !== "" && (
-                  <div className="predict">
-                    {"->"} {prediction}
-                  </div>
-                )}
-                {functions.print_dirs(current_dir)} {command}
-                {ticker ? "🍙" : " "}
-              </div>
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      maxWidth: "960px",
+      width: "100%",
+      backgroundColor: "#f0f0f0",
+      margin: "4px",
+      borderRadius: "2px",
+    }}>
+
+      <div style={{
+        width: "100%",
+        fontSize: `15px`,
+        fontWeight: `normal`,
+        // use menlo
+        fontFamily: `Menlo, monospace`,
+      }}>
+        <div className={"nysh_back what_the"} style={{
+        }}>
+
+          <div style={{
+            color: "#fff",
+            borderRadius: '5px',
+            margin: '5px',
+            opacity: 0.5,
+          }}>
+            <p style={{
+              backgroundColor: `#3f5c2d`,
+              width: "auto",
+              // gradient
+              backgroundImage: `linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(134,176,110,1) 0%, rgba(171,171,171,1) 100%)`,
+            }}>{'= nysh'}</p>
+          </div>
+
+          <div className={"commands_box"} style={{
+            margin: "16px",
+          }}>
+            {histories.map((history: any) => {
+              return (
+                <motion.div
+                  className={"nysh_history"}
+                  key={history.id}
+                  initial={{
+                    color: "#00FF00",
+                    opacity: 0,
+                  }}
+                  style = {
+                    {
+                      marginBottom: "8px",
+                    }
+                  }
+                  animate={{
+                    color: history.col,
+                    opacity: 1,
+                  }}
+                >
+                  {showHistory(history)}
+                </motion.div>
+              )
+            })}
+            <div className={""} ref={command_input_ref}>
+              {functions.print_dirs(current_dir)} {command}
+              {ticker ? "🍙" : " "}
             </div>
           </div>
+          {
+            prediction &&
+              <div style={{
+                color: "#fff",
+                borderRadius: '5px',
+                margin: '5px',
+                opacity: 0.5,
+              }}>
+                  <p style={{
+                    backgroundColor: `#878e74`,
+                    width: "auto",
+                  }}>{'right arrow key to >> '}{prediction}</p>
+              </div>
+          }
+
+          {
+            (nylang_is_excuting || nylisp_is_excuting) &&
+              <div style={{
+                color: "#fff",
+                borderRadius: '5px',
+                margin: '5px',
+                opacity: 0.5,
+              }}>
+                  <p style={{
+                    backgroundColor: `#5c2d2d`,
+                    width: "auto",
+                  }}>{'excuting...'}</p>
+              </div>
+          }
         </div>
       </div>
-
-      {nylang_is_excuting && (
-        <div className={"loading_background"}>
-          <div className={"loading_maBox"}>
-            <ClimbingBoxLoader color={"#ffffff"} size={25} />
-          </div>
-        </div>
-      )}
     </div>
   )
 }

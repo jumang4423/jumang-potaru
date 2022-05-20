@@ -6,7 +6,7 @@ import {
   generic_ls,
   history_type,
   is_vaild_dir,
-  mkdirDir,
+  mkdirDir, open_file,
   put_into_history,
   removeFileOrDir,
   run_command_of_dotdot,
@@ -56,7 +56,6 @@ export const update_prediction = (
 
 export const run_command = (
   command: string,
-  setIsNysh: Function,
   setHistories: Function,
   setCurrent_dir: Function,
   setFile_system: Function,
@@ -83,7 +82,8 @@ export const run_command = (
   const { com, arg, arg2, arg3 } = commandParser(evaluated)
   switch (com) {
     case "exit":
-      setIsNysh(false)
+      setHistories([{ id: 1, com: "" }])
+      setCurrent_dir(["/"])
       break
     case "sl":
       setHistories(
@@ -116,6 +116,40 @@ export const run_command = (
           histories,
           max_size
         )
+      )
+      break
+    case "open":
+
+      if (arg === "" || arg === undefined) {
+        setHistories(
+          put_into_history(
+            [
+              command,
+              `-> open <filename>.url to open a link`,
+            ],
+            histories,
+            max_size
+          )
+        )
+        return
+      }
+
+      if (!arg.includes(".url")) {
+        setHistories(
+          put_into_history(
+            [
+              command,
+              `-! open: cannot open ${arg}, it is not a .url file`,
+            ],
+            histories,
+            max_size
+          )
+        )
+        return
+      }
+
+      open_file(
+        file_system, current_dir, arg
       )
       break
     case "pwd":

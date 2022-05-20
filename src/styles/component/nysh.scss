@@ -1,13 +1,6 @@
 .nysh_back {
-  background-color: aliceblue;
   width: 100%;
   height: 100%;
-  border-radius: 24px;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
-  border: 1px solid rgba(240, 248, 255, 0.534);
 }
 
 .nysh_back_help {
@@ -50,7 +43,6 @@
   font-size: 18px;
 }
 .nysh_history {
-  font-size: 18px;
   margin-bottom: 6px;
 }
 
@@ -67,7 +59,7 @@
 }
 
 .commands_box {
-  max-height: 50vh;
+  max-height: 75vh;
   overflow-y: scroll;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
@@ -162,6 +154,6 @@ box_spinner::before {
   right: 64px;
   z-index: 0;
   color:#000000;
-  
+
   opacity: 0.3;
 }

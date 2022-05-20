@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import * as THREE from "three"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { globalHistory } from '@reach/router'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import "@/styles/component/RotateJumang.scss"
 interface Props {
@@ -33,12 +32,6 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
     new GLTFLoader().load("/jumang.glb", setModel)
   }, [])
 
-  useEffect(() => {
-    return globalHistory.listen(({ action }) => {
-      if (action === 'PUSH') setTicker2(40)
-    })
-  }, [setTicker])
-
   // rotate jumang boi
   useFrame(({ clock }) => {
     // rotate thing
@@ -65,15 +58,17 @@ export default () => {
   return (
     <div id="container">
       <Canvas
-        camera={{ position: [0, 12, 1], fov: 20 }}
+        style={{
+          height: "365px",
+        }}
+        camera={{ position: [-0.2, 32, 1], fov: 12 }}
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = false
           gl.shadowMap.type = THREE.PCFSoftShadowMap
         }}
       >
-        <ambientLight intensity={0.7} />
+        <ambientLight intensity={0.8} />
         <directionalLight
-          castShadow
           position={[0, 100, 100]}
           intensity={0.2}
           shadow-mapSize-width={513}

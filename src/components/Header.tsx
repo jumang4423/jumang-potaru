@@ -10,7 +10,13 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   return (
-    <div className="Header">
+    <div className="Header" style={{
+      maxWidth: "960px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#aaa",
+    }}>
       <HeaderFoot />
       <motion.div
         className="opaopa"
