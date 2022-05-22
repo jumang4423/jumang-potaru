@@ -1,6 +1,23 @@
-import React from "react"
+import React, {useEffect} from "react"
 
 const SocialText = (): JSX.Element => {
+
+  const [saturationState, setSaturationState] = React.useState(0.75)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const nextState = function(curState) {
+        if (curState < 12) {
+          return curState + 0.05
+        } else {
+          return 0
+        }
+      }
+      setSaturationState(saturationState => nextState(saturationState))
+    }, 1000/30)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div style={{
       width: "100%",
@@ -19,14 +36,20 @@ const SocialText = (): JSX.Element => {
         alignItems: `center`,
         justifyContent: `center`,
 
-      }}><img src={"/dogi.png"} width={"50%"}/></div>
+      }}><img src={"/dogi.png"} width={"50%"} style={{
+        filter: `saturate(${saturationState})`,
+      }}/></div>
 
 
       <div style={{
         fontSize: `17px`,
         margin: "4px 0",
       }}>
-        contacts
+        <div style={{
+          backgroundImage: `linear-gradient(90deg, rgba(114,156,90,0.5) 0%, rgba(171,171,171,1) 100%)`,
+          width: `154px`,
+          color: `#fff`,
+        }}>contacts</div>
       </div>
 
       <div style={{

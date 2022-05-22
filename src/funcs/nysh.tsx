@@ -60,6 +60,17 @@ export const put_into_history = (
   let insertValue = Object.assign(new Array(), histories)
 
   command.forEach((st: string) => {
+
+    if (st.includes("alert")) {
+      // alertを除外し、それ以降を表示
+      const display_tex = st.split(' ').slice(1).join(' ')
+      if (display_tex === '') {
+        return
+      }
+      alert(st.split(' ').slice(1).join(' '))
+      return
+    }
+
     if (insertValue.length + 1 <= maxSize) {
       insertValue.push({
         id: insertValue.length + 1,
@@ -68,6 +79,7 @@ export const put_into_history = (
         tag: tagParser(st),
       })
     } else {
+      // 入れるべき値がmaxSizeを超えていたら、最初の要素を削除
       insertValue = up_shift(insertValue, maxSize)
       insertValue[maxSize - 1].com = st
       insertValue[maxSize - 1].id = insertValue[maxSize - 2].id + 1
@@ -132,7 +144,7 @@ export const files: Array<dirType> = [
     isFolder: false,
     file_type: dirEnum.txt,
     name: ".version",
-    scripts: ["v1.3.1"],
+    scripts: ["v1.3.2"],
   },
   {
     isFolder: true,
@@ -230,7 +242,7 @@ export const files: Array<dirType> = [
             isFolder: false,
             file_type: dirEnum.app,
             name: "if.nlsp",
-            scripts: ["💖🐶 💖🚗😪💖👍 👍 👎💔💔 😪ok_if_is_working 😪unexpected_if_is_broken💔"]
+            scripts: ["💖🐶 💖🚗😪💖👍 👍 👎💔💔 😪💖alert if is working!💔 😪unexpected_if_is_broken💔"]
           }
         ]
       },
@@ -544,8 +556,42 @@ export const generic_ls = (
     }
   }
   return _watching.map((obj: any) => {
-    return "🥺 " + obj.name
+    return `${obj.isFolder ? "L🗂\t" : "📃\t"} ${obj.name}`
   })
+}
+
+export const generic_la = (
+  current_dir: Array<string>,
+  file_system: any
+): Array<string> => {
+  const new_path = JSON.parse(JSON.stringify(current_dir))
+  let _watching = file_system
+  for (let i = 0; i < new_path.length; i++) {
+    for (let j = 0; j < _watching.length; j++) {
+      if (_watching[j].isFolder === true && _watching[j].name === new_path[i]) {
+        _watching = _watching[j].contents
+      }
+    }
+  }
+
+  const consoles = []
+  _watching.forEach((obj: any) => {
+    // check obj.scripts is array or not
+    const script_len_str = Array.isArray(obj.scripts) ? obj.scripts.length + ` script${obj.scripts.length > 1 ? "s" : ""}` : obj.contents.length + ` item${obj.contents.length > 1 ? "s" : ""}`
+    const file_type_str = () => {
+      if (obj.isFolder) return "directory"
+      else if (obj.name.includes(".nyl")) return "nylang exp"
+      else if (obj.name.includes(".nlsp")) return "nylisp exp"
+      else if (obj.name.includes(".md")) return "markdown"
+      else if (obj.name.includes(".url")) return "link"
+
+      return "file"
+    }
+
+    consoles.push(`${obj.isFolder ? "L🗂" : "📃"} ${file_type_str()} \t ${script_len_str}\t${obj.name}`)
+  })
+
+  return consoles
 }
 
 export const dir_inside = (

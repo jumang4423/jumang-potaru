@@ -2,7 +2,7 @@ import { Excute_nyl_options } from "@/components/NyshWindow"
 import { import_nyl } from "./nylang_lib"
 import {
   cat_me,
-  commandParser,
+  commandParser, generic_la,
   generic_ls,
   history_type,
   is_vaild_dir,
@@ -75,9 +75,6 @@ export const run_command = (
   excute_nyl: any
 ): void => {
   let evaluated = command
-  if (evaluated.includes("./")) {
-    evaluated = evaluated.replace("./", "nylang")
-  }
 
   const { com, arg, arg2, arg3 } = commandParser(evaluated)
   switch (com) {
@@ -103,6 +100,19 @@ export const run_command = (
       setHistories(
         put_into_history([...modules.welcome_nysh()], histories, max_size)
       )
+      break
+    case "alert":
+      if (arg == undefined) {
+        setHistories(
+          put_into_history(["*lert", "-! message expected"], histories, max_size)
+        )
+      } else {
+        alert(arg)
+        setHistories(
+          put_into_history(["*lert <displayed>"], histories, max_size)
+        )
+      }
+
       break
     case "cat":
       setHistories(
@@ -247,7 +257,7 @@ export const run_command = (
     case "la":
       setHistories(
         put_into_history(
-          [command, ...generic_ls(current_dir, file_system)],
+          [command, ...generic_la(current_dir, file_system)],
           histories,
           max_size
         )

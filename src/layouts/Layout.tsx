@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useCallback, useEffect, useState} from "react"
 import {Router, useLocation} from "@reach/router"
 import MainPage from "@/layouts/MainPage"
 import "@/styles/layout/Layout.scss"
@@ -59,7 +59,7 @@ const Layout = () => {
     label: "nysh",
   }, {
     to: "/me",
-    label: "me",
+    label: "jumango",
   },{
     to: "/contacts",
     label: "contacts",
@@ -71,23 +71,22 @@ const Layout = () => {
     label: "blog",
   },]
 
-  const cur_title = () => {
-    const path = useLocation().pathname;
-    switch (path) {
-      case "/":
-        return "jumang-potaru.dev";
-      case "/me":
-        return "about me, jumango";
-      case "/resume":
-        return "resume";
-      case "/contacts":
-        return "contacts information";
-      case "/mind":
-        return "jumango mind";
-      default:
-        return "??";
-    }
-  }
+  const cur_title = useCallback((path) => {
+      switch (path) {
+        case "/":
+          return "jumang-potaru.dev";
+        case "/me":
+          return "about me, jumango";
+        case "/resume":
+          return "resume";
+        case "/contacts":
+          return "contacts information";
+        case "/mind":
+          return "jumango mind";
+        default:
+          return "??";
+      }
+  }, [])
 
   return (
     <div style={{
@@ -105,7 +104,6 @@ const Layout = () => {
         }}>
 
         <div>
-
           <div style={{
             display: 'flex',
             flexDirection: 'row',
@@ -122,7 +120,7 @@ const Layout = () => {
               }}>
 
                 <RandomEmoji/>
-                {cur_title() + " | "}
+                {cur_title(useLocation().pathname) + " | "}
               </div></Link>
             {
               links.map((obj, key) => {

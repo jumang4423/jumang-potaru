@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React, {useEffect, useState} from "react"
 import * as THREE from "three"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import {Canvas, useFrame} from "@react-three/fiber"
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader"
 import "@/styles/component/RotateJumang.scss"
+import {EffectComposer, Grid} from "@react-three/postprocessing";
+import {BlendFunction} from 'postprocessing'
+
 interface Props {
   hovered: boolean
   setHover: Function
@@ -21,11 +24,14 @@ function isWebGLAvailable() {
   }
 }
 
-const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
+const Jumang3D: React.FC<Props> = ({hovered, setHover}: Props) => {
   const [model, setModel] = useState<any>(null)
   const [radRotate, setradRotate] = useState<any>(0.0)
   const [ticker, setTicker] = useState<number>(40)
   const [ticker2, setTicker2] = useState<number>(0)
+  const viewState = {
+    objectNumber: 1
+  }
 
   // load model
   useEffect(() => {
@@ -33,7 +39,7 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   }, [])
 
   // rotate jumang boi
-  useFrame(({ clock }) => {
+  useFrame(({clock}) => {
     // rotate thing
     setradRotate(radRotate + 0.0125)
     ticker !== 0 && setTicker(ticker => ticker - 1)
@@ -41,14 +47,18 @@ const Jumang3D: React.FC<Props> = ({ hovered, setHover }: Props) => {
   })
 
   // if model is loaded, return jumang 3d model!
-  return model ? <primitive
+
+  if (model === null) {
+    return (<></>)
+  }
+
+  return <primitive
     object={model.scene}
-    opacity={1 - (ticker2 / 40)}
     rotation={[0, 0.25, radRotate]}
-    position={[0, (ticker / 40) * Math.sin(ticker / 3.0) + (ticker2 * ticker2 * ticker2 * ticker2 / 100000.0), 0]}
+    position={[0, (ticker2 * ticker2 * ticker2 * ticker2 / 100000.0), 0]}
     antialias={false}
     onClick={() => setHover(!hovered)}
-  /> : null
+  />
 }
 
 export default () => {
@@ -61,13 +71,14 @@ export default () => {
         style={{
           height: "365px",
         }}
-        camera={{ position: [-0.2, 32, 1], fov: 12 }}
-        onCreated={({ gl }) => {
-          gl.shadowMap.enabled = false
-          gl.shadowMap.type = THREE.PCFSoftShadowMap
+        frameloop="demand"
+        camera={{position: [-0.2, 32, 1], fov: 12}}
+        onCreated={({gl}) => {
+          gl.shadowMap.enabled = true
+          gl.shadowMap.type = THREE.VSMShadowMap
         }}
       >
-        <ambientLight intensity={0.8} />
+        <ambientLight intensity={0.7}/>
         <directionalLight
           position={[0, 100, 100]}
           intensity={0.2}
@@ -79,10 +90,12 @@ export default () => {
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
         />
-
+        <EffectComposer>
+          <Grid scale={0.9} lineWidth={0.01} blendFunction={BlendFunction.AVERAGE}/>
+        </EffectComposer>
 
         {/*some point light*/}
-        {isWebGLAvailable() ? <Jumang3D hovered={hovered} setHover={setHover} /> : <p id="webglError"></p>}
+        {isWebGLAvailable() ? <Jumang3D hovered={hovered} setHover={setHover}/> : <p id="webglError"></p>}
       </Canvas>
     </div>
   );

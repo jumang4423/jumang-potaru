@@ -19,13 +19,20 @@ const MeText = (): JSX.Element => {
         alignItems: `center`,
         justifyContent: `center`,
 
-      }}><img src={"/me.png"} width={"50%"}/></div>
+      }}><img src={"/me.png"} width={"50%"} style={{
+        filter: `saturate(0.75)`,
+      }}/></div>
 
       <div style={{
         fontSize: `17px`,
         margin: "4px 0",
       }}>
-        jumango | ryoma okuda
+        <div style={{
+          backgroundImage: `linear-gradient(90deg, rgba(114,156,90,0.5) 0%, rgba(171,171,171,1) 100%)`,
+          width: `284px`,
+          color: `#fff`,
+        }}>jumango | ryoma okuda</div>
+
       </div>
 
       <div style={{

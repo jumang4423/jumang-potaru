@@ -22,9 +22,7 @@ import useSound from "use-sound"
 import {goRouter} from "@/funcs/goRouter"
 import {import_nyl} from "@/funcs/nylang_lib"
 import NyimEditor from "./NyimEditor"
-import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader"
 import {run_command, update_prediction} from "@/funcs/nysh_command_runner"
-import {match} from "rustic-ts"
 
 export enum Excute_nyl_options {
   lexer,
@@ -101,6 +99,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
     setMe_watching_typed_history,
   ] = useState<number>(0)
   const command_input_ref = React.useRef<HTMLInputElement>(null)
+  const nyshWinRef = React.useRef<HTMLCanvasElement>(null)
 
   // nylang variables
   const [nylang_is_excuting, setNylang_is_excuting] = useState<boolean>(false)
@@ -126,36 +125,28 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
         )
       )
     } else {
-      new Promise((resolve: any) => {
-        // file system
-        const _stored = localStorage.getItem("mounted_dirs")
-        const _stored_pre = localStorage.getItem("predict_his")
-        if (!_stored) {
+      // file system
+      const _stored = localStorage.getItem("mounted_dirs")
+      const _stored_pre = localStorage.getItem("predict_his")
+      if (!_stored) {
+        localStorage.setItem("mounted_dirs", JSON.stringify(files))
+        localStorage.setItem("predict_his", JSON.stringify(init_history()))
+        setFile_system(files)
+        setPredict_command(init_history())
+      } else {
+        // check the file is old or not
+        const _stored_files: any = JSON.parse(_stored)
+        const _stored_pre_files: any = JSON.parse(_stored_pre)
+        if (_stored_files?.[0].scripts?.[0] != files?.[0].scripts?.[0]) {
           localStorage.setItem("mounted_dirs", JSON.stringify(files))
           localStorage.setItem("predict_his", JSON.stringify(init_history()))
           setFile_system(files)
           setPredict_command(init_history())
         } else {
-          // check the file is old or not
-          const _stored_files: any = JSON.parse(_stored)
-          const _stored_pre_files: any = JSON.parse(_stored_pre)
-          if (_stored_files?.[0].scripts?.[0] != files?.[0].scripts?.[0]) {
-            localStorage.setItem("mounted_dirs", JSON.stringify(files))
-            localStorage.setItem("predict_his", JSON.stringify(init_history()))
-            setFile_system(files)
-            setPredict_command(init_history())
-          } else {
-            setFile_system(_stored_files)
-            setPredict_command(_stored_pre_files)
-          }
+          setFile_system(_stored_files)
+          setPredict_command(_stored_pre_files)
         }
-        resolve()
-      }).then(() => {
-        return new Promise((resolve: any) => {
-          // fetch wasm
-          resolve()
-        })
-      })
+      }
     }
   }, [modules])
 
@@ -188,6 +179,27 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
       },
       false
     )
+
+    // // draw noise fps = 60
+    // setInterval(() => {
+    //   // nyshWinRef
+    //   if (nyshWinRef.current !== null) {
+    //     const ctx = nyshWinRef.current.getContext("2d")
+    //     if (ctx !== null) {
+    //       ctx.fillStyle = "rgba(0,0,0,0.1)"
+    //       ctx.fillRect(0, 0, nyshWinRef.current.width, nyshWinRef.current.height)
+    //       ctx.fillStyle = "rgba(255,255,255,0.1)"
+    //       ctx.fillRect(
+    //         Math.random() * nyshWinRef.current.width,
+    //         Math.random() * nyshWinRef.current.height,
+    //         1,
+    //         1
+    //       )
+    //     }
+    //   }
+    // }, 1000 / 60)
+
+
   }, [])
 
   useEffect(() => {
@@ -306,7 +318,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
   useEffect(() => {
     // nylang lazy excution
     if (nylang_is_excuting) {
-      setTimeout(() => {
+      setTimeout(async () => {
         let evaluated: Array<string> = []
         try {
           evaluated = excute_nyl.excute_nyl(
@@ -403,10 +415,9 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
             opacity: 0.5,
           }}>
             <p style={{
-              backgroundColor: `#3f5c2d`,
               width: "auto",
               // gradient
-              backgroundImage: `linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(134,176,110,1) 0%, rgba(171,171,171,1) 100%)`,
+              backgroundImage: `linear-gradient(90deg, rgba(114,156,90,1) 0%, rgba(164,164,164,1) 100%)`,
             }}>{'= nysh'}</p>
           </div>
 
@@ -415,30 +426,23 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
           }}>
             {histories.map((history: any) => {
               return (
-                <motion.div
+                <div
                   className={"nysh_history"}
                   key={history.id}
-                  initial={{
-                    color: "#00FF00",
-                    opacity: 0,
-                  }}
                   style = {
                     {
                       marginBottom: "8px",
+                      color: history.col,
                     }
                   }
-                  animate={{
-                    color: history.col,
-                    opacity: 1,
-                  }}
                 >
-                  {showHistory(history)}
-                </motion.div>
+                  <pre>{showHistory(history)}</pre>
+                </div>
               )
             })}
             <div className={""} ref={command_input_ref}>
               {functions.print_dirs(current_dir)} {command}
-              {ticker ? "🍙" : " "}
+              {ticker ? "?" : " "}
             </div>
           </div>
           {

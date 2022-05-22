@@ -24,9 +24,13 @@ const MindText = (): JSX.Element => {
 
       <div style={{
         fontSize: `17px`,
-        margin: "0px 0",
+        margin: "0px 0"
       }}>
-        mind
+        <div style={{
+          backgroundImage: `linear-gradient(90deg, rgba(114,156,90,0.5) 0%, rgba(171,171,171,1) 100%)`,
+          width: `110px`,
+          color: `#fff`,
+        }}>mind</div>
       </div>
 
       <div style={{
