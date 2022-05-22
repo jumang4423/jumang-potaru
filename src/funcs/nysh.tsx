@@ -555,9 +555,13 @@ export const generic_ls = (
       }
     }
   }
-  return _watching.map((obj: any) => {
-    return `${obj.isFolder ? "L🗂\t" : "📃\t"} ${obj.name}`
+  const consoles = []
+  consoles.push(`L🗂	 ..`)
+  _watching.forEach((obj: any) => {
+    consoles.push(`${obj.isFolder ? "L🗂\t" : " 📃\t"} ${obj.name}`)
   })
+
+  return consoles
 }
 
 export const generic_la = (
@@ -575,9 +579,10 @@ export const generic_la = (
   }
 
   const consoles = []
+  consoles.push(`L🗂 ---- \t -----  || ..`)
   _watching.forEach((obj: any) => {
     // check obj.scripts is array or not
-    const script_len_str = Array.isArray(obj.scripts) ? obj.scripts.length + ` script${obj.scripts.length > 1 ? "s" : ""}` : obj.contents.length + ` item${obj.contents.length > 1 ? "s" : ""}`
+    const script_len_str = Array.isArray(obj.scripts) ? obj.scripts.length + ` len` : obj.contents.length + ` obj`
     const file_type_str = () => {
       if (obj.isFolder) return "directory"
       else if (obj.name.includes(".nyl")) return "nylang exp"
@@ -588,7 +593,7 @@ export const generic_la = (
       return "file"
     }
 
-    consoles.push(`${obj.isFolder ? "L🗂" : "📃"} ${file_type_str()} \t ${script_len_str}\t${obj.name}`)
+    consoles.push(`${obj.isFolder ? "L🗂" : " 📃"} ${file_type_str()} \t ${script_len_str}\t|| ${obj.name}`)
   })
 
   return consoles
