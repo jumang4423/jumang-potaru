@@ -23,6 +23,7 @@ import {goRouter} from "@/funcs/goRouter"
 import {import_nyl} from "@/funcs/nylang_lib"
 import NyimEditor from "./NyimEditor"
 import {run_command, update_prediction} from "@/funcs/nysh_command_runner"
+import TextBuwa from "@/components/TextBuwa";
 
 export enum Excute_nyl_options {
   lexer,
@@ -416,9 +417,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
           }}>
             <p style={{
               width: "auto",
-              // gradient
               backgroundImage: `linear-gradient(90deg, rgba(114,156,90,1) 0%, rgba(164,164,164,1) 100%)`,
-            }}>{'= nysh'}</p>
+            }}><TextBuwa text={'= nysh'}/>  </p>
           </div>
 
           <div className={"commands_box"} style={{
@@ -436,7 +436,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
                     }
                   }
                 >
-                  <pre>{showHistory(history)}</pre>
+                  {showHistory(history)}
                 </div>
               )
             })}

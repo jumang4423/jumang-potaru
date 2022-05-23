@@ -1,4 +1,5 @@
 import React, {useEffect} from "react"
+import TextBuwa from "@/components/TextBuwa";
 
 const SocialText = (): JSX.Element => {
 
@@ -49,7 +50,7 @@ const SocialText = (): JSX.Element => {
           backgroundImage: `linear-gradient(90deg, rgba(114,156,90,0.5) 0%, rgba(171,171,171,1) 100%)`,
           width: `154px`,
           color: `#fff`,
-        }}>contacts</div>
+        }}><TextBuwa text={"contacts"}/></div>
       </div>
 
       <div style={{
@@ -64,7 +65,7 @@ const SocialText = (): JSX.Element => {
         fontSize: `16px`,
         margin: "24px 0",
       }}>
-        ##### discord
+        <TextBuwa text={"##### discord"}/>
       </div>
 
 
@@ -72,14 +73,14 @@ const SocialText = (): JSX.Element => {
         fontSize: `14px`,
         margin: "12px 0",
       }}>
-        jumango #9376
+        <TextBuwa text={"jumango #9376"}/>
       </div>
 
       <div style={{
         fontSize: `16px`,
         margin: "24px 0",
       }}>
-        ##### social media
+        <TextBuwa text={"##### social media"}/>
       </div>
 
       <div style={{
@@ -93,7 +94,9 @@ const SocialText = (): JSX.Element => {
           style={{
             textDecoration: `none`,
             color: `#67939e`,
-          }}>- soundcloud</a>
+          }}>
+          <TextBuwa text={"- soundcloud"}/>
+        </a>
       </div>
 
       <div style={{
@@ -106,7 +109,9 @@ const SocialText = (): JSX.Element => {
           style={{
             textDecoration: `none`,
             color: `#67939e`,
-          }}>- twitter</a>
+          }}>
+          <TextBuwa text={"- twitter"}/>
+        </a>
       </div>
 
       <div style={{
@@ -119,7 +124,9 @@ const SocialText = (): JSX.Element => {
           style={{
             textDecoration: `none`,
             color: `#67939e`,
-          }}>- github</a>
+          }}>
+          <TextBuwa text={"- github"}/>
+        </a>
       </div>
 
 

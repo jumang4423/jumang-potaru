@@ -1,5 +1,6 @@
 import React from "react"
 import RotateJumang from "@/components/RotateJumang";
+import TextBuwa from "@/components/TextBuwa";
 
 const MindText = (): JSX.Element => {
   return (
@@ -30,7 +31,7 @@ const MindText = (): JSX.Element => {
           backgroundImage: `linear-gradient(90deg, rgba(114,156,90,0.5) 0%, rgba(171,171,171,1) 100%)`,
           width: `110px`,
           color: `#fff`,
-        }}>mind</div>
+        }}><TextBuwa text={"mind"}/></div>
       </div>
 
       <div style={{
@@ -45,7 +46,7 @@ const MindText = (): JSX.Element => {
         fontSize: `16px`,
         margin: "24px 0",
       }}>
-        ##### i believe
+        <TextBuwa text={"##### i believe"}/>
       </div>
 
 
@@ -53,35 +54,35 @@ const MindText = (): JSX.Element => {
         fontSize: `14px`,
         margin: "12px 0",
       }}>
-        - we are our own god in mind
+        <TextBuwa text={"- we are our own god in mind"}/>
       </div>
 
       <div style={{
         fontSize: `14px`,
         margin: "12px 0",
       }}>
-        - we dont need to work hard to talk to someone u dont like or trust, it is also a love not a hate
+        <TextBuwa text={"- we dont need to work hard to talk to someone u dont like or trust, it is also a love not a hate"}/>
       </div>
 
       <div style={{
         fontSize: `14px`,
         margin: "12px 0",
       }}>
-        - if you love flowers, i love you
+        <TextBuwa text={"- if you love flowers, i love you"}/>
       </div>
 
       <div style={{
         fontSize: `14px`,
         margin: "12px 0",
       }}>
-        - i always find someone really similar to me, and i know u do too
+        <TextBuwa text={"- i always find someone really similar to me, and i know u do too"}/>
       </div>
 
       <div style={{
         fontSize: `14px`,
         margin: "12px 0",
       }}>
-        - sometimes we need take a break that we all know, and you need to accept that
+        <TextBuwa text={"- sometimes we need take a break that we all know, and you need to accept that"}/>
       </div>
     </div>
   )
