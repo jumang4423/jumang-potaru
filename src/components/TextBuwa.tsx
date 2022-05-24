@@ -20,10 +20,22 @@ const TextBuwa = ({text}): JSX.Element => {
     return (charCode >= 0x3040 && charCode <= 0x30FF)
   }
 
+  const isFilled = (covered: Array<boolean>): boolean => {
+    return !covered.includes(false)
+  }
+
+  const genRandomColorStr = () => {
+    return `rgb(${Math.floor(Math.random() * 100 + 155) + ',' + Math.floor(Math.random() * 100 + 155) + ',' + Math.floor(Math.random() * 100 + 155)})`
+  }
   useEffect(() => {
     // init coverages
     let covered = Array(text.length).fill(false)
     const id = setInterval(() => {
+
+      if (isFilled(covered)) {
+        clearInterval(id)
+        return
+      }
 
       for (let i = 0; i < 5; i++) {
         coverArrayBoolean(covered)
@@ -47,7 +59,36 @@ const TextBuwa = ({text}): JSX.Element => {
     return () => clearInterval(id)
   }, [])
 
-  return (<pre>{textCur}</pre>)
+  return (<pre style={{
+    display: "flex",
+    flexDirection: "row",
+  }}>{textCur.split('').map((char: string) => {
+
+   if (char == "*") {
+     const randomColor = genRandomColorStr()
+     return <pre style={{
+       backgroundColor:randomColor,
+       color: randomColor,
+     }}>*</pre>
+   }
+
+   if (char == "＊") {
+     const randomColor = genRandomColorStr()
+     return <pre style={{
+       backgroundColor:randomColor,
+       color: randomColor,
+     }}>＊</pre>
+   }
+
+    if (char == " ") {
+      return <pre style={{
+        color: "white"
+      }}>&nbsp;</pre>
+    }
+
+   return char
+
+  })}</pre>)
 }
 
 export default TextBuwa
