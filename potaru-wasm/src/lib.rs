@@ -1,12 +1,6 @@
-// mods area
-// mod file_system;
-
-// file_system::fuck(); devide by mod den read like this
 use js_sys::Array;
 use wasm_bindgen::prelude::*;
 
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
@@ -70,7 +64,7 @@ pub fn whoami_call() -> Array {
     ary.push(&JsValue::from_str("🐱 let jumango: jumangoObject = {"));
     ary.push(&JsValue::from_str("🐱 _ pronouns: he | him,"));
     ary.push(&JsValue::from_str("🐱 _ born: 12/28/2000,"));
-    ary.push(&JsValue::from_str("🐱 _ code: [lisp, graphql, ],"));
+    ary.push(&JsValue::from_str("🐱 _ code: [lisp, rust, react],"));
     ary.push(&JsValue::from_str("🐱 _ i_believe: we are our own god"));
     ary.push(&JsValue::from_str("🐱 };"));
     return ary;
@@ -93,7 +87,7 @@ pub fn nyfetch() -> Array {
 pub fn welcome_nysh() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str(
-        "-o welcome to nysh wasm! is the shell written in rust",
+        "-o welcome to nyu shell! is a something kawaii shell",
     ));
     return ary;
 }

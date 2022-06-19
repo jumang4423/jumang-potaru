@@ -6,7 +6,6 @@ import MeText from "@/components/MeText";
 import SocialText from "@/components/SocialText";
 import MindText from "@/components/MindText";
 
-//basically this <Apps /> for only jsx components
 const MainPage: React.FC<any> = () => {
   const path: string = useLocation().pathname
 

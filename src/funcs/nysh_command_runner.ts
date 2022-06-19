@@ -496,7 +496,11 @@ export const run_command = (
         put_into_history([command, "-! NYLISP PARSER FOR DEBUG"], histories, max_size)
       )
       break
-
+    case "":
+      setHistories(
+        put_into_history(["nil"], histories, max_size)
+      )
+      break
     default:
       setHistories(
         put_into_history(

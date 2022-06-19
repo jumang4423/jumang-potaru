@@ -1,5 +1,4 @@
 import React from "react"
-import RotateJumang from "@/components/RotateJumang";
 import TextBuwa from "@/components/TextBuwa";
 
 const MeText = (): JSX.Element => {
@@ -10,7 +9,6 @@ const MeText = (): JSX.Element => {
       backgroundColor: '#fff',
       margin: "0px 8px 0 8px",
       fontWeight: `normal`,
-      // use menlo
       fontFamily: `"Iosevka Web", Menlo, monospace`,
       color: `#555`,
     }}>
@@ -43,7 +41,7 @@ const MeText = (): JSX.Element => {
         margin: "12px 0",
         color: `#5e6c3d`,
       }}>
-        <TextBuwa text={"-> musician | frontend & backend developer"}/>
+        <TextBuwa text={"-> musician | computer nerd"}/>
       </div>
 
       <div style={{
@@ -142,21 +140,21 @@ const MeText = (): JSX.Element => {
         fontSize: `15px`,
         margin: "12px 0",
       }}>
-        <TextBuwa text={"- languages: (lisp, rust, go, lua and any other)"}/>
+        <TextBuwa text={"- languages: (lisp, rust, golang, ocaml)"}/>
       </div>
 
       <div style={{
         fontSize: `15px`,
         margin: "12px 0",
       }}>
-        <TextBuwa text={"- frameworks: (react, graphql, express)"}/>
+        <TextBuwa text={"- frameworks: (react, graphql)"}/>
       </div>
 
       <div style={{
         fontSize: `15px`,
         margin: "12px 0",
       }}>
-        <TextBuwa text={"- tools: (git, nix, gcp)"}/>
+        <TextBuwa text={"- tools: (git, nix, gcp, tmux, emacs)"}/>
       </div>
 
       <div style={{

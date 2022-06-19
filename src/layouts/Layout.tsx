@@ -1,59 +1,12 @@
-import React, {useCallback, useEffect, useState} from "react"
+import React from "react"
 import {Router, useLocation} from "@reach/router"
 import MainPage from "@/layouts/MainPage"
 import "@/styles/layout/Layout.scss"
 import "@/styles/component/HeaderFoot.scss";
 import {Link} from "gatsby";
 
-const RandomEmoji = () => {
-  const genRandomEmoji = (): string => {
-    const emojis = [
-      "🐶",
-      "🐱",
-      "🐭",
-      "🐹",
-      "🐰",
-      "🍙",
-      "🌸",
-      "🌷",
-      "🌹",
-      "🌻",
-      "🌼",
-      "🌷",
-      "🌸",
-      "🌺",
-      "🌻",
-      "🌹",
-      "🌷",
-      "🌸",
-      "🌺",
-      "🎶",
-      "🎵",
-      "🎶",
-      "🎵",
-      "🎶",
-      "🎵",
-    ];
-    return emojis[Math.floor(Math.random() * emojis.length)];
-  }
-  const [emoji, setEmoji] = useState(genRandomEmoji())
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setEmoji(genRandomEmoji())
-    }, 365)
-    return () => clearInterval(interval)
-  }, [])
-  return (
-    <div className={"rotate"} style={{
-      marginRight: `16px`,
-      transform: 'scale(0.8)',
-    }}>
-      <div className={"centering"}>{emoji}</div>
-    </div>
-  )
-}
-
 const Layout = () => {
+  const currentPath = useLocation().pathname
   const links = [{
     to: "/",
     label: "me",
@@ -101,14 +54,12 @@ const Layout = () => {
                 paddingRight: `12px`,
                 cursor: `pointer`,
               }}>
-
-                <RandomEmoji/>
                 {"jumang-potaru.dev | "}
               </div></Link>
             {
               links.map((obj, key) => {
                 return (
-                  <div style={{
+                  <div key={key} style={{
                     display: 'flex',
                     flexDirection: 'row',
                   }}>
@@ -117,11 +68,10 @@ const Layout = () => {
                       key={obj.to}
                       style={{
                         color: '#555',
-                        textDecoration: 'underline',
+                        textDecoration: obj.to !== currentPath ? "underline" : "none",
                         marginRight: `8px`,
                         fontSize: `16px`,
                         fontWeight: `normal`,
-                        // use menlo
                         fontFamily: `Iosevka Web, monospace`,
                         cursor: `pointer`,
                       }}>

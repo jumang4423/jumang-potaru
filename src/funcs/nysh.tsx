@@ -1,8 +1,6 @@
 import React from "react"
 import { commmand_tags } from "@/components/NyshWindow"
-import { Result, trycatch_to_result } from "rustic-ts"
 
-// ひでえtypes
 export enum dirEnum {
   txt,
   app,

@@ -209,7 +209,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
       setPredict_command(Object.assign([], updated_pred))
       localStorage.setItem("predict_his", JSON.stringify(updated_pred))
 
-      command !== "" &&
       run_command(
         command,
         setHistories,
