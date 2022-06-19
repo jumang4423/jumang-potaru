@@ -1,12 +1,12 @@
 {
   "name": "jumang-potaru",
   "private": true,
-  "description": "jumang potaru, a jumang portfolio site using react.js",
+  "description": "jumango portfolio site using react.js",
   "version": "0.2.0",
-  "author": "jumang",
+  "author": "jumango",
   "dependencies": {
     "@material-ui/core": "^4.12.2",
-    "@material-ui/icons": "^4.11.2",
+    "@material-ui/icons" : "^4.11.2",
     "@reach/router": "^1.3.4",
     "@react-three/drei": "^9.11.2",
     "@react-three/fiber": "^7.0.6",

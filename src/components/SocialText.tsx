@@ -27,7 +27,7 @@ const SocialText = (): JSX.Element => {
       margin: "0px 8px 0 8px",
       fontWeight: `normal`,
       // use menlo
-      fontFamily: `Menlo, monospace`,
+      fontFamily: `"Iosevka Web", monospace`,
       color: `#555`,
     }}>
 
@@ -43,7 +43,7 @@ const SocialText = (): JSX.Element => {
 
 
       <div style={{
-        fontSize: `17px`,
+        fontSize: `18px`,
         margin: "4px 0",
       }}>
         <div style={{
@@ -54,7 +54,7 @@ const SocialText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         fontWeight: `bold`,
       }}>
@@ -62,7 +62,7 @@ const SocialText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `16px`,
+        fontSize: `17px`,
         margin: "24px 0",
       }}>
         <TextBuwa text={"##### discord"}/>
@@ -70,7 +70,7 @@ const SocialText = (): JSX.Element => {
 
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"jumango #9376"}/>
@@ -84,7 +84,7 @@ const SocialText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <a
@@ -100,7 +100,7 @@ const SocialText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <a
@@ -115,7 +115,7 @@ const SocialText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <a

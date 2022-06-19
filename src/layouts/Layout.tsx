@@ -111,10 +111,10 @@ const Layout = () => {
               <Link to={"/"} style={{
                 textDecoration: 'none',
               }}><div className="flex-row" style={{
-                fontSize: `15px`,
+                fontSize: `16px`,
                 color: `#5e6c3d`,
                 fontWeight: `normal`,
-                fontFamily: `Menlo, monospace`,
+                fontFamily: `Iosevka Web, monospace`,
                 paddingRight: `12px`,
                 cursor: `pointer`,
               }}>
@@ -136,10 +136,10 @@ const Layout = () => {
                         color: '#555',
                         textDecoration: 'underline',
                         marginRight: `8px`,
-                        fontSize: `15px`,
+                        fontSize: `16px`,
                         fontWeight: `normal`,
                         // use menlo
-                        fontFamily: `Menlo, monospace`,
+                        fontFamily: `Iosevka Web, monospace`,
                         cursor: `pointer`,
                       }}>
                       {obj.label}
@@ -147,8 +147,8 @@ const Layout = () => {
                     <div hidden={key === links.length - 1} style={{
                       marginLeft: `4px`,
                       marginRight: `8px`,
-                      fontSize: `14px`,
-                      fontFamily: `Menlo, monospace`
+                      fontSize: `16px`,
+                      fontFamily: `Iosevka Web, monospace`
                     }}>-
                     </div>
                   </div>

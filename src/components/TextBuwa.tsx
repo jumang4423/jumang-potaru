@@ -62,33 +62,7 @@ const TextBuwa = ({text}): JSX.Element => {
   return (<pre style={{
     display: "flex",
     flexDirection: "row",
-  }}>{textCur.split('').map((char: string) => {
-
-   if (char == "*") {
-     const randomColor = genRandomColorStr()
-     return <pre style={{
-       backgroundColor:randomColor,
-       color: randomColor,
-     }}>*</pre>
-   }
-
-   if (char == "＊") {
-     const randomColor = genRandomColorStr()
-     return <pre style={{
-       backgroundColor:randomColor,
-       color: randomColor,
-     }}>＊</pre>
-   }
-
-    if (char == " ") {
-      return <pre style={{
-        color: "white"
-      }}>&nbsp;</pre>
-    }
-
-   return char
-
-  })}</pre>)
+  }}>{textCur}</pre>)
 }
 
 export default TextBuwa

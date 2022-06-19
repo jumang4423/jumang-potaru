@@ -10,8 +10,7 @@ const MindText = (): JSX.Element => {
       backgroundColor: '#fff',
       margin: "0px 8px 0 8px",
       fontWeight: `normal`,
-      // use menlo
-      fontFamily: `Menlo, monospace`,
+      fontFamily: `"Iosevka Web", monospace`,
       color: `#555`,
     }}>
 
@@ -24,7 +23,7 @@ const MindText = (): JSX.Element => {
 
 
       <div style={{
-        fontSize: `17px`,
+        fontSize: `18px`,
         margin: "0px 0"
       }}>
         <div style={{
@@ -35,7 +34,7 @@ const MindText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         fontWeight: `bold`,
       }}>
@@ -43,7 +42,7 @@ const MindText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `16px`,
+        fontSize: `18px`,
         margin: "24px 0",
       }}>
         <TextBuwa text={"##### i believe"}/>
@@ -51,35 +50,35 @@ const MindText = (): JSX.Element => {
 
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- we are our own god in mind"}/>
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- we dont need to work hard to talk to someone u dont like or trust, it is also a love not a hate"}/>
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- if you love flowers, i love you"}/>
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- i always find someone really similar to me, and i know u do too"}/>
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- sometimes we need take a break that we all know, and you need to accept that"}/>

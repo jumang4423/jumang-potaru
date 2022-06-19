@@ -12,13 +12,11 @@ import {
   showHistory,
   updateFiles,
 } from "@/funcs/nysh"
-import {motion} from "framer-motion"
 import "@/styles/component/MDArea.scss"
 import "@/styles/component/MDText.scss"
 import "@/styles/component/MPPost.scss"
 import "@/styles/component/nysh.scss"
 import "@/styles/component/cutieButton.scss"
-import useSound from "use-sound"
 import {goRouter} from "@/funcs/goRouter"
 import {import_nyl} from "@/funcs/nylang_lib"
 import NyimEditor from "./NyimEditor"
@@ -92,8 +90,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
   const [excute_nyl, setExcute_nyl] = useState<any>()
   const [nylisp_env, setNylispEnv] = useState<any>(undefined)
   const [excute_nylisp, setExcute_nylisp] = useState<any>()
-  const [nn] = useSound("/on.mp3")
-  const [kk] = useSound("/okay.mp3")
   const [typed_history, setTyped_history] = useState<Array<string>>([""])
   const [
     me_watching_typed_history,
@@ -239,7 +235,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
       pushHistory(command, typed_history, setTyped_history)
       setMe_watching_typed_history(typed_history.length)
       setCommand("")
-      kk()
     } else if (update == Keys.delete) {
       // delete
       setCommand(command.slice(0, -1))
@@ -263,7 +258,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
       setCommand(command + "/")
     } else if (update === Keys.tab) {
       // tab
-      nn()
       if (command !== "") {
         setCommand(
           auto_complete(
@@ -401,13 +395,12 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
 
       <div style={{
         width: "100%",
-        fontSize: `15px`,
+        fontSize: `16px`,
         fontWeight: `normal`,
         // use menlo
-        fontFamily: `Menlo, monospace`,
+        fontFamily: `"Iosevka Web", monospace`,
       }}>
-        <div className={"nysh_back what_the"} style={{
-        }}>
+        <div className={"nysh_back what_the"} style={{}}>
 
           <div style={{
             color: "#fff",
@@ -418,7 +411,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
             <p style={{
               width: "auto",
               backgroundImage: `linear-gradient(90deg, rgba(114,156,90,1) 0%, rgba(164,164,164,1) 100%)`,
-            }}><TextBuwa text={'= nysh'}/>  </p>
+              fontSize: "17px"
+            }}><TextBuwa text={'= nysh'}/></p>
           </div>
 
           <div className={"commands_box"} style={{
@@ -429,7 +423,7 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
                 <div
                   className={"nysh_history"}
                   key={history.id}
-                  style = {
+                  style={
                     {
                       marginBottom: "8px",
                       color: history.col,
@@ -440,10 +434,22 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
                 </div>
               )
             })}
-            <div className={""} ref={command_input_ref}>
-              {functions.print_dirs(current_dir)} {command}
-              {ticker ? "?" : " "}
-            </div>
+            <pre ref={command_input_ref} style={{
+              fontWeight: 'normal',
+              display: 'flex',
+              flexDirection: "row",
+            }}>
+              {'-< '}
+              <pre style={{
+                color: '#7f8e5b'
+              }}>
+                {functions.print_dirs(current_dir)}{' '}
+              </pre>
+              <pre style={{color: "#333333"}}>
+                {command}
+                {ticker ? "?" : " "}
+              </pre>
+            </pre>
           </div>
           {
             prediction &&

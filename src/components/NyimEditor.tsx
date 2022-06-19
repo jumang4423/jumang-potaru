@@ -111,6 +111,11 @@ const NyimEditor = ({
             <textarea
               className={"nyim_textarea"}
               value={nyim_contents}
+              style={{
+                fontFamily: "Iosevka Web",
+                fontSize: "medium",
+                fontWeight: 'normal'
+              }}
               onChange={(e) => setNyim_contents(e.target.value)}
             />
           </div>

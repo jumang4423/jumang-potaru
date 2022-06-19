@@ -12,7 +12,7 @@ const InformationBar = (): JSX.Element => {
     <div style={{
       fontSize: `12px`,
       color: `#787878`,
-      fontFamily: `Menlo, monospace`,
+      fontFamily: `"Iosevka Web", monospace`,
       width: `100%`,
       height: `20px`,
     }}>

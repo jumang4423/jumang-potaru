@@ -11,7 +11,7 @@ const MeText = (): JSX.Element => {
       margin: "0px 8px 0 8px",
       fontWeight: `normal`,
       // use menlo
-      fontFamily: `Menlo, monospace`,
+      fontFamily: `"Iosevka Web", Menlo, monospace`,
       color: `#555`,
     }}>
       <div style={{
@@ -25,7 +25,7 @@ const MeText = (): JSX.Element => {
       }}/></div>
 
       <div style={{
-        fontSize: `17px`,
+        fontSize: `18px`,
         margin: "4px 0",
       }}>
         <div style={{
@@ -39,7 +39,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `17px`,
+        fontSize: `18px`,
         margin: "12px 0",
         color: `#5e6c3d`,
       }}>
@@ -47,7 +47,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         fontWeight: `bold`,
       }}>
@@ -55,14 +55,14 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `16px`,
+        fontSize: `17px`,
         margin: "24px 0",
       }}>
         <TextBuwa text={"##### released songs"}/>
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <a
@@ -77,7 +77,22 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
+        margin: "12px 0",
+      }}>
+        <a
+          href={"https://soundcloud.com/jumang4423/computer-city-mediumcore-edit"}
+          target={"_blank"}
+          style={{
+            textDecoration: `none`,
+            color: `#67939e`,
+          }}>
+          <TextBuwa text={"- (computer city (mediumcore edit))"}/>
+        </a>
+      </div>
+
+      <div style={{
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <a
@@ -90,7 +105,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <a
@@ -103,7 +118,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <a
@@ -124,28 +139,28 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- languages: (lisp, rust, go, lua and any other)"}/>
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- frameworks: (react, graphql, express)"}/>
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- tools: (git, nix, gcp)"}/>
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
       }}>
         <TextBuwa text={"- environment: (macbook pro 14 with nixos vm, thinkpad x200 with arch linux)"}/>
@@ -159,7 +174,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -174,7 +189,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -189,7 +204,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -204,7 +219,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -219,7 +234,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -234,7 +249,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -249,7 +264,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -264,7 +279,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -279,7 +294,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -294,7 +309,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -309,7 +324,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -324,7 +339,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -339,7 +354,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -354,7 +369,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -369,7 +384,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0",
         flexDirection: `row`,
         display: `flex`,
@@ -384,7 +399,7 @@ const MeText = (): JSX.Element => {
       </div>
 
       <div style={{
-        fontSize: `14px`,
+        fontSize: `15px`,
         margin: "12px 0 128px",
         flexDirection: `row`,
         display: `flex`,
