@@ -56,10 +56,10 @@ const RandomEmoji = () => {
 const Layout = () => {
   const links = [{
     to: "/",
-    label: "nysh",
+    label: "me",
   }, {
-    to: "/me",
-    label: "jumango",
+    to: "/nysh",
+    label: "nyu shell",
   },{
     to: "/contacts",
     label: "contacts",
@@ -70,23 +70,6 @@ const Layout = () => {
     to: "https://universe-jumang.web.app/",
     label: "blog",
   },]
-
-  const cur_title = useCallback((path) => {
-      switch (path) {
-        case "/":
-          return "jumang-potaru.dev";
-        case "/me":
-          return "about me, jumango";
-        case "/resume":
-          return "resume";
-        case "/contacts":
-          return "contacts information";
-        case "/mind":
-          return "jumango mind";
-        default:
-          return "??";
-      }
-  }, [])
 
   return (
     <div style={{
@@ -120,7 +103,7 @@ const Layout = () => {
               }}>
 
                 <RandomEmoji/>
-                {cur_title(useLocation().pathname) + " | "}
+                {"jumang-potaru.dev | "}
               </div></Link>
             {
               links.map((obj, key) => {
@@ -161,7 +144,7 @@ const Layout = () => {
 
       <div className="MainPage">
         <Router>
-          <MainPage path="/me"/>
+          <MainPage path="/nysh"/>
           <MainPage path="/resume"/>
           <MainPage default/>
         </Router>

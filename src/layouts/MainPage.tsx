@@ -18,7 +18,17 @@ const MainPage: React.FC<any> = () => {
       alignItems: "center",
     }}>
       {
-        path === "/" &&
+        path === "/" && <div style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100vh",
+        }}><MeText/></div>
+      }
+
+      {
+        path === "/nysh" &&
           <div style={{
             width: "100%",
             display: "flex",
@@ -27,16 +37,6 @@ const MainPage: React.FC<any> = () => {
           }}>
               <NyshWindow/>
           </div>
-      }
-
-      {
-        path === "/me" && <div style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          height: "100vh",
-        }}><MeText/></div>
       }
 
       {
