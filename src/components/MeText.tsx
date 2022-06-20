@@ -85,7 +85,7 @@ const MeText = (): JSX.Element => {
             textDecoration: `none`,
             color: `#67939e`,
           }}>
-          <TextBuwa text={"- (computer city (mediumcore edit))"}/>
+          <TextBuwa text={"- (computer_city (mediumcore edit))"}/>
         </a>
       </div>
 
