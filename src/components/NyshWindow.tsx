@@ -1,15 +1,15 @@
 import React, {useState} from "react"
 import {useEffect} from "react"
 import {
-  auto_complete,
+  auto_complete, cat_me,
   files,
   init_history,
   loadNylang, loadNylisp,
-  loadWasm,
+  loadWasm, nyshrcOutput,
   pushHistory,
   put_into_history,
   setEditedContents,
-  showHistory,
+  showHistoryImg,
   updateFiles,
 } from "@/funcs/nysh"
 import "@/styles/component/MDArea.scss"
@@ -96,7 +96,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
     setMe_watching_typed_history,
   ] = useState<number>(0)
   const command_input_ref = React.useRef<HTMLInputElement>(null)
-  const nyshWinRef = React.useRef<HTMLCanvasElement>(null)
 
   // nylang variables
   const [nylang_is_excuting, setNylang_is_excuting] = useState<boolean>(false)
@@ -109,18 +108,63 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
   // goRouter
   const goRoute = goRouter()
 
+  // loading .nyshrc
+  const [command_pool, setCommand_pool] = useState<Array<string>>([])
+
   useEffect(() => {
-    if (modules) {
-      setHistories(
-        put_into_history(
-          [
-            ...modules.welcome_nysh(),
-            "-> 'help' command to show help",
-          ],
+
+    if (!excute_nyl || !excute_nylisp || nylang_is_excuting || nylisp_is_excuting) {
+      const fake_state = Object.assign([], command_pool)
+      command_pool.push("")
+      setCommand_pool( fake_state )
+      return
+    }
+
+    if (command_pool.length !== 0) {
+      // get command [0] then remove it
+      const command = command_pool[0]
+      setCommand_pool(Object.assign([], command_pool.slice(1)))
+      const output = run_command(
+        [command],
+        setHistories,
+        setCurrent_dir,
+        setFile_system,
+        setNylang_is_excuting,
+        setNylang_code,
+        setNylisp_is_excuting,
+        setNylisp_code,
+        setNyim_contents,
+        setNyim_fileName,
+        setIs_nyim,
+        modules,
+        histories,
+        max_size,
+        current_dir,
+        file_system,
+        goRoute,
+        excute_nyl
+      )
+
+      if (output.length > 0) {
+        setHistories(put_into_history(
+          output,
           histories,
           max_size
-        )
-      )
+        ))
+      }
+
+    }
+
+  }, [command_pool])
+
+  useEffect(() => {
+    if (modules) {
+
+      // load .nyshrc at /
+      const dotNyshrcOutput = nyshrcOutput(file_system, current_dir)
+      // excute then push to commandOutput
+      setCommand_pool(Object.assign([], dotNyshrcOutput))
+
     } else {
       // file system
       const _stored = localStorage.getItem("mounted_dirs")
@@ -177,26 +221,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
       false
     )
 
-    // // draw noise fps = 60
-    // setInterval(() => {
-    //   // nyshWinRef
-    //   if (nyshWinRef.current !== null) {
-    //     const ctx = nyshWinRef.current.getContext("2d")
-    //     if (ctx !== null) {
-    //       ctx.fillStyle = "rgba(0,0,0,0.1)"
-    //       ctx.fillRect(0, 0, nyshWinRef.current.width, nyshWinRef.current.height)
-    //       ctx.fillStyle = "rgba(255,255,255,0.1)"
-    //       ctx.fillRect(
-    //         Math.random() * nyshWinRef.current.width,
-    //         Math.random() * nyshWinRef.current.height,
-    //         1,
-    //         1
-    //       )
-    //     }
-    //   }
-    // }, 1000 / 60)
-
-
   }, [])
 
   useEffect(() => {
@@ -209,8 +233,8 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
       setPredict_command(Object.assign([], updated_pred))
       localStorage.setItem("predict_his", JSON.stringify(updated_pred))
 
-      run_command(
-        command,
+      const output = run_command(
+        [command],
         setHistories,
         setCurrent_dir,
         setFile_system,
@@ -229,6 +253,14 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
         goRoute,
         excute_nyl
       )
+
+      if (output.length > 0) {
+        setHistories(put_into_history(
+          output,
+          histories,
+          max_size
+        ))
+      }
 
       // push the command to the command history
       pushHistory(command, typed_history, setTyped_history)
@@ -411,27 +443,45 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
               width: "auto",
               backgroundImage: `linear-gradient(90deg, rgba(114,156,90,1) 0%, rgba(164,164,164,1) 100%)`,
               fontSize: "17px"
-            }}><TextBuwa text={'= nysh'}/></p>
+            }}><TextBuwa text={'= nyu shell term'}/></p>
           </div>
 
           <div className={"commands_box"} style={{
             margin: "16px",
           }}>
             {histories.map((history: any) => {
-              return (
-                <div
-                  className={"nysh_history"}
-                  key={history.id}
-                  style={
-                    {
-                      marginBottom: "8px",
-                      color: history.col,
+              if (history.tag == commmand_tags.img) {
+                return (
+                  <div
+                    className={"nysh_history"}
+                    key={history.id}
+                    style={
+                      {
+                        marginBottom: "8px",
+                        color: history.col,
+                      }
                     }
-                  }
-                >
-                  {showHistory(history)}
-                </div>
-              )
+                  >
+                    {showHistoryImg(history)}
+                  </div>
+                )
+              } else {
+                return (
+                  <div
+                    className={"nysh_history"}
+                    key={history.id}
+                    style={
+                      {
+                        marginBottom: "8px",
+                        color: history.col,
+                        wordBreak: "break-word",
+                      }
+                    }
+                  >
+                    <TextBuwa text={String(history.com)}/>
+                  </div>
+                )
+              }
             })}
             <pre ref={command_input_ref} style={{
               fontWeight: 'normal',

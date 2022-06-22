@@ -1,5 +1,5 @@
 import React from "react"
-import { commmand_tags } from "@/components/NyshWindow"
+import {commmand_tags} from "@/components/NyshWindow"
 
 export enum dirEnum {
   txt,
@@ -20,7 +20,7 @@ export type dirType = {
 }
 
 export const updateFiles = (files: Array<dirType>): void => {
-    localStorage.setItem("mounted_dirs", JSON.stringify(files))
+  localStorage.setItem("mounted_dirs", JSON.stringify(files))
 }
 
 export const commandParser = (command: string) => {
@@ -116,24 +116,24 @@ export const tagParser = (command: string) => {
 
 export const init_history = (): Array<history_type> => {
   let histories: Array<history_type> = []
-  histories.push({ name: "nyvim readme.md", date: new Date() })
-  histories.push({ name: "la", date: new Date() })
-  histories.push({ name: "open", date: new Date() })
-  histories.push({ name: "ls", date: new Date() })
-  histories.push({ name: "cat", date: new Date() })
-  histories.push({ name: "nylisp", date: new Date() })
-  histories.push({ name: "nylang", date: new Date() })
-  histories.push({ name: "clear", date: new Date() })
-  histories.push({ name: "transpiler_rust_nylang", date: new Date() })
-  histories.push({ name: "_nylang_debug", date: new Date() })
-  histories.push({ name: "./", date: new Date() })
-  histories.push({ name: "nyfetch", date: new Date() })
-  histories.push({ name: "whoami", date: new Date() })
-  histories.push({ name: "touch", date: new Date() })
-  histories.push({ name: "mkdir", date: new Date() })
-  histories.push({ name: "rm", date: new Date() })
-  histories.push({ name: "..", date: new Date() })
-  histories.push({ name: "pwd", date: new Date() })
+  histories.push({name: "nyvim readme.md", date: new Date()})
+  histories.push({name: "la", date: new Date()})
+  histories.push({name: "open", date: new Date()})
+  histories.push({name: "ls", date: new Date()})
+  histories.push({name: "cat", date: new Date()})
+  histories.push({name: "nylisp", date: new Date()})
+  histories.push({name: "nylang", date: new Date()})
+  histories.push({name: "clear", date: new Date()})
+  histories.push({name: "transpiler_rust_nylang", date: new Date()})
+  histories.push({name: "_nylang_debug", date: new Date()})
+  histories.push({name: "./", date: new Date()})
+  histories.push({name: "nyfetch", date: new Date()})
+  histories.push({name: "whoami", date: new Date()})
+  histories.push({name: "touch", date: new Date()})
+  histories.push({name: "mkdir", date: new Date()})
+  histories.push({name: "rm", date: new Date()})
+  histories.push({name: "..", date: new Date()})
+  histories.push({name: "pwd", date: new Date()})
   return histories
 }
 
@@ -142,7 +142,7 @@ export const files: Array<dirType> = [
     isFolder: false,
     file_type: dirEnum.txt,
     name: ".version",
-    scripts: ["v1.3.2"],
+    scripts: ["v2.0.0"],
   },
   {
     isFolder: true,
@@ -184,7 +184,14 @@ export const files: Array<dirType> = [
                 scripts: [
                   `🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
 🍙 main = 🏨 () {
-    🎤 ( 🌹 ( 5096 ) ) ;
+   🍙 cnt = 0 ;  
+    🌸 (
+        🏨 ( ) {
+            🎤 ( 🌹 ( 32 ) ) ;
+            🍙 cnt = cnt + 1 ; 
+            💨 cnt != 16 ;
+        }
+    ) ;
     🎤 ( "we are here!" ) ;
 } ;
 `,
@@ -485,8 +492,39 @@ a cute shell thingy that written in rust
 `,
         ],
       },
+      {
+        name: ".nyshrc",
+        isFolder: false,
+        scripts: [
+          `
+nylang .welcome.nyl
+
+# escape output adding (esc) to end of line
+`
+        ]
+      },
+      {
+        name: ".welcome.nyl",
+        isFolder: false,
+        scripts: [
+          `🐽🐽🐽 ( ".nylang/lib/__rand__.nyl" ) ;
+🍙 main = 🏨 () {
+   🍙 cnt = 0 ;  
+    🌸 (
+        🏨 ( ) {
+            🎤 ( 🌹 ( 129 ) ) ;
+        },
+        2
+    ) ;
+    🎤 ( "-o welcome to nysh! is a something kawaii shell" ) ;
+    🎤 ( "-> 'help' command to show help" ) ;
+} ;
+`,
+        ]
+      },
     ],
   },
+
 ]
 
 export const is_vaild_dir = (
@@ -520,7 +558,7 @@ export const auto_complete = (
   available_command: Array<string>,
   file_system: any
 ) => {
-  let { com, arg } = commandParser(temporary_command_input)
+  let {com, arg} = commandParser(temporary_command_input)
   if (arg !== undefined) {
     const whats_in_current: Array<string> = dir_inside(current_dir, file_system)
     whats_in_current.forEach((st: string) => {
@@ -652,17 +690,13 @@ export const pushHistory = (
   setTyped_history(new_array)
 }
 
-export const showHistory = (history: any) => {
-  if (history.tag == commmand_tags.div) {
-    return <>{history.com}</>
-  } else if (history.tag == commmand_tags.img) {
-    let given_img = history.com.split(" ")?.[1]
-    return (
-      <div className={"img_viewer"}>
-        <img className={"img_round"} src={given_img} width={"500"} />
-      </div>
-    )
-  }
+export const showHistoryImg = (history: any) => {
+  let given_img = history.com.split(" ")?.[1]
+  return (
+    <div className={"img_viewer"}>
+      <img className={"img_round"} src={given_img} width={"500"}/>
+    </div>
+  )
 }
 
 export const run_command_of_dotdot = (
@@ -872,4 +906,36 @@ export const writeFile = (
   })
 
   setFile_system(newFilesystem)
+}
+
+// open .nyshrc file and execute the commands. and returns the output
+export const nyshrcOutput = (file_system: any, current_dir: Array<string>): Array<string> => {
+  // make sure the current_dir is /
+  if (current_dir.length !== 1) {
+    return []
+  }
+  if (current_dir[0] !== "/") {
+    return []
+  }
+
+  // check .nyshrc exists
+  const dotNyshRcCatResult = cat_me(".nyshrc", current_dir, file_system)
+  // if ["no file found"], return []
+  if (dotNyshRcCatResult[0] === "no file found") {
+    return []
+  }
+
+  let cleanedCommands = []
+  dotNyshRcCatResult.forEach((line: string) => {
+      if (line.length > 0) {
+        const lineSplited = line.split("\n")
+        lineSplited.forEach((command: string) => {
+            if (command !== '') cleanedCommands.push(command)
+          }
+        )
+      }
+    }
+  )
+
+  return cleanedCommands
 }

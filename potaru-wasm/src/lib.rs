@@ -55,6 +55,8 @@ pub fn help() -> Array {
     ary.push(&JsValue::from_str(
         format!("🐱 wsm: {:?}", available_command_of_wasm().join(" ")).as_str(),
     ));
+    ary.push(&JsValue::from_str("-> we have two interpreters: nylang, nylisp"));
+    ary.push(&JsValue::from_str("-> 'nyvim readme.md' to show more details about this web shell"));
     return ary;
 }
 
@@ -87,7 +89,7 @@ pub fn nyfetch() -> Array {
 pub fn welcome_nysh() -> Array {
     let ary = Array::new();
     ary.push(&JsValue::from_str(
-        "-o welcome to nyu shell! is a something kawaii shell",
+        "-o welcome to nysh! is a something kawaii shell",
     ));
     return ary;
 }
