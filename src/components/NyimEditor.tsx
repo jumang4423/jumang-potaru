@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import "../styles/component/nyimEditor.css"
+
 type Props = {
   nyim_contents: string
   setNyim_contents: Function
@@ -25,16 +26,18 @@ const functions = {
   }
 }
 
-const NyimEditor = ({
-  nyim_contents,
-  setNyim_contents,
-  nyim_fileName,
-  closeNyim,
-  save_nyim
-}
-  : Props) => {
-
+const NyimEditor = (
+  {
+    nyim_contents,
+    setNyim_contents,
+    nyim_fileName,
+    closeNyim,
+    save_nyim
+  }: Props) => {
   const [modules, setModules] = useState<any>(null)
+  const viewState = {
+    isModulesLoaded: modules !== null
+  }
 
   useEffect(() => {
     // actual wasm loading async
@@ -74,10 +77,10 @@ const NyimEditor = ({
             color: "#fff",
             textDecoration: "underline",
           }}
-            onClick={() => {
-              save_nyim()
-              closeNyim()
-            }}>
+                  onClick={() => {
+                    save_nyim()
+                    closeNyim()
+                  }}>
             save
           </button>
 
@@ -92,6 +95,7 @@ const NyimEditor = ({
             textDecoration: "underline",
           }}
                   onClick={() => {
+                    // TODO: only alert? bruh
                     alert(JSON.stringify(nyim_fileName))
                   }}>
             info
@@ -103,7 +107,7 @@ const NyimEditor = ({
           <div className={"nyim_hr_is_green"} style={{
             width: "75%",
             backgroundImage: `linear-gradient(90deg, rgba(200,200,200,1) 0%, rgba(255,255,255,1) 100%)`,
-          }} />
+          }}/>
         </div>
 
         <div className={"flex-row"}>
@@ -120,12 +124,12 @@ const NyimEditor = ({
             />
           </div>
           {
-            modules != null &&
-            <div className={"half_width"}>
-              <div dangerouslySetInnerHTML={
-                { __html: functions.md_renderer(modules, nyim_contents) }
-              } className={"md_area"} />
-            </div>
+            viewState.isModulesLoaded &&
+              <div className={"half_width"}>
+                  <div dangerouslySetInnerHTML={
+                    {__html: functions.md_renderer(modules, nyim_contents)}
+                  } className={"md_area"}/>
+              </div>
           }
         </div>
       </div>

@@ -142,7 +142,7 @@ export const files: Array<dirType> = [
     isFolder: false,
     file_type: dirEnum.txt,
     name: ".version",
-    scripts: ["v2.0.0"],
+    scripts: ["v2.0.1"],
   },
   {
     isFolder: true,

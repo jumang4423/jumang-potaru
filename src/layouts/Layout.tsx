@@ -13,12 +13,9 @@ const Layout = () => {
   }, {
     to: "/nysh",
     label: "nyu shell",
-  },{
-    to: "/contacts",
-    label: "contacts",
   }, {
-    to: "/mind",
-    label: "mind",
+    to: "/psychenet",
+    label: "psychenet",
   }, {
     to: "https://universe-jumang.web.app/",
     label: "blog",
@@ -94,8 +91,6 @@ const Layout = () => {
 
       <div className="MainPage">
         <Router>
-          <MainPage path="/nysh"/>
-          <MainPage path="/resume"/>
           <MainPage default/>
         </Router>
       </div>

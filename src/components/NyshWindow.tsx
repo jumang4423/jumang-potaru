@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {useEffect} from "react"
 import {
-  auto_complete, cat_me,
+  auto_complete,
   files,
   init_history,
   loadNylang, loadNylisp,
@@ -112,7 +112,6 @@ const NyshWindow: React.FC<NyshWindowType> = ({}: NyshWindowType) => {
   const [command_pool, setCommand_pool] = useState<Array<string>>([])
 
   useEffect(() => {
-
     if (!excute_nyl || !excute_nylisp || nylang_is_excuting || nylisp_is_excuting) {
       const fake_state = Object.assign([], command_pool)
       command_pool.push("")

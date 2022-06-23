@@ -7,8 +7,6 @@ import {EffectComposer, Grid} from "@react-three/postprocessing";
 import {BlendFunction} from 'postprocessing'
 
 interface Props {
-  hovered: boolean
-  setHover: Function
 }
 
 //when the browser webGL is disabled, normally all components r hidden somehow
@@ -18,20 +16,16 @@ function isWebGLAvailable() {
     var canvas = document.createElement('canvas');
     return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
   } catch (e) {
-
+    // TODO: 草
     return false;
-
   }
 }
 
-const Jumang3D: React.FC<Props> = ({hovered, setHover}: Props) => {
+const Jumang3D: React.FC<Props> = ({}: Props) => {
   const [model, setModel] = useState<any>(null)
   const [radRotate, setradRotate] = useState<any>(0.0)
   const [ticker, setTicker] = useState<number>(40)
   const [ticker2, setTicker2] = useState<number>(0)
-  const viewState = {
-    objectNumber: 1
-  }
 
   // load model
   useEffect(() => {
@@ -46,8 +40,7 @@ const Jumang3D: React.FC<Props> = ({hovered, setHover}: Props) => {
     ticker2 !== 0 && setTicker2(ticker => ticker - 1)
   })
 
-  // if model is loaded, return jumang 3d model!
-
+  // if model is loaded, return jumang 3d model but this time it is not so
   if (model === null) {
     return (<></>)
   }
@@ -57,13 +50,11 @@ const Jumang3D: React.FC<Props> = ({hovered, setHover}: Props) => {
     rotation={[0, 0.25, radRotate]}
     position={[0, (ticker2 * ticker2 * ticker2 * ticker2 / 100000.0), 0]}
     antialias={false}
-    onClick={() => setHover(!hovered)}
   />
 }
 
 export default () => {
 
-  const [hovered, setHover] = useState(false)
 
   return (
     <div id="container">
@@ -95,7 +86,7 @@ export default () => {
         </EffectComposer>
 
         {/*some point light*/}
-        {isWebGLAvailable() ? <Jumang3D hovered={hovered} setHover={setHover}/> : <p id="webglError"></p>}
+        {isWebGLAvailable() ? <Jumang3D /> : <p id="webglError"></p>}
       </Canvas>
     </div>
   );
