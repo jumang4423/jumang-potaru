@@ -36,13 +36,6 @@ const Psynet3MainComponent = () => {
       const currentSketchIdFromLocalStorage = localStorage.getItem("currentSketchId");
       if (currentSketchIdFromLocalStorage) {
         setSketchId(parseInt(currentSketchIdFromLocalStorage));
-        // setBGM
-        const bgm = BGM[parseInt(currentSketchIdFromLocalStorage)];
-
-        if (bgm) {
-          setBgmId(bgm);
-        }
-
 
       } else {
         setSketchId(PsychenetScene.welcome);
@@ -54,6 +47,14 @@ const Psynet3MainComponent = () => {
       clearInterval(id);
     }
   }, []);
+
+  useEffect(() => {
+    // setBGM
+    const bgm = BGM[sketchId];
+
+    setBgmId(bgm);
+
+  }, [sketchId])
 
 
   if (!sketchId) {
@@ -93,6 +94,26 @@ const Psynet3MainComponent = () => {
               fontSize: "17px",
               opacity: 0.5,
             }}><TextBuwa text={'= psychenet | the mind explorer'}/></p>
+
+            {
+              sketchId !== PsychenetScene.welcome &&
+                <div
+                    onClick={() => {
+                      setSketchId(PsychenetScene.welcome);
+                      localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
+                    }}
+                    style={
+                      {
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        backgroundColor: "#aaa",
+                        width: "100%",
+                        height: "24px"
+                      }}>
+                  {"<- back to main page"}
+                </div>
+            }
 
             {
               bgmId &&
