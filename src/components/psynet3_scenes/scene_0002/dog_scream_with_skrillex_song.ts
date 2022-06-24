@@ -13,7 +13,6 @@ let data_obj: DataObjType = {
   },
   Imgs: {
     corn_dog_img: undefined,
-    smile_img: undefined,
   },
   Scenes: {
     to_scene_0003: {
@@ -135,16 +134,6 @@ function draw_dog_tooltip(p, dataObj: DataObjType, windowInfo: WinType) {
 
 }
 
-function draw_smile_cat_cursor(p, dataObj: DataObjType, windowInfo: WinType) {
-
-  p.push();
-  p.translate(p.mouseX, p.mouseY);
-  p.scale(0.25, 0.25);
-  p.image(dataObj.Imgs.smile_img, -dataObj.Imgs.smile_img.width / 2, -dataObj.Imgs.smile_img.height / 2);
-  p.pop();
-}
-
-
 function sketch(p) {
   p.setup = function () {
     p.createCanvas(windowInfo.width, windowInfo.height);
@@ -154,7 +143,6 @@ function sketch(p) {
   p.preload = function () {
     data_obj.Imgs.corn_dog_img = p.loadImage('/scene_0002/corn_dog.png');
     data_obj.Fonts.body_font = p.loadFont('/leadcoat.ttf');
-    data_obj.Imgs.smile_img = p.loadImage('/scene_0002/sm.png');
 
     // scene_0003 link images loader
     data_obj.Scenes.to_scene_0003.images.push(p.loadImage('/scene_0002/flo.png'));
@@ -186,9 +174,6 @@ function sketch(p) {
     // show links
     draw_portal_link(p, data_obj.Scenes.to_scene_0003);
     draw_portal_link(p, data_obj.Scenes.to_scene_0005);
-
-    draw_smile_cat_cursor(p, data_obj, windowInfo);
-
   }
 
 }

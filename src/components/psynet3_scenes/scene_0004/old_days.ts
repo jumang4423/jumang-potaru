@@ -17,6 +17,7 @@ let data_obj: DataObjType = {
     hasi_img: undefined,
     neko_img: undefined,
     play: undefined,
+    smile_img: undefined,
   },
   Scenes: {
   },
@@ -79,6 +80,15 @@ function draw_play_img(p) {
   p.pop();
 }
 
+function draw_smile_cat_cursor(p, dataObj: DataObjType, windowInfo: WinType) {
+  p.push();
+  p.translate(p.mouseX, p.mouseY);
+  p.scale(0.25, 0.25);
+  p.image(dataObj.Imgs.smile_img, -dataObj.Imgs.smile_img.width / 2, -dataObj.Imgs.smile_img.height / 2);
+  p.pop();
+}
+
+
 function sketch(p) {
   p.setup = function () {
     p.createCanvas(windowInfo.width, windowInfo.height);
@@ -87,6 +97,7 @@ function sketch(p) {
 
   p.preload = function () {
     data_obj.Fonts.body_font = p.loadFont('/leadcoat.ttf');
+    data_obj.Imgs.smile_img = p.loadImage('/scene_0004/sm.png');
 
     // load imgs
     data_obj.Imgs.dri_img = p.loadImage('/scene_0004/dri.png');
@@ -103,6 +114,8 @@ function sketch(p) {
     draw_play_img(p);
     draw_saisei_text_at(p, new Vec2(3, 3), new Vec3(0, 255, 0));
     draw_saisei_text_at(p, new Vec2(0, 0), new Vec3(0, 0, 255));
+
+    draw_smile_cat_cursor(p, data_obj, windowInfo);
   }
 
 }
