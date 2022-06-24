@@ -1,4 +1,4 @@
-import {Vec2, Vec3,  WinType, DataObjType } from '../useful';
+import {Vec2, Vec3, WinType, DataObjType, draw_portal_link} from '../useful';
 
 const windowInfo: WinType = {
   width: 950,
@@ -20,6 +20,14 @@ let data_obj: DataObjType = {
     smile_img: undefined,
   },
   Scenes: {
+    to_scene_0008: {
+      to_sketch_id: "8",
+      index_state: 0,
+      speed: 2,
+      pos: new Vec2(45, 285),
+      size: new Vec2(200,200),
+      images: [],
+    }
   },
   States: {
     dri_pos_x: Math.floor(Math.random() * windowInfo.width),
@@ -106,6 +114,13 @@ function sketch(p) {
     data_obj.Imgs.hasi_img = p.loadImage('/scene_0004/hasi.png');
     data_obj.Imgs.neko_img = p.loadImage('/scene_0004/neko.png');
     data_obj.Imgs.play = p.loadImage('/scene_0004/play.png');
+
+    // link for scene_0008
+    data_obj.Scenes.to_scene_0008.images.push(p.loadImage('/scene_0008/fs.png'));
+    data_obj.Scenes.to_scene_0008.images.push(p.loadImage('/scene_0008/hat.png'));
+    data_obj.Scenes.to_scene_0008.images.push(p.loadImage('/scene_0008/kit.png'));
+    data_obj.Scenes.to_scene_0008.images.push(p.loadImage('/scene_0008/rec.png'));
+
   }
 
   // view
@@ -116,6 +131,9 @@ function sketch(p) {
     draw_saisei_text_at(p, new Vec2(0, 0), new Vec3(0, 0, 255));
 
     draw_smile_cat_cursor(p, data_obj, windowInfo);
+
+    // links
+    draw_portal_link(p, data_obj.Scenes.to_scene_0008)
   }
 
 }

@@ -47,7 +47,7 @@ function draw_welcome_texts(p, dataObj: DataObjType) {
   p.fill(100, 100, 100);
   p.textFont(dataObj.Fonts.body_font, 24);
   p.text('welcome to psychenet, a collection of art nodes.', 70, 260);
-  p.text('no copyright and no pride internet!', 70, 290);
+  p.text('no copyright and non linguistic internet', 70, 290);
   p.text('every art nodes are created...', 70, 320);
   p.text('by my internet friends(psychenet gang)', 70, 350);
   p.text('find new imaginations by', 60, 410);

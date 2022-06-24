@@ -36,6 +36,8 @@ let data_obj: DataObjType = {
     background_color: genRandomColor(200, 255),
     dog_back_pos_x: 0,
     dog_back_pos_x_is_vertical: false,
+    dog_rotate_angle: 0,
+    dog_rotate_pos_y: 0,
     dogPoints: [
       new Vec2(0, 0),
       new Vec2(0, windowInfo.height),
@@ -63,7 +65,7 @@ function draw_dog_going_x(p, dataObj: DataObjType, windowInfo: WinType) {
     p.scale(0.5, 2);
   }
 
-  p.image(dataObj.Imgs.corn_dog_img, -dataObj.Imgs.corn_dog_img.width / 2, -dataObj.Imgs.corn_dog_img.height / 2 + windowInfo.height / 4);
+  p.image(dataObj.Imgs.corn_dog_img, -dataObj.Imgs.corn_dog_img.width / 2, -dataObj.Imgs.corn_dog_img.height / 2 + windowInfo.height / 8);
 
   p.pop();
 
@@ -76,7 +78,7 @@ function draw_dog_back(p, dataObj: DataObjType, windowInfo: WinType) {
 
   // put img center , corn_dog_img
   p.translate(windowInfo.width / 2 - 200, windowInfo.height / 2);
-  p.scale(1.2 + 0.3 * Math.sin(clock / 30), 1.2 + 0.3 * Math.cos(clock / 30));
+  p.scale(1.4 + 0.3 * Math.sin(clock / 30), 1.4 + 0.3 * Math.cos(clock / 30));
   p.image(dataObj.Imgs.corn_dog_img, -dataObj.Imgs.corn_dog_img.width / 2, -dataObj.Imgs.corn_dog_img.height / 2);
 
   p.pop();
@@ -134,6 +136,14 @@ function draw_dog_tooltip(p, dataObj: DataObjType, windowInfo: WinType) {
 
 }
 
+function draw_dog_rotate(p, dataObj: DataObjType, windowInfo: WinType) {
+  dataObj.States.dog_rotate_angle = dataObj.States.dog_rotate_angle + 0.2;
+  p.push()
+  p.rotate(dataObj.States.dog_rotate_angle);
+  p.image(dataObj.Imgs.corn_dog_img, -dataObj.Imgs.corn_dog_img.width / 2, -dataObj.Imgs.corn_dog_img.height / 2 + 700);
+  p.pop();
+}
+
 function sketch(p) {
   p.setup = function () {
     p.createCanvas(windowInfo.width, windowInfo.height);
@@ -167,13 +177,14 @@ function sketch(p) {
 
     p.background(data_obj.States.background_color.x, data_obj.States.background_color.y, data_obj.States.background_color.z);
     draw_dog_going_x(p, data_obj, windowInfo);
+    draw_dog_rotate(p, data_obj, windowInfo);
     draw_dog_back(p, data_obj, windowInfo);
     draw_play_button(p, data_obj, windowInfo);
     draw_dog_tooltip(p, data_obj, windowInfo);
 
     // show links
     draw_portal_link(p, data_obj.Scenes.to_scene_0003);
-    draw_portal_link(p, data_obj.Scenes.to_scene_0005);
+    // draw_portal_link(p, data_obj.Scenes.to_scene_0005);
   }
 
 }

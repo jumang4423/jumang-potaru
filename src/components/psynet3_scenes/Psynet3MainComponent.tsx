@@ -9,60 +9,89 @@ import scene_0002 from "./scene_0002/dog_scream_with_skrillex_song";
 import scene_0003 from "./scene_0003/flower_mind_trash";
 import scene_0004 from "./scene_0004/old_days";
 import scene_0006 from "./scene_0006/nerding_makes_me_so_boring";
+import scene_0007 from "./scene_0007/web3";
+import scene_0008 from "./scene_0008/forest";
 
-enum PsychenetScene {
-  welcome = 1,
-  dog_scream_with_skrillex_song = 2,
-  flower_mind_trash = 3,
-  old_days = 4,
-  nerding_makes_me_so_boring = 6,
+const ArtNodes = {
+  1: {
+    name: "welcome",
+    sketch: scene_0001,
+    bgm: "/scene_0001/no.mp3",
+    author: 'jumango'
+  },
+  2: {
+    name: "dog_scream_with_skrillex_song",
+    sketch: scene_0002,
+    bgm: "/scene_0002/corn_dog_skrillex.mp3",
+    author: 'jumango'
+  },
+  3: {
+    name: "flower_mind_trash",
+    sketch: scene_0003,
+    bgm: "/scene_0003/me.mp3",
+    author: "jumango"
+  },
+  4: {
+    name: "old_days",
+    sketch: scene_0004,
+    bgm: "/scene_0004/old_days.mp3",
+    author: "jumango"
+  },
+  5: {
+    name: "viwiv wip",
+    sketch: undefined,
+    bgm: '',
+    author: "viwiv"
+  },
+  6: {
+    name: "nerding_makes_me_so_boring",
+    sketch: scene_0006,
+    bgm: "/scene_0006/nerding_makes_me_so_boring.mp3",
+    author: "jumango"
+  },
+  7: {
+    name: "web3",
+    sketch: scene_0007,
+    bgm: "/scene_0007/web3.mp3",
+    author: "jumango"
+  },
+  8: {
+    name: "forest",
+    sketch: scene_0008,
+    bgm: "/scene_0008/forest.mp3",
+    author: 'jumango'
+  }
 }
-
-const AllSketches = {
-  1: scene_0001,
-  2: scene_0002,
-  3: scene_0003,
-  4: scene_0004,
-  6: scene_0006,
-}
-
-const BGM = {
-  1: "/scene_0001/no.mp3",
-  2: "/scene_0002/corn_dog_skrillex.mp3",
-  3: "/scene_0003/me.mp3",
-  4: "/scene_0004/old_days.mp3",
-  6: "/scene_0006/nerding_makes_me_so_boring.mp3",
-}
-
 
 const Psynet3MainComponent = () => {
-  const [sketchId, setSketchId] = React.useState<PsychenetScene>(undefined);
+  const [sketchId, setSketchId] = React.useState<number>(undefined)
   const [bgmId, setBgmId] = React.useState<string>("");
 
   // watch local storage for changes sketchId
   useEffect(() => {
-    localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
+    // localStorage.setItem("currentSketchId", String(1));
 
     // やりかた汚すぎて草
     let bgmId_var = ""
     const id = setInterval(() => {
       const currentSketchIdFromLocalStorage = localStorage.getItem("currentSketchId");
 
-      if (bgmId_var === BGM[currentSketchIdFromLocalStorage]) {
+
+      if (currentSketchIdFromLocalStorage === null) {
+          setSketchId(1);
+          localStorage.setItem("currentSketchId", String(1));
+      }
+
+      if (bgmId_var === ArtNodes[currentSketchIdFromLocalStorage].bgm) {
         return;
       }
 
       if (currentSketchIdFromLocalStorage) {
         setSketchId(parseInt(currentSketchIdFromLocalStorage));
-
-        setBgmId( BGM[parseInt(currentSketchIdFromLocalStorage)] );
-        bgmId_var = BGM[parseInt(currentSketchIdFromLocalStorage)]
-
-      } else {
-        setSketchId(PsychenetScene.welcome);
-        localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
+        setBgmId(ArtNodes[currentSketchIdFromLocalStorage].bgm);
+        bgmId_var = ArtNodes[currentSketchIdFromLocalStorage].bgm;
       }
-    }, 1);
+    }, 100);
 
     return () => {
       clearInterval(id);
@@ -116,23 +145,29 @@ const Psynet3MainComponent = () => {
             }}><TextBuwa text={'= psychenet | the mind node based internet'}/></p>
 
             {
-              sketchId !== PsychenetScene.welcome &&
+              sketchId !== 1 &&
                 <div
                     onClick={() => {
-                      setSketchId(PsychenetScene.welcome);
-                      localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
+                      setSketchId(1);
+                      localStorage.setItem("currentSketchId", String(1));
                     }}
                     style={
                       {
                         display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        paddingTop: "4px",
+
                         backgroundColor: "#aaa",
                         width: "100%",
                         height: "24px",
-                        textDecoration: 'underline',
                       }}>
-                  {"<- back to main page"}
+                    <div style={{left: 8, textDecoration: 'underline', color: "#aaf", backgroundColor: "#fff"}}>{"<- back to main page"}</div>
+                    <div style={{
+                      right: 8,
+                      textDecoration: 'none',
+                      color: '#fff'
+                    }}>{"this art node creator: " + ArtNodes[sketchId].author}</div>
                 </div>
             }
 
@@ -141,7 +176,7 @@ const Psynet3MainComponent = () => {
               flexDirection: `column`,
               alignItems: `center`,
               margin: '0px 5px 0px 5px',
-            }}><ReactP5Wrapper sketch={AllSketches[sketchId]}/></div>
+            }}><ReactP5Wrapper sketch={ArtNodes[sketchId].sketch}/></div>
 
 
           </div>

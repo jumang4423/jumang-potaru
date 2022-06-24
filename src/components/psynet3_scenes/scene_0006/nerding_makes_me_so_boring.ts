@@ -1,4 +1,4 @@
-import {Vec2, Vec3,  WinType, DataObjType } from '../useful';
+import {Vec2, Vec3, WinType, DataObjType, draw_portal_link} from '../useful';
 import {func} from "prop-types";
 
 const windowInfo: WinType = {
@@ -14,6 +14,14 @@ let data_obj: DataObjType = {
   Imgs: {
   },
   Scenes: {
+    to_scene_0007: {
+      to_sketch_id: "7",
+      index_state: 0,
+      speed: 2,
+      pos: new Vec2(585, 295),
+      size: new Vec2(220,150),
+      images: [],
+    }
   },
   States: {
     command_histories: [],
@@ -56,6 +64,11 @@ function sketch(p) {
   p.preload = function () {
     data_obj.Fonts.body_font = p.loadFont('/leadcoat.ttf');
 
+    // load scene_0007 img
+    data_obj.Scenes.to_scene_0007.images.push(p.loadImage('/scene_0007/pc1.png'));
+    data_obj.Scenes.to_scene_0007.images.push(p.loadImage('/scene_0007/pc2.png'));
+    data_obj.Scenes.to_scene_0007.images.push(p.loadImage('/scene_0007/pc3.png'));
+
   }
 
   // view
@@ -70,6 +83,9 @@ function sketch(p) {
     draw_all_command_histories(p, data_obj, windowInfo, new Vec2(0, 0));
     draw_all_command_histories(p, data_obj, windowInfo, new Vec2(300, 0));
     draw_all_command_histories(p, data_obj, windowInfo, new Vec2(600, 0));
+
+    // links
+    draw_portal_link(p, data_obj.Scenes.to_scene_0007)
 
   }
 
