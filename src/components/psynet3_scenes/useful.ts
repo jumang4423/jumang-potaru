@@ -61,6 +61,7 @@ export function draw_portal_link(p, data_obj: ToSketchType) {
     if (p.mouseX > data_obj.pos.x && p.mouseX < data_obj.pos.x + data_obj.size.x &&
       p.mouseY > data_obj.pos.y && p.mouseY < data_obj.pos.y + data_obj.size.y) {
       localStorage.setItem('currentSketchId', data_obj.to_sketch_id);
+      localStorage.setItem('currentBgmIndex', '0');
     }
   }
 }

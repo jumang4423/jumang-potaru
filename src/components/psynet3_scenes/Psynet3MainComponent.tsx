@@ -16,49 +16,49 @@ const ArtNodes = {
   1: {
     name: "welcome",
     sketch: scene_0001,
-    bgm: "/scene_0001/no.mp3",
+    bgm: ["/scene_0001/no.mp3",],
     author: 'jumango'
   },
   2: {
     name: "dog_scream_with_skrillex_song",
     sketch: scene_0002,
-    bgm: "/scene_0002/corn_dog_skrillex.mp3",
+    bgm: ["/scene_0002/corn_dog_skrillex.mp3", "/scene_0002/sad.mp3"],
     author: 'jumango'
   },
   3: {
     name: "flower_mind_trash",
     sketch: scene_0003,
-    bgm: "/scene_0003/me.mp3",
+    bgm: ["/scene_0003/me.mp3"],
     author: "jumango"
   },
   4: {
     name: "old_days",
     sketch: scene_0004,
-    bgm: "/scene_0004/old_days.mp3",
+    bgm: ["/scene_0004/old_days.mp3"],
     author: "jumango"
   },
   5: {
     name: "viwiv wip",
     sketch: undefined,
-    bgm: '',
+    bgm: [''],
     author: "viwiv"
   },
   6: {
     name: "nerding_makes_me_so_boring",
     sketch: scene_0006,
-    bgm: "/scene_0006/nerding_makes_me_so_boring.mp3",
+    bgm: ["/scene_0006/nerding_makes_me_so_boring.mp3"],
     author: "jumango"
   },
   7: {
     name: "web3",
     sketch: scene_0007,
-    bgm: "/scene_0007/web3.mp3",
+    bgm: ["/scene_0007/web3.mp3"],
     author: "jumango"
   },
   8: {
     name: "forest",
     sketch: scene_0008,
-    bgm: "/scene_0008/forest.mp3",
+    bgm: ["/scene_0008/forest.mp3"],
     author: 'jumango'
   }
 }
@@ -69,28 +69,30 @@ const Psynet3MainComponent = () => {
 
   // watch local storage for changes sketchId
   useEffect(() => {
-    // localStorage.setItem("currentSketchId", String(1));
+    localStorage.setItem("currentSketchId", String(1));
 
     // やりかた汚すぎて草
     let bgmId_var = ""
     const id = setInterval(() => {
       const currentSketchIdFromLocalStorage = localStorage.getItem("currentSketchId");
+      const currentBgmIndexFromLocalStorage = localStorage.getItem("currentBgmIndex");
 
 
       if (currentSketchIdFromLocalStorage === null) {
-          setSketchId(1);
-          localStorage.setItem("currentSketchId", String(1));
-      }
-
-      if (bgmId_var === ArtNodes[currentSketchIdFromLocalStorage].bgm) {
+        setSketchId(1);
+        localStorage.setItem("currentSketchId", String(1));
+        localStorage.setItem("currentBgmIndex", String(0));
         return;
       }
 
-      if (currentSketchIdFromLocalStorage) {
-        setSketchId(parseInt(currentSketchIdFromLocalStorage));
-        setBgmId(ArtNodes[currentSketchIdFromLocalStorage].bgm);
-        bgmId_var = ArtNodes[currentSketchIdFromLocalStorage].bgm;
+      if (bgmId_var === ArtNodes[currentSketchIdFromLocalStorage].bgm[currentBgmIndexFromLocalStorage]) {
+        return;
       }
+
+      setSketchId(parseInt(currentSketchIdFromLocalStorage));
+      const newBgmId = ArtNodes[currentSketchIdFromLocalStorage].bgm[currentBgmIndexFromLocalStorage];
+      setBgmId( newBgmId );
+      bgmId_var = newBgmId;
     }, 100);
 
     return () => {
@@ -100,7 +102,7 @@ const Psynet3MainComponent = () => {
 
 
   if (!sketchId) {
-    return <div></div>;
+    return <div/>;
   }
 
   return (
@@ -162,7 +164,12 @@ const Psynet3MainComponent = () => {
                         width: "100%",
                         height: "24px",
                       }}>
-                    <div style={{left: 8, textDecoration: 'underline', color: "#aaf", backgroundColor: "#fff"}}>{"<- back to main page"}</div>
+                    <div style={{
+                      left: 8,
+                      textDecoration: 'underline',
+                      color: "#aaf",
+                      backgroundColor: "#fff"
+                    }}>{"<- back to main page"}</div>
                     <div style={{
                       right: 8,
                       textDecoration: 'none',

@@ -33,11 +33,15 @@ let data_obj: DataObjType = {
     }
   },
   States: {
+    dog_attention: false,
     background_color: genRandomColor(200, 255),
     dog_back_pos_x: 0,
     dog_back_pos_x_is_vertical: false,
     dog_rotate_angle: 0,
     dog_rotate_pos_y: 0,
+    mouse_trigerer: false,
+    trigger_pos: new Vec2(Math.floor(Math.random() * windowInfo.width) - 100, Math.floor(Math.random() * windowInfo.height) - 50),
+    triger_direction: new Vec2( 5, 5),
     dogPoints: [
       new Vec2(0, 0),
       new Vec2(0, windowInfo.height),
@@ -168,6 +172,50 @@ function sketch(p) {
     data_obj.Scenes.to_scene_0005.images.push(p.loadImage('/scene_0002/gala.png'));
   }
 
+  function draw_trigger_button(p, dataObj: DataObjType, windowInfo: WinType) {
+    dataObj.States.trigger_pos.x += dataObj.States.triger_direction.x;
+    dataObj.States.trigger_pos.y += dataObj.States.triger_direction.y;
+
+    if (dataObj.States.trigger_pos.x > windowInfo.width) {
+      dataObj.States.triger_direction.x = -5;
+    }
+
+    if (dataObj.States.trigger_pos.x < 0) {
+      dataObj.States.triger_direction.x = 5;
+    }
+
+    if (dataObj.States.trigger_pos.y > windowInfo.height) {
+      dataObj.States.triger_direction.y = -5;
+    }
+
+    if (dataObj.States.trigger_pos.y < 0) {
+      dataObj.States.triger_direction.y = 5;
+    }
+
+    p.push();
+
+    p.fill(200,200,200);
+    p.stroke(100,100,100);
+    p.ellipse(dataObj.States.trigger_pos.x, dataObj.States.trigger_pos.y, 200, 100);
+    p.fill(0);
+    p.textSize(30);
+    p.textFont(dataObj.Fonts.body_font);
+    p.textAlign(p.CENTER, p.CENTER);
+    p.text(dataObj.States.dog_attention ? 'back' : 'start trigger', dataObj.States.trigger_pos.x, dataObj.States.trigger_pos.y);
+
+    p.pop();
+
+    if (p.mouseIsPressed && !data_obj.States.mouse_trigerer) {
+      data_obj.States.dog_attention = !data_obj.States.dog_attention;
+      localStorage.setItem('currentBgmIndex', data_obj.States.dog_attention ? '1' : '0');
+      data_obj.States.mouse_trigerer = true;
+    }
+
+    if (!p.mouseIsPressed) {
+      data_obj.States.mouse_trigerer = false;
+    }
+  }
+
   // view
   p.draw = function () {
     const clock = Math.round(p.millis());
@@ -175,12 +223,18 @@ function sketch(p) {
       data_obj.States.background_color = genRandomColor(200, 255);
     }
 
-    p.background(data_obj.States.background_color.x, data_obj.States.background_color.y, data_obj.States.background_color.z);
-    draw_dog_going_x(p, data_obj, windowInfo);
-    draw_dog_rotate(p, data_obj, windowInfo);
-    draw_dog_back(p, data_obj, windowInfo);
-    draw_play_button(p, data_obj, windowInfo);
-    draw_dog_tooltip(p, data_obj, windowInfo);
+    if (!data_obj.States.dog_attention) {
+      p.background(data_obj.States.background_color.x, data_obj.States.background_color.y, data_obj.States.background_color.z);
+      draw_dog_going_x(p, data_obj, windowInfo);
+      draw_dog_rotate(p, data_obj, windowInfo);
+      draw_trigger_button(p, data_obj, windowInfo);
+      draw_dog_back(p, data_obj, windowInfo);
+      draw_play_button(p, data_obj, windowInfo);
+      draw_dog_tooltip(p, data_obj, windowInfo);
+    } else {
+      p.background(0,0,255,1)
+      draw_trigger_button(p, data_obj, windowInfo);
+    }
 
     // show links
     draw_portal_link(p, data_obj.Scenes.to_scene_0003);
