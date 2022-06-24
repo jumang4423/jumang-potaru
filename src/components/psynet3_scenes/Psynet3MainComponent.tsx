@@ -41,7 +41,7 @@ const Psynet3MainComponent = () => {
 
   // watch local storage for changes sketchId
   useEffect(() => {
-    // localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
+    localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
 
     // やりかた汚すぎて草
     let bgmId_var = ""
