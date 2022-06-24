@@ -48,6 +48,11 @@ export function draw_portal_link(p, data_obj: ToSketchType) {
   }
   p.push();
   p.textAlign(p.CENTER, p.CENTER);
+
+  // draw rec
+  p.fill(Math.random() * 255, Math.random() * 255, Math.random() * 255);
+  p.rect(data_obj.pos.x-3, data_obj.pos.y-3, data_obj.size.x+6, data_obj.size.y+6);
+
   p.image(data_obj.images[data_obj.index_state], data_obj.pos.x, data_obj.pos.y, data_obj.size.x, data_obj.size.y);
   p.pop();
 

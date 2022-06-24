@@ -4,7 +4,7 @@ import {Vec2, Vec3, draw_portal_link, WinType, DataObjType} from '../useful';
 const windowInfo: WinType = {
   width: 950,
   height: 540,
-  fps: 60
+  fps: 30
 }
 
 let data_obj: DataObjType = {

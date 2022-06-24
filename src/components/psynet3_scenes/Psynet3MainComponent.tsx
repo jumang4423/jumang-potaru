@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import TextBuwa from "@/components/TextBuwa";
 import {ReactP5Wrapper} from "react-p5-wrapper";
 import ReactPlayer from "react-player";
@@ -6,20 +6,32 @@ import ReactPlayer from "react-player";
 // sketches
 import scene_0001 from "./scene_0001/welcome";
 import scene_0002 from "./scene_0002/dog_scream_with_skrillex_song";
+import scene_0003 from "./scene_0003/flower_mind_trash";
+import scene_0004 from "./scene_0004/old_days";
+import scene_0006 from "./scene_0006/nerding_makes_me_so_boring";
 
 enum PsychenetScene {
   welcome = 1,
   dog_scream_with_skrillex_song = 2,
+  flower_mind_trash = 3,
+  old_days = 4,
+  nerding_makes_me_so_boring = 6,
 }
 
 const AllSketches = {
   1: scene_0001,
   2: scene_0002,
+  3: scene_0003,
+  4: scene_0004,
+  6: scene_0006,
 }
 
 const BGM = {
-  1: undefined,
+  1: "/scene_0001/no.mp3",
   2: "/scene_0002/corn_dog_skrillex.mp3",
+  3: "/scene_0003/me.mp3",
+  4: "/scene_0004/old_days.mp3",
+  6: "/scene_0006/nerding_makes_me_so_boring.mp3",
 }
 
 
@@ -29,32 +41,33 @@ const Psynet3MainComponent = () => {
 
   // watch local storage for changes sketchId
   useEffect(() => {
-    localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
+    // localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
 
     // やりかた汚すぎて草
+    let bgmId_var = ""
     const id = setInterval(() => {
       const currentSketchIdFromLocalStorage = localStorage.getItem("currentSketchId");
+
+      if (bgmId_var === BGM[currentSketchIdFromLocalStorage]) {
+        return;
+      }
+
       if (currentSketchIdFromLocalStorage) {
         setSketchId(parseInt(currentSketchIdFromLocalStorage));
+
+        setBgmId( BGM[parseInt(currentSketchIdFromLocalStorage)] );
+        bgmId_var = BGM[parseInt(currentSketchIdFromLocalStorage)]
 
       } else {
         setSketchId(PsychenetScene.welcome);
         localStorage.setItem("currentSketchId", String(PsychenetScene.welcome));
       }
-    }, 100);
+    }, 1);
 
     return () => {
       clearInterval(id);
     }
   }, []);
-
-  useEffect(() => {
-    // setBGM
-    const bgm = BGM[sketchId];
-
-    setBgmId(bgm);
-
-  }, [sketchId])
 
 
   if (!sketchId) {
@@ -73,6 +86,13 @@ const Psynet3MainComponent = () => {
       margin: "4px",
       borderRadius: "2px",
     }}>
+
+      <div key={bgmId}><ReactPlayer
+        url={bgmId}
+        playing={true}
+        loop={true}
+        hidden
+      /></div>
 
       <div style={{
         width: "960px",
@@ -93,7 +113,7 @@ const Psynet3MainComponent = () => {
               backgroundImage: `linear-gradient(90deg, rgba(114,156,90,1) 0%, rgba(164,164,164,1) 100%)`,
               fontSize: "17px",
               opacity: 0.5,
-            }}><TextBuwa text={'= psychenet | the mind explorer'}/></p>
+            }}><TextBuwa text={'= psychenet | the mind node based internet'}/></p>
 
             {
               sketchId !== PsychenetScene.welcome &&
@@ -109,20 +129,11 @@ const Psynet3MainComponent = () => {
                         justifyContent: "center",
                         backgroundColor: "#aaa",
                         width: "100%",
-                        height: "24px"
+                        height: "24px",
+                        textDecoration: 'underline',
                       }}>
                   {"<- back to main page"}
                 </div>
-            }
-
-            {
-              bgmId &&
-                <ReactPlayer
-                    url={bgmId}
-                    playing={true}
-                    loop={true}
-                    hidden
-                />
             }
 
             <div style={{
