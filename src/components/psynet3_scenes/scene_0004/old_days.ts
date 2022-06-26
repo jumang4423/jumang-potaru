@@ -27,6 +27,14 @@ let data_obj: DataObjType = {
       pos: new Vec2(45, 285),
       size: new Vec2(200,200),
       images: [],
+    },
+    to_scene_0010: {
+      to_sketch_id: "10",
+      index_state: 0,
+      speed: 2,
+      pos: new Vec2(760, 85),
+      size: new Vec2(120,120),
+      images: [],
     }
   },
   States: {
@@ -121,6 +129,12 @@ function sketch(p) {
     data_obj.Scenes.to_scene_0008.images.push(p.loadImage('/scene_0008/kit.png'));
     data_obj.Scenes.to_scene_0008.images.push(p.loadImage('/scene_0008/rec.png'));
 
+    // link for scene_0010
+    data_obj.Scenes.to_scene_0010.images.push(p.loadImage('/scene_0010/a1.png'));
+    data_obj.Scenes.to_scene_0010.images.push(p.loadImage('/scene_0010/a2.png'));
+    data_obj.Scenes.to_scene_0010.images.push(p.loadImage('/scene_0010/a3.png'));
+    data_obj.Scenes.to_scene_0010.images.push(p.loadImage('/scene_0010/a4.png'));
+
   }
 
   // view
@@ -134,6 +148,7 @@ function sketch(p) {
 
     // links
     draw_portal_link(p, data_obj.Scenes.to_scene_0008)
+    draw_portal_link(p, data_obj.Scenes.to_scene_0010)
   }
 
 }

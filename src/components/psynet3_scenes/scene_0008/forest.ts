@@ -14,7 +14,16 @@ let data_obj: DataObjType = {
     tree_img: undefined,
     rainbow_img: undefined,
   },
-  Scenes: {},
+  Scenes: {
+    to_scene_0009: {
+      to_sketch_id: "9",
+      index_state: 0,
+      speed: 2,
+      pos: new Vec2(460, 240),
+      size: new Vec2(50,50),
+      images: [],
+    }
+  },
   States: {
 
   }
@@ -39,12 +48,6 @@ function draw_move_mouse_text(p, dataObj: DataObjType, windowInfo: WinType) {
   p.pop();
 }
 
-function draw_rainbow_center(p, dataObj: DataObjType, windowInfo: WinType) {
-  p.push();
-  p.translate(windowInfo.width / 2, windowInfo.height / 2);
-  p.image(dataObj.Imgs.rainbow_img, -25, -25, 50, 50);
-  p.pop();
-}
 
 function sketch(p) {
   p.setup = function () {
@@ -55,7 +58,8 @@ function sketch(p) {
   p.preload = function () {
     data_obj.Fonts.body_font = p.loadFont('/leadcoat.ttf');
     data_obj.Imgs.tree_img = p.loadImage('/scene_0008/tree.png');
-    data_obj.Imgs.rainbow_img = p.loadImage('/scene_0008/rainbow.png');
+    data_obj.Scenes.to_scene_0009.images.push(p.loadImage('/scene_0008/hin.png'));
+    data_obj.Scenes.to_scene_0009.images.push(p.loadImage('/scene_0008/time.png'));
   }
 
   // view
@@ -64,7 +68,8 @@ function sketch(p) {
 
     draw_tree_at_mouse(p, data_obj, windowInfo);
     draw_move_mouse_text(p, data_obj, windowInfo);
-    draw_rainbow_center(p, data_obj, windowInfo);
+
+    draw_portal_link(p, data_obj.Scenes.to_scene_0009);
   }
 
 }

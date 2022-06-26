@@ -11,12 +11,14 @@ import scene_0004 from "./scene_0004/old_days";
 import scene_0006 from "./scene_0006/nerding_makes_me_so_boring";
 import scene_0007 from "./scene_0007/web3";
 import scene_0008 from "./scene_0008/forest";
+import scene_0009 from "./scene_0009/hint1";
+import scene_0010 from "./scene_0010/suisui";
 
 const ArtNodes = {
   1: {
     name: "welcome",
     sketch: scene_0001,
-    bgm: ["/scene_0001/no.mp3",],
+    bgm: ["/scene_0001/no.mp3"],
     author: 'jumango'
   },
   2: {
@@ -60,6 +62,18 @@ const ArtNodes = {
     sketch: scene_0008,
     bgm: ["/scene_0008/forest.mp3"],
     author: 'jumango'
+  },
+  9: {
+    name: "hint1",
+    sketch: scene_0009,
+    bgm: ["/scene_0009/hint1.mp3"],
+    author: 'jumango'
+  },
+  10: {
+    name: "suisui",
+    sketch: scene_0010,
+    bgm: ["/scene_0010/suisui.mp3"],
+    author: 'seira'
   }
 }
 
@@ -69,7 +83,7 @@ const Psynet3MainComponent = () => {
 
   // watch local storage for changes sketchId
   useEffect(() => {
-    localStorage.setItem("currentSketchId", String(1));
+    // localStorage.setItem("currentSketchId", String(1));
 
     // やりかた汚すぎて草
     let bgmId_var = ""

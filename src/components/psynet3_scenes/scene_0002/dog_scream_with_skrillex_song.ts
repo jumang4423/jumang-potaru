@@ -20,7 +20,7 @@ let data_obj: DataObjType = {
       index_state: 0,
       speed: 2,
       pos: new Vec2(485, 395),
-      size: new Vec2(90,90),
+      size: new Vec2(90, 90),
       images: [],
     },
     to_scene_0005: {
@@ -28,20 +28,21 @@ let data_obj: DataObjType = {
       index_state: 0,
       speed: 2,
       pos: new Vec2(585, 395),
-      size: new Vec2(90,90),
+      size: new Vec2(90, 90),
       images: [],
     }
   },
   States: {
     dog_attention: false,
+    clock: 0,
     background_color: genRandomColor(200, 255),
     dog_back_pos_x: 0,
     dog_back_pos_x_is_vertical: false,
     dog_rotate_angle: 0,
     dog_rotate_pos_y: 0,
-    mouse_trigerer: false,
+    mouse_trigerer: true,
     trigger_pos: new Vec2(Math.floor(Math.random() * windowInfo.width) - 100, Math.floor(Math.random() * windowInfo.height) - 50),
-    triger_direction: new Vec2( 3, 3),
+    triger_direction: new Vec2(3, 3),
     dogPoints: [
       new Vec2(0, 0),
       new Vec2(0, windowInfo.height),
@@ -94,7 +95,7 @@ function draw_play_button(p, dataObj: DataObjType, windowInfo: WinType) {
   // p.translate(windowInfo.width / 2, windowInfo.height / 2);
   p.fill(255);
   p.textSize(40);
-  p.stroke(0,0,255);
+  p.stroke(0, 0, 255);
   p.textAlign(p.CENTER, p.CENTER);
   p.text('PLAY', 100, 60);
   p.text('PLAY', 100, 60);
@@ -107,7 +108,7 @@ function draw_play_button(p, dataObj: DataObjType, windowInfo: WinType) {
   p.fill(255);
   p.textSize(40);
   p.textAlign(p.CENTER, p.CENTER);
-  p.text('SLP   0:00:'+ clock, 180, 460);
+  p.text('SLP   0:00:' + clock, 180, 460);
   p.pop();
 }
 
@@ -172,8 +173,8 @@ function draw_trigger_button(p, dataObj: DataObjType, windowInfo: WinType) {
 
   p.push();
 
-  p.fill(200,200,200);
-  p.stroke(100,100,100);
+  p.fill(200, 200, 200);
+  p.stroke(100, 100, 100);
   // p.ellipse(dataObj.States.trigger_pos.x, dataObj.States.trigger_pos.y, 200, 100);
   p.fill(255);
   p.textSize(42);
@@ -198,6 +199,8 @@ function sketch(p) {
   p.setup = function () {
     p.createCanvas(windowInfo.width, windowInfo.height);
     p.frameRate(windowInfo.fps);
+    data_obj.States.dog_attention = false
+    data_obj.States.clock = 0;
   };
 
   p.preload = function () {
@@ -220,8 +223,8 @@ function sketch(p) {
 
   // view
   p.draw = function () {
-    const clock = Math.round(p.millis());
-    if (clock % 3 === 0) {
+    data_obj.States.clock += 1;
+    if ( data_obj.States.clock % 3 === 0) {
       data_obj.States.background_color = genRandomColor(200, 255);
     }
 
@@ -234,7 +237,7 @@ function sketch(p) {
       draw_play_button(p, data_obj, windowInfo);
       draw_dog_tooltip(p, data_obj, windowInfo);
     } else {
-      p.background(0,0,255,1)
+      p.background(0, 0, 255, 1)
     }
 
     // show links
@@ -242,7 +245,8 @@ function sketch(p) {
     // draw_portal_link(p, data_obj.Scenes.to_scene_0005);
 
     // button
-    draw_trigger_button(p, data_obj, windowInfo);
+    // TODO: currently disables the button when t < 1s
+    data_obj.States.clock > windowInfo.fps && draw_trigger_button(p, data_obj, windowInfo);
   }
 
 }
